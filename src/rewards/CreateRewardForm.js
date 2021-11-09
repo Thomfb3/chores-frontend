@@ -3,38 +3,44 @@ import { useHistory } from "react-router-dom";
 import Alert from "../common/Alert"
 import UserContext from "../auth/UserContext";
 
-function CreateChoreForm({ createChore }) {
+function CreateRewardForm({ createReward }) {
     const history = useHistory();
     const { currentUser, currentTeam, currentTeamUsers } = useContext(UserContext);
     const [formData, setFormData] = useState({
         "title": "",
         "description": "",
-        "pointValue": "",
-        "assigner": currentUser._id,
-        "assignee": "unassigned",
+        "pointsNeeded": "",
+        "sponsor": currentUser._id,
         "createdBy": currentUser._id,
-        "dueDate" : "",
         "status": "open",
-        "imageUrl": "default-chore.jpg",
+        "imageUrl": "default-reward.jpg",
         "teamId": currentTeam._id,
-        "type": "template"
+        "type": "template",
+        "activity": [
+            {
+            "user": currentUser._id,
+            "event": "Reward created"
+            }
+        ]
     });
+
+    console.log("Create Reward Form", currentTeamUsers)
 
     const [formErrors, setFormErrors] = useState([]);
     console.log(formErrors);
     console.debug(
-        "CreateChoreForm",
-        "createChore=", typeof createChore,
+        "CreateRewardForm",
+        "createReward=", typeof createReward,
         "formData=", formData,
         "formErrors", formErrors,
     );
 
     async function handleSubmit(evt) {
         evt.preventDefault();
-        formData.assignee = formData.assignee === "unassigned" ? null : formData.assignee;
-        let result = await createChore(formData);
+
+        let result = await createReward(formData);
         if (result.success) {
-            history.push("/chores");
+            history.push("/rewards");
         } else {
             setFormErrors(result.errors);
         };
@@ -47,7 +53,7 @@ function CreateChoreForm({ createChore }) {
 
     return (
         <div className="Form-container">
-            <h3 className="Form-title">Create Chore Form</h3>
+            <h3 className="Form-title">Create Reward Form</h3>
             <form className="Form" onSubmit={handleSubmit}>
                 <div className="Form-group">
                     <input
@@ -78,34 +84,12 @@ function CreateChoreForm({ createChore }) {
                         className="Form-input"
                         placeholder="  "
                         type="number"
-                        name="pointValue"
-                        value={formData.pointValue}
+                        name="pointsNeeded"
+                        value={formData.pointsNeeded}
                         onChange={handleChange}
                         required
                     />
-                    <label className="Form-label" htmlFor="pointValue">Point Value</label>
-                </div>
-                <div className="Form-group">
-                    <select name="assignee" value={formData.assignee} onChange={handleChange}>
-                     <option key={"unassigned"} value="unassigned" >Unassigned</option>
-                    {currentTeamUsers.map(u => (
-                        <option key={u._id} value={u._id} >{u.username}</option>
-                    ))}
-   
-                    </select>
-                    <label className="Form-label" htmlFor="assignee">Assign To</label>
-                </div>
-                <div className="Form-group">
-                   <input 
-                        className="Form-input"
-                        placeholder="  "
-                        type="datetime-local"
-                        name="dueDate"
-                        value={formData.dueDate}
-                        onChange={handleChange}
-                        required
-                   />
-                    <label className="Form-label" htmlFor="dueDate">Due Date</label>
+                    <label className="Form-label" htmlFor="pointsNeeded">Points Needed</label>
                 </div>
 
                 {formErrors.length
@@ -118,7 +102,7 @@ function CreateChoreForm({ createChore }) {
                         type="submit"
                         onSubmit={handleSubmit}
                     >
-                        Create Chore
+                        Create Reward
                     </button>
                 </div>
 
@@ -127,4 +111,4 @@ function CreateChoreForm({ createChore }) {
     );
 };
 
-export default CreateChoreForm;
+export default CreateRewardForm;

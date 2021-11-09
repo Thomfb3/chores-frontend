@@ -4,7 +4,6 @@ import formatDate from "../helpers/formatDate";
 import findUserInTeam from "../helpers/findUserInTeam";
 import UserContext from "../auth/UserContext";
 
-
 function ChoreCard({
     id,
     title,
@@ -20,8 +19,8 @@ function ChoreCard({
     createdBy,
     createdAt, 
     dueDate,
-    cardType }) 
-    {
+    cardType 
+    }) {
 
     console.debug("ChoreCard");
     const { currentUser, currentTeamUsers } = useContext(UserContext);
@@ -29,7 +28,7 @@ function ChoreCard({
     if (cardType==="MyChoreList") {
         const userAssignee = findUserInTeam(assignee, currentTeamUsers);
         const userAssigner = findUserInTeam(assigner, currentTeamUsers);
-         console.log(createdAt)
+
         return (
             <Link to={`/chores/${id}`}>
                 <div className="" style={{border: "1px solid red", margin: "20px"}}>
@@ -47,7 +46,7 @@ function ChoreCard({
                         <p>{description}</p>
                         <p className="">{points}</p>
                         <p className="">{formatDate(dueDate)}</p>
-                        <p className="">{`Chore was create at ${formatDate(createdAt)}, by ${userAssigner.username}`}</p>
+                        <p className="">{`Chore was created at ${formatDate(createdAt)}, by ${userAssigner.username}`}</p>
                     </div>
                 </div>
             </Link>

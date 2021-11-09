@@ -1,8 +1,10 @@
 import React, { useContext } from "react";
 import { Link, NavLink } from "react-router-dom";
+import HeaderProfile from "../common/HeaderProfile";
 import UserContext from "../auth/UserContext";
+import choreBoardLogo from "../assets/images/chore-board-logo.svg";
 
-function Navigation() {
+function Navigation({logout}) {
     const { currentUser, currentTeam, isAdmin } = useContext(UserContext);
 
     function loggedInNav() {
@@ -28,15 +30,28 @@ function Navigation() {
                         The Team
                     </NavLink>
                 </li>
+                <li>
+                    <NavLink to="/rewards">
+                        Rewards
+                    </NavLink>
+                </li>
 
-                {isAdmin ? 
-                   ( <li>
-                        <NavLink to="/manage-chores">
-                            Manage Chores
-                        </NavLink>
-                    </li>
-                    ) 
-                 :(null)}
+                {isAdmin ?
+
+                    (<span>
+                        <li>
+                            <NavLink to="/manage-chores">
+                                Manage Chores
+                            </NavLink>
+                        </li>
+                        <li>
+                            <NavLink to="/manage-rewards">
+                                Manage Rewards
+                            </NavLink>
+                        </li>
+                    </span>
+                    )
+                    : (null)}
             </ul>
         );
     };
@@ -88,9 +103,10 @@ function Navigation() {
 
     return (
         <nav className="Navigation">
-            <div className="Navigation-logo-box">
-                <Link to="/" className="Navigation-logo">
-                    Chores
+        {currentUser ? <HeaderProfile logout={logout} /> : " "}
+            <div className="Navigation__logo-box">
+                <Link to="/">
+                   <img className="Navigation__logo" src={choreBoardLogo} alt={"Chore Board Logo"}></img>
                 </Link>
             </div>
             {determineNavigation()}

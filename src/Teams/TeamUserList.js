@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import TeamUserCard from "./TeamUserCard";
+import TeamUserCard from "./TeamUserCard"
 import LoadingSpinner from "../common/LoadingSpinner";
 import UserContext from "../auth/UserContext";
 

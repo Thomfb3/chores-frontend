@@ -86,8 +86,10 @@ class ChoresApi {
     };
 
     /** Update chore status **/
-    static async submitChoreStatus(id, status) {
-        await this.request(`chores/${id}`, { status }, "post");
+    static async updateChoreStatus(id, data) {
+        let res = await this.request(`chores/${id}`, { ...data }, "patch");
+        console.log(res)
+        return res.data;
     };
 
     /////CHORE COMMENTS
@@ -98,7 +100,6 @@ class ChoresApi {
 
     static async postChoreComment(id, data) {
         let res = await this.request(`comments/chore/${id}`, {...data}, "post" );
-        console.log(res)
         return res.data;
     }
 
@@ -106,22 +107,26 @@ class ChoresApi {
     /** Get rewards fileted by team */
     static async getTeamRewards() {
         let res = await this.request(`rewards`);
-        return res.rewards;
+        return res;
+    };
+
+    static async createReward(data) {
+        let res = await this.request(`rewards`, {...data}, "post");
+        return res;
     };
 
     /** Get rewards fileted by team */
     static async getReward(id) {
         let res = await this.request(`rewards/${id}`);
-        return res.rewards;
+        console.log("get reward", res.data)
+        return res.data;
     };
 
     /** Get rewards fileted by team */
     static async getCurrentUserRewards(userId) {
         let res = await this.request(`rewards/user/${userId}`);
-        return res.rewards;
+        return res.data;
     };
-
-
 
     ///////Auth API
 

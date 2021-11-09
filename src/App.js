@@ -7,6 +7,9 @@ import UserContext from "./auth/UserContext";
 import useLocalStorage from "./hooks/useLocalStorage";
 import jwt from "jsonwebtoken";
 import Navigation from "./routes/Navigation";
+import CssBaseline from '@mui/material/CssBaseline';
+import Container from '@mui/material/Container';
+import './scss/App.scss';
 
 export const TOKEN_STORAGE_ID = "chores_token";
 
@@ -128,7 +131,18 @@ function App() {
       
       return { success: true, newChore };
     } catch (errors) {
-      console.error("Failed to create team", errors)
+      console.error("Failed to create chore", errors)
+      return { success: false, errors };
+    };
+  };
+
+  async function createReward(createRewardData) {
+    try {
+      let newReward = await ChoresApi.createReward(createRewardData);
+      console.log(newReward)
+      return { success: true, newReward };
+    } catch (errors) {
+      console.error("Failed to create reward", errors)
       return { success: false, errors };
     };
   };
@@ -149,16 +163,22 @@ function App() {
           currentTeamUsers
         }}>
 
+    <React.Fragment>
+      <CssBaseline />
+      <Container maxWidth="lg">
+    
         <Navigation />
-
-        {currentUser ? <HeaderProfile logout={logout} /> : " "}
         <Routes
           login={login}
           signup={signup}
           createTeam={createTeam}
           joinTeam={joinTeam}
           createChore={createChore}
+          createReward={createReward}
+          logout={logout}
         />
+      </Container>
+    </React.Fragment>
 
       </UserContext.Provider>
     </BrowserRouter>

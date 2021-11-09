@@ -6,7 +6,10 @@ import MyChoresList from "../chores/MyChoresList";
 import UnclaimedChoresList from "../chores/UnclaimedChoresList";
 import ChoreDetails from "../chores/ChoreDetails";
 import CreateChoreForm from "../chores/CreateChoreForm";
-import TeamUserList from "../Teams/TeamUserList";
+import TeamUserList from "../teams/TeamUserList";
+import RewardsList from "../rewards/RewardsList";
+import RewardDetails from "../rewards/RewardDetails";
+import CreateRewardForm from "../rewards/CreateRewardForm";
 import LoginForm from "../auth/LoginForm";
 import SignupForm from "../auth/SignupForm";
 import CreateTeamForm from "../auth/CreateTeamForm";
@@ -16,7 +19,7 @@ import PrivateRoute from "./PrivateRoute";
 import AdminRoute from "./AdminRoute";
 import ChoreCommentContext from "../comments/ChoreCommentContext";
 
-function Routes({ login, signup, createTeam, joinTeam, createChore, postChoreComment }) {
+function Routes({ login, signup, createTeam, joinTeam, createChore, createReward }) {
     let [currentChoreComments, setCurrentChoreComments] = useState([])
 
     return (
@@ -42,23 +45,30 @@ function Routes({ login, signup, createTeam, joinTeam, createChore, postChoreCom
                     <JoinTeamForm joinTeam={joinTeam} />
                 </Route>
 
-
                 <PrivateRoute exact path="/chores">
                     <TeamChoresList />
                 </PrivateRoute>
 
                 <PrivateRoute exact path="/my-chores">
-                    <MyChoresList postChoreComment={postChoreComment}/>
+                    <MyChoresList />
                 </PrivateRoute>
 
                 <PrivateRoute exact path="/unclaimed-chores">
                     <UnclaimedChoresList />
                 </PrivateRoute>
 
+                <PrivateRoute exact path="/rewards">
+                    <RewardsList />
+                </PrivateRoute>
+
                 <PrivateRoute exact path="/chores/:id">
                     <ChoreCommentContext.Provider value={{currentChoreComments, setCurrentChoreComments}}>
                         <ChoreDetails />
                     </ChoreCommentContext.Provider>
+                </PrivateRoute>
+
+                <PrivateRoute exact path="/rewards/:id">
+                    <RewardDetails />
                 </PrivateRoute>
 
                 <PrivateRoute exact path="/team">
@@ -73,6 +83,9 @@ function Routes({ login, signup, createTeam, joinTeam, createChore, postChoreCom
                     <CreateChoreForm createChore={createChore} />
                 </AdminRoute>
 
+                <AdminRoute exact path="/manage-rewards">
+                    <CreateRewardForm createReward={createReward}  />
+                </AdminRoute>
                 <Redirect to="/"/>
 
             </Switch>

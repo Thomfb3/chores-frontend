@@ -5,10 +5,13 @@ import ChoreActivity from "./ChoreActivity";
 import ChoreComment from "../comments/ChoreComment";
 import ChoreCommentForm from "../comments/ChoreCommentForm";
 import findUserInTeam from "../helpers/findUserInTeam";
+import setChoreStatusButton from "../helpers/setChoreStatus"
 import formatDate from "../helpers/formatDate";
 import LoadingSpinner from "../common/LoadingSpinner";
 import UserContext from "../auth/UserContext";
 import ChoreCommentContext from "../comments/ChoreCommentContext";
+import SubmitChoreForm from "./SubmitChoreForm";
+//import ReviewChoreForm from "./ReviewChoreForm";
 
 function ChoreDetails() {
     const { id } = useParams();
@@ -17,7 +20,7 @@ function ChoreDetails() {
     const [choreComments, setChoreComments] = useState([]);
     const { currentUser, currentTeamUsers } = useContext(UserContext);
     const { currentChoreComments, setCurrentChoreComments } = useContext(ChoreCommentContext);
-    
+
     async function getChore() {
         let chore = await ChoresApi.getChore(id);
         setChore(chore);
@@ -30,11 +33,21 @@ function ChoreDetails() {
 
     async function postChoreComment(choreCommentData) {
         try {
-          let newChoreComment = await ChoresApi.postChoreComment(id, choreCommentData);
-          return { success: true, newChoreComment };
+            let newChoreComment = await ChoresApi.postChoreComment(id, choreCommentData);
+            return { success: true, newChoreComment };
         } catch (errors) {
-          console.error("Failed to create team", errors)
-          return { success: false, errors };
+            console.error("Failed to create team", errors)
+            return { success: false, errors };
+        };
+    };
+
+    async function submitChore(submitChoreData) {
+        try {
+            let updatedChore = await ChoresApi.updateChoreStatus(id, submitChoreData);
+            return { success: true, updatedChore };
+        } catch (errors) {
+            console.error("Failed to create team", errors)
+            return { success: false, errors };
         };
     };
 
@@ -47,6 +60,8 @@ function ChoreDetails() {
 
     const assignee = findUserInTeam(chore.assigner, currentTeamUsers);
     const assigner = findUserInTeam(chore.assigner, currentTeamUsers);
+    const newChoreStatus = setChoreStatusButton(chore.status)
+
     return (
         <div className="">
             <div>
@@ -62,6 +77,20 @@ function ChoreDetails() {
                 <img src={chore.imageCover} alt={chore.imageCover} />
             </div>
             <div>
+            {chore.status === "approved" &&
+                    <div>Chore Completed.</div>
+                }
+
+            {chore.status !== "approved" &&
+                    <SubmitChoreForm
+                        status={chore.status}
+                        statusButton={newChoreStatus}
+                        submitChore={submitChore}
+                        isAssigner={currentUser._id === assigner._id}
+                        isAssignee={currentUser._id === assignee._id}
+                    />
+            }
+    
                 <h4>Chore Activity</h4>
                 {chore.activity.map(ca => (
                     <ChoreActivity
@@ -73,24 +102,24 @@ function ChoreDetails() {
                 ))}
             </div>
             <div>
-                <ChoreCommentForm 
+                <ChoreCommentForm
                     postChoreComment={postChoreComment}
                     choreCommentList={choreComments}
                 />
-            {currentChoreComments.length ? (
-                <div>
-                {currentChoreComments.map(c => (
-                    <ChoreComment
-                        id={c._id}
-                        key={c._id}
-                        comment={c.comment}
-                        date={c.date}
-                    />
-                )).reverse()}
+                {currentChoreComments.length ? (
+                    <div>
+                        {currentChoreComments.map(c => (
+                            <ChoreComment
+                                id={c._id}
+                                key={c._id}
+                                comment={c.comment}
+                                date={c.date}
+                            />
+                        )).reverse()}
                     </div>
-            ) : (
-            <p>No Comments.</p>
-            )}
+                ) : (
+                        <p>No Comments.</p>
+                    )}
             </div>
         </div>
     );

@@ -7,12 +7,10 @@ import Alert from "../common/Alert";
 
 function ProfileForm() {
     const { currentUser, setCurrentUser } = useContext(UserContext);
-
     const [formData, setFormData] = useState({
-        username: currentUser.username,
         firstName: currentUser.firstName,
         lastName: currentUser.lastName,
-        email: currentUser.email,
+        profileImage: currentUser.profileImage,
         password: ""
     });
 
@@ -27,41 +25,34 @@ function ProfileForm() {
         "saveConfirmed=", saveConfirmed
     );
 
-
     async function handleSubmit(evt) {
         evt.preventDefault();
 
         const profileData = {
+            username: currentUser.username,
             firstName: formData.firstName,
             lastName: formData.lastName,
-            email: formData.email,
+            profileImage: formData.profileImage,
             password: formData.password
         };
-
-        const username = formData.username;
         let updatedUser;
         try {
-            updatedUser = await ChoresApi.saveProfile(username, profileData);
+            updatedUser = await ChoresApi.saveProfile(currentUser._id, profileData);
             setSaveConfirmed(true);
         } catch (errors) {
             setFormErrors(errors);
             return;
         }
-
         setFormData(f => ({ ...f, password: "" }));
         setFormErrors([]);
-
         setCurrentUser(updatedUser);
     }
-
 
     function handleChange(evt) {
         const { name, value } = evt.target;
         setFormData(f => ({ ...f, [name]: value }));
         setFormErrors([]);
     };
-
-
 
 
     return (
@@ -96,14 +87,15 @@ function ProfileForm() {
                     <input
                         className="Form-input"
                         placeholder="  "
-                        name="email"
+                        name="profileImage"
                         type="text"
-                        value={formData.email}
+                        value={formData.profileImage}
                         onChange={handleChange}
                         required
                     />
-                    <label className="Form-label" htmlFor="email">Email</label>
+                    <label className="Form-label" htmlFor="profileImage">Profile Image</label>
                 </div>
+
                 <div className="Form-group">
                     <input
                         className="Form-input"

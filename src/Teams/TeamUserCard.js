@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 function TeamUserCard({id, isCurrentUser, profileImage, username, firstName, isAdmin, points }) {
-    console.debug("ChoreCard");
+    console.debug("TeamUserCard");
 
     return (
         <Link to={`/chores/${id}`}>
