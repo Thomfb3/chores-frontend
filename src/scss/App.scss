@@ -1,87 +1,10 @@
-@import "variables";
+@import "abstracts/variables";
+@import "abstracts/mixins";
+@import "abstracts/base";
 
-body { font-size:62.5%; }
-
-.Navigation {
-    &__logo-box {
-        padding: 1rem;
-       
-        text-align: center;
-    }
-    &__logo {
-        text-decoration: none;
-        color: $color-gray-dark;
-        width: 200px;
-        margin-left: 210px;
-    }
-}
-
-
-.Profile {
-    display: flex;
-    flex-direction: row-reverse;
-    float: right;
-    padding: 10px;
-    padding-right: 0px;
-    &__avatar {
-        padding-left: 0px;
-        margin-left: 0px;
-    }
-    &__info {
-        display: flex;
-        margin: 0px;
-    }
-    &__points {
-        text-align: right;
-        padding-right: 1.3rem;
-        border-right: 2px solid $color-gray-mid-light;
-        &--label {
-            color: $color-gray-mid;
-            margin: 0;
-            padding: 0px;
-            margin-top: .8rem;
-            line-height: 1rem;
-        }
-        &--number {
-            color: $color-success;
-            font-size: 2rem;
-            font-weight: bold;
-            margin: 0;
-            padding: 0px;
-            margin-top: 0.6rem;
-            line-height: 1rem;
-        }
-    }
-    &__names {
-        text-align: right;
-        padding-left: 1rem;
-        &--user {
-            color: $color-gray-mid;
-            font-size: 1.5rem;
-            margin: 0;
-            padding: 0px;
-            margin-top: 1rem;
-            line-height: 1rem;
-        }
-        &--team {
-            color: $color-gray-mid;
-            font-size: 1rem;
-            margin: 0;
-            padding: 0px;
-            margin-top: 0.6rem;
-            line-height: 1rem;
-        }
-    }
-}
-
-
-// <div className="Profile__info">
-// <div className="Profile__points">
-//     <p className="Profile__points--label">Your Points</p>
-//     <p className="Profile__points--number">{currentUser.points}</p>
-// </div>
-// <div className="Profile__names">
-//     <p className="Profile__names--user">{currentUser.firstName || currentUser.username}</p>
-//     <p className="Profile__names--team">Team: {currentTeam.name}</p>
-// </div>
-// </div>
+@import "Navigation";
+@import "Profile";
+@import "Form";
+@import "Chore";
+@import "Reward";
+@import "Team";

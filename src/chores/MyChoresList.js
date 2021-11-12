@@ -4,7 +4,6 @@ import ChoreCard from "./ChoreCard";
 import LoadingSpinner from "../common/LoadingSpinner";
 import UserContext from "../auth/UserContext";
 
-
 function MyChoresList() {
   console.debug("MyChoresList");
   const [chores, setChores] = useState(null);
@@ -23,9 +22,8 @@ function MyChoresList() {
   
   return (
     <div>
-
       {chores.length ? (
-        <div >
+        <div className="ChoreList">
           {chores.map(c => (
             <ChoreCard
                 id={c._id}
@@ -34,10 +32,9 @@ function MyChoresList() {
                 description={c.description}
                 points={c.pointValue}
                 status={c.status}
-                assigneeName={c.assignee.firstName}
                 assigneeImage={c.assignee.profileImage}
                 choreImage={c.choreImage}
-                assigner={c.assigner}
+                assignerId={c.assigner}
                 assignee={c.assignee}
                 createdAt={c.createdAt}
                 createdBy={c.createdBy}

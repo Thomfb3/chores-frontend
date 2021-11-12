@@ -22,7 +22,7 @@ function TeamChoresList() {
   if (!chores) return <LoadingSpinner />;
 
   return (
-    <div>
+    <div className="ChoreList">
       {chores.length ? (
         <div >
           {chores.map(c => (
@@ -33,11 +33,10 @@ function TeamChoresList() {
                 description={c.description}
                 points={c.pointValue}
                 status={c.status}
-                assigneeUsername={c.assignee.username}
                 assigneeName={c.assignee.firstName}
                 assigneeImage={c.assignee.profileImage}
                 choreImage={c.choreImage}
-                assigner={c.assigner}
+                assignerId={c.assigner}
                 assignee={c.assignee}
                 createdAt={c.createdAt}
                 createdBy={c.createdBy}

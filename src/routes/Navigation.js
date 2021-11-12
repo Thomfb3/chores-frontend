@@ -4,53 +4,65 @@ import HeaderProfile from "../common/HeaderProfile";
 import UserContext from "../auth/UserContext";
 import choreBoardLogo from "../assets/images/chore-board-logo.svg";
 
-function Navigation({logout}) {
+function Navigation({ logout }) {
     const { currentUser, currentTeam, isAdmin } = useContext(UserContext);
 
     function loggedInNav() {
         return (
             <ul>
                 <li>
-                    <NavLink to="/my-chores">
+                    <NavLink to="/my-chores"
+                        className="Navigation__link"
+                        activeClassName="Navigation__link-active" >
                         My Chores
                     </NavLink>
                 </li>
                 <li>
-                    <NavLink to="/chores">
+                    <NavLink to="/chores"
+                        className="Navigation__link"
+                        activeClassName="Navigation__link-active" >
+
                         Everyone's Chores
                     </NavLink>
                 </li>
                 <li>
-                    <NavLink to="/unclaimed-chores">
+                    <NavLink to="/unclaimed-chores"
+                        className="Navigation__link"
+                        activeClassName="Navigation__link-active" >
                         Unclaimed Chores
                     </NavLink>
                 </li>
                 <li>
-                    <NavLink to="/team">
+                    <NavLink to="/team"
+                        className="Navigation__link"
+                        activeClassName="Navigation__link-active" >
                         The Team
                     </NavLink>
                 </li>
                 <li>
-                    <NavLink to="/rewards">
+                    <NavLink to="/rewards"
+                        className="Navigation__link"
+                        activeClassName="Navigation__link-active" >
                         Rewards
                     </NavLink>
                 </li>
-
                 {isAdmin ?
-
-                    (<span>
-                        <li>
-                            <NavLink to="/manage-chores">
-                                Manage Chores
+                    <li>
+                        <NavLink to="/manage-chores"
+                            className="Navigation__link"
+                            activeClassName="Navigation__link-active" >
+                            Manage Chores
                             </NavLink>
-                        </li>
-                        <li>
-                            <NavLink to="/manage-rewards">
-                                Manage Rewards
+                    </li>
+                    : (null)}
+                {isAdmin ?
+                    <li>
+                        <NavLink to="/manage-rewards"
+                            className="Navigation__link"
+                            activeClassName="Navigation__link-active" >
+                            Manage Rewards
                             </NavLink>
-                        </li>
-                    </span>
-                    )
+                    </li>
                     : (null)}
             </ul>
         );
@@ -75,6 +87,7 @@ function Navigation({logout}) {
 
     function loggedInNoTeamNav() {
         return (
+
             <ul>
                 <li>
                     <NavLink to="/create-team">
@@ -100,16 +113,17 @@ function Navigation({logout}) {
         };
     };
 
-
     return (
         <nav className="Navigation">
-        {currentUser ? <HeaderProfile logout={logout} /> : " "}
+            {currentUser ? <HeaderProfile logout={logout} /> : " "}
             <div className="Navigation__logo-box">
                 <Link to="/">
-                   <img className="Navigation__logo" src={choreBoardLogo} alt={"Chore Board Logo"}></img>
+                    <img className="Navigation__logo" src={choreBoardLogo} alt={"Chore Board Logo"}></img>
                 </Link>
             </div>
-            {determineNavigation()}
+            <div className="Navigation__nav">
+                {determineNavigation()}
+            </div>
             <div>
 
             </div>

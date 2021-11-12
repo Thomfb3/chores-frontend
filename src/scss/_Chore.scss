@@ -1,0 +1,124 @@
+.ChoreList {
+    margin: auto;
+    font-family: $font-1;
+}
+
+.ChoreCard {
+        text-decoration: none;
+        color: $color-dark;
+        
+    &__container {
+        margin: auto;
+        margin-bottom: 2rem;
+        width: 75%;
+        border-radius: 10px;
+        box-shadow: 0px 2px 8px rgba(0,0,0,.2);
+        padding: 10px 20px 10px 20px;
+        transition: all .2s cubic-bezier(0.19, 1, 0.22, 1);
+        &:hover {
+            transform: translateY(-3px);
+        }
+    }
+    &__unclaimed {
+        border-left: 5px solid $color-secondary;
+    }
+    &__needs-review {
+        border-left: 5px solid $color-primary;
+    }
+    &__need-to-do {
+        border-left: 5px solid $color-danger;
+    }
+    &__approved {
+        border-left: 5px solid $color-success;
+    }
+    &__inner-container {
+        display: flex;
+        justify-content: space-between;
+        padding-bottom: 10px;
+        &--align-center {
+            align-items: center;
+        }
+    }
+    &__title {
+        color: $color-dark;
+        font-size: 1.5rem;
+        font-weight: bold;
+    }
+    &__description {
+        color: $color-gray-dark;
+    }
+    &__points {
+        font-size: 1.8rem;
+        font-weight: bold;
+    }
+    &__due-date {
+        color: $color-gray-dark;
+        text-align: right;
+        &--label {
+            font-size: .7rem;
+            display: inline-block;
+            color: $color-danger;
+            padding-bottom: 5px;
+            margin-bottom: 8px;
+            border-bottom: 1px solid $color-danger;
+        }
+        &--day {
+            padding-bottom: 0px;
+            margin-bottom: 0px;
+            font-weight: bold;
+        }
+        &--date {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+    }
+    &__footer {
+        font-size: .7rem;
+        color: $color-gray-dark;
+    }
+    &__image {
+        margin-top: .3rem;
+    }
+    &__name-grow {
+        flex-grow: 1;
+        padding-left: 15px;
+    }
+    &__everyone-name {
+        color: $color-gray-mid;
+        font-size: 1.3rem;
+    }
+    &__everyone-title {
+        color: $color-dark;
+        font-size: 1.2rem;
+        font-weight: bold;
+    }
+    &__everyone-points {
+        color: $color-dark;
+        font-size: 1.5rem;
+        font-weight: bold;
+        margin-right: 40px;
+    }
+    &__everyone-points-approved {
+        color: $color-success;
+        font-size: 1.5rem;
+        font-weight: bold;
+        margin-right: 40px;
+    }
+    &__everyone-due-date {
+        color: $color-dark;
+        font-size: 1.5rem;
+        font-weight: bold;
+    }
+    &__everyone-me {
+        color: $color-primary;
+        font-size: .9rem;
+        padding-left: 8px;
+    }
+    &__approved-section {
+        display: flex;
+        font-weight: bold;
+        font-size: 1.3rem;
+        color: $color-success; 
+    }
+
+}

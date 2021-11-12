@@ -2,6 +2,11 @@ import React, { useState, useContext } from "react";
 import { useHistory } from "react-router-dom";
 import Alert from "../common/Alert"
 import UserContext from "../auth/UserContext";
+import TextField from '@mui/material/TextField';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import Paper from '@mui/material/Paper';
+import Button from '@mui/material/Button';
 
 function CreateRewardForm({ createReward }) {
     const history = useHistory();
@@ -18,8 +23,8 @@ function CreateRewardForm({ createReward }) {
         "type": "template",
         "activity": [
             {
-            "user": currentUser._id,
-            "event": "Reward created"
+                "user": currentUser._id,
+                "event": "Reward created"
             }
         ]
     });
@@ -52,61 +57,74 @@ function CreateRewardForm({ createReward }) {
     };
 
     return (
-        <div className="Form-container">
-            <h3 className="Form-title">Create Reward Form</h3>
-            <form className="Form" onSubmit={handleSubmit}>
-                <div className="Form-group">
-                    <input
-                        className="Form-input"
-                        placeholder="  "
-                        type="text"
-                        name="title"
-                        value={formData.title}
-                        onChange={handleChange}
-                        required
-                    />
-                    <label className="Form-label" htmlFor="title">Title</label>
-                </div>
-                <div className="Form-group">
-                    <input
-                        className="Form-input"
-                        placeholder="  "
-                        type="text"
-                        name="description"
-                        value={formData.description}
-                        onChange={handleChange}
-                        required
-                    />
-                    <label className="Form-label" htmlFor="description">Description</label>
-                </div>
-                <div className="Form-group">
-                    <input
-                        className="Form-input"
-                        placeholder="  "
-                        type="number"
-                        name="pointsNeeded"
-                        value={formData.pointsNeeded}
-                        onChange={handleChange}
-                        required
-                    />
-                    <label className="Form-label" htmlFor="pointsNeeded">Points Needed</label>
-                </div>
+        <div className="Form">
+            <h3 className="Form__title">Create Reward Form</h3>
+            <div className="Form__divider"></div>
+            <div className="Form__form-container">
+                <Paper
+                    elevation={3}
+                    sx={{ width: '50%', paddingTop: '30px', margin: 'auto', marginTop: '50px', paddingBottom: '10px'}}>
+                    <form className="Form" onSubmit={handleSubmit}>
+                        <div className="Form-group">
+                            <TextField
+                                id="title"
+                                label="Title"
+                                variant="outlined"
+                                placeholder="  "
+                                type="text"
+                                name="title"
+                                value={formData.title}
+                                onChange={handleChange}
+                                sx={{ m: 1, width: '95%'}}
+                                required />
+                        </div>
+                        <div className="Form-group">
+                            <TextField
+                                id="description"
+                                label="Description"
+                                variant="outlined"
+                                placeholder="  "
+                                type="text"
+                                name="description"
+                                value={formData.description}
+                                onChange={handleChange}
+                                sx={{ m: 1, width: '95%' }}
+                            />
+                        </div>
+                        <div className="Form-group">
+                            <TextField
+                                id="pointsNeeded"
+                                label="Points Needed"
+                                variant="outlined"
+                                placeholder="  "
+                                type="number"
+                                name="pointsNeeded"
+                                value={formData.pointsNeeded}
+                                onChange={handleChange}
+                                sx={{ m: 1, width: '95%' }}
+                            />
+                        </div>
 
-                {formErrors.length
-                    ? <Alert type="danger" messages={formErrors} />
-                    : null}
+                        {formErrors.length
+                            ? <Alert type="danger" messages={formErrors} />
+                            : null}
 
-                <div className="Form-group">
-                    <button
-                        className="Button"
-                        type="submit"
-                        onSubmit={handleSubmit}
-                    >
-                        Create Reward
-                    </button>
-                </div>
+                        <div className="Form-group" style={{textAlign: 'right'}}>
 
-            </form>
+                            <Button
+                                sx={{ m: 2, backgroundColor: '#1193ff', borderRadius: '5px' }}
+                                variant="contained"
+                                type="submit"
+                                onSubmit={handleSubmit}
+                            >
+                                Create Reward
+                            </Button>
+                        </div>
+
+                    </form> 
+                    <small className='Form__footer'>* Required Fields</small>
+                </Paper>
+            </div>
         </div>
     );
 };

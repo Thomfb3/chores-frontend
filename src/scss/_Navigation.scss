@@ -1,0 +1,51 @@
+.Navigation {
+    &__nav {
+        margin-top: 5rem;  
+        margin-bottom: 3rem;
+        text-align: center;
+        padding: 0px 50px;
+    }
+    &__link {
+        white-space: nowrap;
+        color: $color-gray-mid;
+        font-size: .9rem;
+        text-decoration: none;
+        padding: .3rem 1.1rem;
+        border-radius:35px;
+        margin: 0px 7px;
+        &:hover {
+            color: $color-primary;
+        }
+    }
+    &__link-active {
+        white-space: nowrap;
+        color: #fff;
+        background-color: $color-primary; 
+        font-size: .9rem;
+        text-decoration: none;
+        padding: .3rem 1.1rem;
+        border-radius: 35px;
+        transition: all .3s ease;
+        margin: 0px 7px;
+        &:hover {
+            color: #fff;
+        }
+    }
+    & ul {
+        width: 100%;
+        display: flex;
+        list-style: none;
+        justify-content: flex-start;
+    }
+    &__logo-box {
+        padding: 0rem;
+        text-align: center;
+    }
+    &__logo {
+        margin-top: 1rem;
+        text-decoration: none;
+        color: $color-gray-dark;
+        width: 200px;
+        margin-left: 210px;
+    }
+}

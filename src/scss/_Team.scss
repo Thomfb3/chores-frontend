@@ -1,0 +1,72 @@
+.TeamUserList {
+    margin: auto;
+    font-family: $font-1;
+}
+
+.TeamUserCard {
+        text-decoration: none;
+        color: $color-dark;
+    &__box-shadow {
+        margin-left: 4rem;
+        filter: drop-shadow(0px 2px 10px rgba(0,0, 0, 0.3))
+    }
+    &__clipped {
+        position: absolute;
+        background-color: white;
+        background: linear-gradient(66deg, #24C67C 55px, white 18px);
+        min-width: 956px;
+        margin: auto;
+        margin-bottom: 2rem;
+        margin-left: 21px;
+        height: 100px;
+        z-index: 0;
+        clip-path: polygon(0% 0%, 95% 0%, 100% 100%, 5% 100%);
+    }
+    &__container {
+        position: relative;
+        margin: auto;
+        margin-bottom: 2rem;
+        width: 75%;
+        border-radius: 0px;
+        padding: 10px 20px 10px 20px;
+        transition: all .2s cubic-bezier(0.19, 1, 0.22, 1);
+        z-index: 5;
+    }
+    &__inner-container {
+        display: flex;
+        justify-content: space-between;
+        padding-bottom: 10px;
+        &--align-center {
+            align-items: center;
+        }
+    }
+    &__points {
+        font-size: 1.8rem;
+        font-weight: bold;
+    }
+    &__image {
+        margin-top: .3rem;
+    }
+    &__name-grow {
+        flex-grow: 1;
+        display: flex;
+        padding-left: 15px;
+    }
+    &__firstname {
+        color: $color-dark;
+        font-size: 1.5rem;
+        font-weight: bold;
+    }
+    &__username {
+        font-size: .9rem;
+        color: $color-gray-dark;
+    }
+    &__titles {
+        margin-top: .3rem;
+        display: flex;
+        color: $color-primary;
+    }
+    &__titles p {
+        padding-left: 5px;
+    }
+}

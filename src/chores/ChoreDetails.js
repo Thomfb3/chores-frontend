@@ -6,7 +6,7 @@ import ChoreComment from "../comments/ChoreComment";
 import ChoreCommentForm from "../comments/ChoreCommentForm";
 import findUserInTeam from "../helpers/findUserInTeam";
 import setChoreStatusButton from "../helpers/setChoreStatus"
-import formatDate from "../helpers/formatDate";
+import { formatDate, formatShortDate, formatDay } from "../helpers/formatDate";
 import LoadingSpinner from "../common/LoadingSpinner";
 import UserContext from "../auth/UserContext";
 import ChoreCommentContext from "../comments/ChoreCommentContext";
@@ -90,7 +90,6 @@ function ChoreDetails() {
                         isAssignee={currentUser._id === assignee._id}
                     />
             }
-    
                 <h4>Chore Activity</h4>
                 {chore.activity.map(ca => (
                     <ChoreActivity

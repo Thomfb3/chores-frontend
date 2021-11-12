@@ -33,7 +33,7 @@ function RewardList() {
                 points={c.pointsNeeded}
                 status={c.status}
                 rewardImage={c.rewardImage}
-                sponsor={c.assigner}
+                sponsor={c.sponsor}
                 createdAt={c.activity[0].date}
                 createdBy={c.activity[0].user}
             />

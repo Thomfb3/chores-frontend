@@ -1,0 +1,86 @@
+.RewardList {
+    margin: auto;
+    font-family: $font-1;
+}
+
+.RewardCard {
+        text-decoration: none;
+        color: $color-dark;
+        
+    &__container {
+        margin: auto;
+        margin-bottom: 2rem;
+        border-left: 5px solid $color-secondary;
+        width: 75%;
+        border-radius: 10px;
+        box-shadow: 0px 2px 8px rgba(0,0,0,.2);
+        padding: 10px 20px 10px 20px;
+        transition: all .2s cubic-bezier(0.19, 1, 0.22, 1);
+        &:hover {
+            transform: translateY(-3px);
+        }
+    }
+    &__inner-container {
+        display: flex;
+        justify-content: space-between;
+        padding-bottom: 10px;
+        &--align-center {
+            align-items: center;
+        }
+    }
+    &__title {
+        color: $color-dark;
+        font-size: 1.9rem;
+        font-weight: bold;
+    }
+    &__description {
+        color: $color-gray-dark;
+    }
+    &__points {
+        font-size: 1.8rem;
+        font-weight: bold;
+    }
+    &__points-section {
+        text-align: right;
+        margin-right: 4rem;
+    }
+    &__sponsor-section {
+        text-align: right;
+    }
+    &__due-date {
+        color: $color-gray-dark;
+        text-align: right;
+        &--label {
+            font-size: .7rem;
+            display: inline-block;
+            color: $color-danger;
+            padding-bottom: 5px;
+            margin-bottom: 8px;
+            border-bottom: 1px solid $color-danger;
+        }
+        &--day {
+            padding-bottom: 0px;
+            margin-bottom: 0px;
+            font-weight: bold;
+        }
+        &--date {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+    }
+    &__footer {
+        font-size: .7rem;
+        color: $color-gray-dark;
+    }
+    &__title-grow {
+        flex-grow: 1;
+        padding-left: 15px;
+    }
+    &__status {
+        font-size: 1.3rem;
+        font-weight: bold;
+        color: $color-success;
+        margin-top: 10px;
+        margin-bottom: 30px;
+    }
+}

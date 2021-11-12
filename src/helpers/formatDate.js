@@ -8,4 +8,19 @@ const formatDate = (date) => {
     return `${daysOfTheWeek[choreDate.getUTCDay()]}, ${month} ${day}, ${year} - ${time}`;
 };
 
-export default formatDate;
+const formatShortDate = (date) => {
+    const choreDate = new Date(date)
+    const month = choreDate.toLocaleString('default', { month: 'numeric' });
+    const year = choreDate.toLocaleString('default', { year: 'numeric' });
+    const day = choreDate.toLocaleString('default', { day: 'numeric' });
+    return `${month}/${day}/${year}`;
+};
+
+const formatDay = (date) => {
+    const choreDate = new Date(date)
+    const daysOfTheWeek = ["Sunday", "Saturday","Monday","Tuesday","Wednesday", "Thursday", "Friday"] 
+    return `${daysOfTheWeek[choreDate.getUTCDay()]}`;
+};
+
+
+module.exports = { formatDate, formatShortDate, formatDay }; 

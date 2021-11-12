@@ -1,0 +1,59 @@
+.Profile {
+    display: flex;
+    margin-top: .3rem;
+    flex-direction: row-reverse;
+    float: right;
+    padding: 10px;
+    padding-right: 0px;
+    &__avatar {
+        padding-left: 0px;
+        margin-left: 0px;
+    }
+    &__info {
+        display: flex;
+        margin: 0px;
+    }
+    &__points {
+        text-align: right;
+        padding-right: 1rem; 
+        border-right: 2px solid $color-gray-mid-light;
+        &--label {
+            color: $color-gray-mid;
+            margin: 0;
+            font-size: .9rem;
+            padding: 0px;
+            margin-top: .9rem;
+            line-height: .8rem;
+        }
+        &--number {
+            color: $color-success;
+            font-weight: bold;
+            margin: 0;
+            font-size: 2rem;
+            padding: 0px;
+            margin-top: 0.5rem;
+            line-height: 1.3rem;
+        }
+    }
+    &__names {
+        text-align: right;
+        padding-left: .7rem;
+        &--user {
+            color: $color-gray-mid;
+            margin: 0;
+            padding: 0px;
+            font-size: 1.5rem;
+            margin-top: 1.5rem;
+            margin-bottom: 0px;
+            line-height: .8rem;
+        }
+        &--team {
+            color: $color-gray-mid;
+            margin: 0;
+            padding: 0px;
+            font-size: .9rem;
+            margin-top: .7rem;
+            line-height: .7rem;
+        }
+    }
+}

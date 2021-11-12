@@ -2,7 +2,7 @@ import React, { useEffect, useState, useContext } from "react";
 import { useParams } from "react-router-dom";
 import ChoresApi from "../api/api";
 import findUserInTeam from "../helpers/findUserInTeam";
-import formatDate from "../helpers/formatDate";
+import { formatDate, formatShortDate, formatDay } from "../helpers/formatDate";
 import LoadingSpinner from "../common/LoadingSpinner";
 import UserContext from "../auth/UserContext";
 

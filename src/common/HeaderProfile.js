@@ -31,22 +31,29 @@ function HeaderProfile({ logout }) {
         setAnchorEl(null);
     };
 
+    const menuStyles = {
+        textDecoration: "none",
+        color: "rgb(16, 147, 255)"
+    }
+
     return (
         <div className="Profile">
             <div className="Profile__avatar">
                 <React.Fragment>
-                    <Box sx={{ display: 'flex', alignItems: 'center', textAlign: 'center',  }}>
-                        <Tooltip title="My Profile">
+                    <Box sx={{ display: 'flex', alignItems: 'center', textAlign: 'center'}}>
+                        <Tooltip title={<p>My Profile</p>} >
                             <IconButton onClick={handleClick} size="small" sx={{ ml:1 }}>
                                 <Avatar
+                                    className="Profile__avatar--component"
                                     alt={currentUser.username}
                                     src={defaultProfilePic}
-                                    sx={{ width: 60, height: 60 }}
+                                    sx={{ width: 65, height: 65 }}
                                 />
                             </IconButton>
                         </Tooltip>
                     </Box>
                     <Menu
+                        className="Profile__menu"
                         anchorEl={anchorEl}
                         open={open}
                         onClose={handleClose}
@@ -79,26 +86,28 @@ function HeaderProfile({ logout }) {
                         }}
                         transformOrigin={{ horizontal: 'right', vertical: 'top' }}
                         anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
-                    >
-                        <MenuItem>
-                            <ListItemIcon>
-                                <AccountCircleOutlinedIcon fontSize="small" />
+                    >   
+                    
+                        <MenuItem sx={menuStyles}>
+                            <ListItemIcon >
+                                <AccountCircleOutlinedIcon sx={menuStyles} />
                             </ListItemIcon>
                             My Profile
                         </MenuItem>
-                        <NavLink to="/profile">
-                            <MenuItem>
+                        <NavLink to="/profile" style={{ textDecoration: 'none' }}>
+                            <MenuItem sx={menuStyles} >
                                 <ListItemIcon>
-                                    <Edit fontSize="small" />
+                                    <Edit sx={menuStyles}  />
                                 </ListItemIcon>
                                 Edit Profile
                             </MenuItem>
                         </NavLink>
+                    
                         <Divider />
-                        <NavLink to="/" onClick={logout}>
-                            <MenuItem>
+                        <NavLink to="/" onClick={logout} style={{ textDecoration: 'none' }}>
+                            <MenuItem sx={menuStyles} >
                                 <ListItemIcon>
-                                    <Logout fontSize="small" />
+                                    <Logout sx={menuStyles}  />
                                 </ListItemIcon>
                                 Logout
                             </MenuItem>

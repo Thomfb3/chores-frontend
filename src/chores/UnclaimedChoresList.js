@@ -24,7 +24,7 @@ function UnclaimedChoresList() {
     <div>
 
       {chores.length ? (
-        <div >
+        <div className="ChoreList">
           {chores.map(c => (
             <ChoreCard
                 id={c._id}
@@ -36,7 +36,7 @@ function UnclaimedChoresList() {
                 assigneeName={null}
                 assigneeImage={null}
                 choreImage={c.choreImage}
-                assigner={c.assigner}
+                assignerId={c.assigner}
                 assignee={c.assignee}
                 createdAt={c.createdAt}
                 createdBy={c.createdBy}
