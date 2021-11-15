@@ -18,7 +18,7 @@ function Navigation({ logout }) {
                     </NavLink>
                 </li>
                 <li>
-                    <NavLink to="/chores"
+                    <NavLink to="/all-chores"
                         className="Navigation__link"
                         activeClassName="Navigation__link-active" >
 

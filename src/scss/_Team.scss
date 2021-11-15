@@ -3,6 +3,12 @@
     font-family: $font-1;
 }
 
+@mixin ordinal-style {
+        font-size: 1rem;
+        vertical-align: 100%;
+        color: $color-primary;
+}
+
 .TeamUserCard {
         text-decoration: none;
         color: $color-dark;
@@ -13,7 +19,7 @@
     &__clipped {
         position: absolute;
         background-color: white;
-        background: linear-gradient(66deg, #24C67C 55px, white 18px);
+        background: linear-gradient(65deg, $color-primary 55px, white 18px);
         min-width: 956px;
         margin: auto;
         margin-bottom: 2rem;
@@ -21,7 +27,17 @@
         height: 100px;
         z-index: 0;
         clip-path: polygon(0% 0%, 95% 0%, 100% 100%, 5% 100%);
+        &--first {
+            background: linear-gradient(65deg, $color-success 55px, white 18px);
+        }
+        &--second {
+            background: linear-gradient(65deg, $color-secondary 55px, white 18px);
+        }
+        &--third {
+            background: linear-gradient(65deg, $color-tertiary 55px, white 18px);
+        }
     }
+
     &__container {
         position: relative;
         margin: auto;
@@ -36,11 +52,19 @@
         display: flex;
         justify-content: space-between;
         padding-bottom: 10px;
+        margin: 5px 75px 0px 0px;
         &--align-center {
             align-items: center;
         }
     }
+    &__position {
+        color: $color-tertiary;
+        font-size: 2.8rem;
+        font-weight: bold;
+        padding-right: 2rem;
+    }
     &__points {
+        color: $color-tertiary;
         font-size: 1.8rem;
         font-weight: bold;
     }
@@ -68,5 +92,61 @@
     }
     &__titles p {
         padding-left: 5px;
+    }
+    &__first {
+        color: $color-success;
+    }
+    &__first::after {
+        content: "st";
+        font-size: 1rem;
+        vertical-align: 100%;
+        color: $color-success;
+    }
+    &__second {
+        color: $color-secondary;
+    }
+    &__second::after {
+        content: "nd";
+        font-size: 1rem;
+        vertical-align: 100%;
+        color: $color-secondary;
+    }
+    &__third {
+        color: $color-tertiary;
+    }
+    &__third::after {
+        content: "rd";
+        font-size: 1rem;
+        vertical-align: 100%;
+        color: $color-tertiary;
+    }
+    &__other-numbers {
+        color: $color-primary;
+    }
+    &__other-number {
+        &--st::after {
+            content: "st";
+            @include ordinal-style;
+        }
+        &--nd::after {
+            content: "nd";
+            @include ordinal-style;
+        }
+        &--rd::after {
+            content: "rd";
+            @include ordinal-style;
+        }
+    }
+    &__points-first {
+        color: $color-success;
+    }
+    &__points-second {
+        color: $color-secondary;
+    }
+    &__points-third {
+        color: $color-tertiary;
+    }
+    &__points-other-number {
+        color: $color-primary;
     }
 }

@@ -5,8 +5,6 @@ import UserContext from "../auth/UserContext";
 
 function SubmitChoreForm({ status, statusButton, submitChore, isAssigner, isAssignee }) {
     const history = useHistory();
-    const { id } = useParams();
-    console.log(id)
     const { currentUser, currentTeam, currentTeamUsers } = useContext(UserContext);
     const submitData = { "status": "pending", "teamId": currentTeam._id };
     const rejectData = { "status": "rejected", "teamId": currentTeam._id };
@@ -44,6 +42,7 @@ function SubmitChoreForm({ status, statusButton, submitChore, isAssigner, isAssi
     async function handleApprove(evt) {
         evt.preventDefault();
         let result = await submitChore(approvedData);
+ 
         if (result.success) {
             history.go(0);
         } else {

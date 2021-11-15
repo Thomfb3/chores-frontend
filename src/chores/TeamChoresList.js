@@ -4,15 +4,49 @@ import ChoreCard from "./ChoreCard";
 import LoadingSpinner from "../common/LoadingSpinner";
 import UserContext from "../auth/UserContext";
 
-function TeamChoresList() {
+function TeamChoresList({status}) {
   console.debug("TeamChoresList");
   const [chores, setChores] = useState(null);
   const { currentUser, currentTeamUsers } = useContext(UserContext);
 
   async function getChores() {
     let chores = await ChoresApi.getTeamChores();
+  
     let assignedChores = chores.chores.filter(chore => chore.assignee !== null);
-    setChores(assignedChores);
+
+    let filteredChores;
+    if(status === "need-to-do") {
+      filteredChores = assignedChores.filter(chore => chore.status === "open" || chore.status === "rejected");
+    } else {
+      filteredChores = assignedChores.filter(chore => chore.status === status);
+    }
+
+    setChores(filteredChores);
+  }
+
+
+  const determineListHeader = (status) => {
+    if (status === "need-to-do") {
+      return (
+        <div className="ChoreList__title">
+          <h3 className="ChoreList__list-title ChoreList__list-title--need-to-do">Need to do</h3>
+          <div className="ChoreList__divider ChoreList__divider--need-to-do"></div>
+        </div>)
+    }
+    if (status === "pending") {
+      return (
+        <div className="ChoreList__title">
+          <h3 className="ChoreList__list-title ChoreList__list-title--pending">Pending Review</h3>
+          <div className="ChoreList__divider ChoreList__divider--pending"></div>
+        </div>)
+    }
+    if (status === "approved") {
+      return (
+        <div className="ChoreList__title">
+          <h3 className="ChoreList__list-title ChoreList__list-title--approved">Approved Recently</h3>
+          <div className="ChoreList__divider ChoreList__divider--approved"></div>
+        </div>)
+    }
   }
 
   useEffect(() => {
@@ -23,6 +57,7 @@ function TeamChoresList() {
 
   return (
     <div className="ChoreList">
+    {determineListHeader(status)}
       {chores.length ? (
         <div >
           {chores.map(c => (

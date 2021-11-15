@@ -64,9 +64,19 @@ function ChoreCard({
                             <p className="ChoreCard__points">{points} pts</p>
                         </div>
                         <div className="ChoreCard__due-date">
-                            <p className="ChoreCard__due-date--label">Due Date</p>
-                            <p className="ChoreCard__due-date--day">{formatDay(dueDate)}</p>
-                            <p className="ChoreCard__due-date--date">{formatShortDate(dueDate)}</p>
+
+                        {(status === 'approved') ?
+                            <div className="ChoreCard__approved-section ChoreCard__approved-section--my-chores">
+                                <p>Approved</p>
+                                <CheckCircleOutlineIcon sx={{ fontSize: '30px', marginLeft: '5px' }} />
+                            </div>
+                            :
+                            <div>
+                                <p className="ChoreCard__due-date--label">Due Date</p>
+                                <p className="ChoreCard__due-date--day">{formatDay(dueDate)}</p>
+                                <p className="ChoreCard__due-date--date">{formatShortDate(dueDate)}</p>
+                            </div>
+                        }
                         </div>
                     </div>
                     <div>
@@ -95,7 +105,6 @@ function ChoreCard({
                         />
                     }
                     <div className="ChoreCard__inner-container ChoreCard__inner-container--align-center">
-
                         <div className="ChoreCard__image">
                             {assigneeImage &&
                                 <Avatar

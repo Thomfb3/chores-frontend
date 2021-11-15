@@ -8,13 +8,14 @@ function TeamUserList() {
   const { currentUser, currentTeamUsers } = useContext(UserContext);
 
   if (!currentTeamUsers) return <LoadingSpinner />;
-  
+
+  currentTeamUsers.sort((a, b) => a.points < b.points && 1 || -1)
+
   return (
     <div>
-
       {currentTeamUsers.length ? (
         <div >
-          {currentTeamUsers.map(u => (
+          {currentTeamUsers.map((u,idx)=> (
             <TeamUserCard
                 id={u._id}
                 key={u._id}
@@ -24,6 +25,7 @@ function TeamUserList() {
                 firstName={u.firstName}
                 isAdmin={u.role === "admin"}
                 points={u.points}
+                position={idx+1}
             />
           ))}
         </div>

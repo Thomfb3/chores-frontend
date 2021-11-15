@@ -48,15 +48,17 @@ function ChoreCommentForm({ postChoreComment }) {
             <form className="Form" onSubmit={handleSubmit}>
                 <div className="Form-group">
                     <textarea 
-                        className="Form-input"
-                        placeholder="  "
+                        className="Form-input ChoreComment__input"
+                        placeholder="Add a comment..."
                         name="comment"
                         type="textarea"
                         value={formData.comment}
                         onChange={handleChange}
+                        cols={100}
+                        rows={6}
                         required
                     ></textarea>
-                    <label className="Form-label" htmlFor="teamName">Comment</label>
+                  
                 </div>
 
                 {formErrors.length
@@ -65,7 +67,7 @@ function ChoreCommentForm({ postChoreComment }) {
                 
                 <div className="Form-group"> 
                     <button
-                        className="Button"
+                        className="Button ChoreComment__button"
                         type="submit"
                         onSubmit={handleSubmit}
                     >

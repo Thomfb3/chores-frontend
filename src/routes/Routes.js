@@ -45,12 +45,18 @@ function Routes({ login, signup, createTeam, joinTeam, createChore, createReward
                     <JoinTeamForm joinTeam={joinTeam} />
                 </Route>
 
-                <PrivateRoute exact path="/chores">
-                    <TeamChoresList />
+                <PrivateRoute exact path="/all-chores">
+                    <TeamChoresList status="need-to-do"/>
+                    <TeamChoresList status="pending"/>
+                    <TeamChoresList status="approved"/>
+
                 </PrivateRoute>
 
                 <PrivateRoute exact path="/my-chores">
-                    <MyChoresList />
+                    <MyChoresList status="need-to-do"/>
+                    <MyChoresList status="pending"/>
+                    <MyChoresList status="approved"/>
+
                 </PrivateRoute>
 
                 <PrivateRoute exact path="/unclaimed-chores">

@@ -21,6 +21,7 @@ function App() {
   const [token, setToken] = useLocalStorage(TOKEN_STORAGE_ID);
   const [infoLoaded, setInfoLoaded] = useState(false);
 
+
   useEffect(function loadUserInfo() {
     console.debug("App useEffect loadUserInfo", "token=", token);
 
@@ -148,6 +149,8 @@ function App() {
   };
 
 
+
+
   if (!infoLoaded) return <div>Still Loading...</div>;
 
   return (
@@ -166,7 +169,7 @@ function App() {
     <React.Fragment>
       <CssBaseline />
       <Container maxWidth="lg">
-    
+
         <Navigation />
         <Routes
           login={login}

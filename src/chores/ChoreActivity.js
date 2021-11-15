@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useContext }from "react";
 import findUserInTeam from "../helpers/findUserInTeam";
-import { formatDate, formatShortDate, formatDay } from "../helpers/formatDate";
+import { formatDate, formatShortDate, formatDay, formatTime } from "../helpers/formatDate";
+import capitalizeFirstLetter from "../helpers/capitalizeFirstLetter";
 import UserContext from "../auth/UserContext";
 
 
@@ -11,10 +12,10 @@ function ChoreActivity({user, event, date}) {
     const choreActivityUser = findUserInTeam(user, currentTeamUsers);
 
     return (
-        <div>
-            <p>{choreActivityUser.username}</p>
-            <p>{event}</p>
-            <p>{choreActivityDate}</p>
+        <div className="ChoreActivity">
+            <div className="ChoreActivity__status-marker">Approved</div>
+            <p className="ChoreActivity__event">{`${capitalizeFirstLetter(event)} - `}</p>
+            <p className="ChoreActivity__date">{`on ${formatShortDate(date)} @ ${formatTime(date)}`}</p>
         </div>
     );
 }
