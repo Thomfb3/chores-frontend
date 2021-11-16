@@ -1,11 +1,10 @@
 .ChoreCard {
         text-decoration: none;
         color: $color-dark;
-        
+       
     &__container {
         margin: auto;
         margin-bottom: 2rem;
-        width: 75%;
         border-radius: 10px;
         box-shadow: 0px 2px 8px rgba(0,0,0,.2);
         padding: 10px 20px 10px 20px;
@@ -234,6 +233,24 @@
         border-radius: 8px;
         padding: 3px 25px;
         margin-right: 1.3rem;
+        text-align: center;
+        width: 150px;
+        &--open {
+            border: 3px solid $color-danger;
+            color: $color-danger;
+        }
+        &--rejected {
+            border: 3px solid $color-danger;
+            color: $color-danger;
+        }
+        &--pending {
+            border: 3px solid $color-primary;
+            color: $color-primary;
+        }
+        &--approved {
+            border: 3px solid $color-success;
+            color: $color-success;
+        }
     }
     &__event {
         padding-right: 1rem;

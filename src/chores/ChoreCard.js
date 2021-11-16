@@ -6,7 +6,8 @@ import UserContext from "../auth/UserContext";
 import Avatar from '@mui/material/Avatar';
 import StarIcon from '@mui/icons-material/Star';
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
-import "./ChoreCard"
+
+import ChoresApi from "../api/api";
 import defaultProfileImage from '../assets/images/default-profile-pic.gif';
 
 function ChoreCard({
@@ -29,6 +30,7 @@ function ChoreCard({
     console.debug("ChoreCard");
 
     const { currentUser, currentTeamUsers } = useContext(UserContext);
+
     const determineStatusColorClass = (status, assignee) => {
         if (!assignee) {
             return "ChoreCard__unclaimed";
@@ -48,7 +50,6 @@ function ChoreCard({
     ? defaultProfileImage
     : currentUser.profileImage;
 
-    console.log(status)
     if (cardType === "MyChoreList") {
         const userAssignee = findUserInTeam(assignee._id, currentTeamUsers);
         const userAssigner = findUserInTeam(assignerId, currentTeamUsers);
@@ -168,6 +169,7 @@ function ChoreCard({
                             <p className="ChoreCard__due-date--day">{formatDay(dueDate)}</p>
                             <p className="ChoreCard__due-date--date">{formatShortDate(dueDate)}</p>
                         </div>
+                
                     </div>
                 </div>
             </Link>

@@ -24,6 +24,11 @@ function TeamChoresList({status}) {
     setChores(filteredChores);
   }
 
+  const determineMessage = (status) => {
+    if (status === "need-to-do") return "Nothing to do right now.";
+    if (status === "pending") return "Nothing in review.";
+    if (status === "approved") return "You have no recently approved chores.";
+ }
 
   const determineListHeader = (status) => {
     if (status === "need-to-do") {
@@ -82,7 +87,9 @@ function TeamChoresList({status}) {
           ))}
         </div>
       ) : (
-          <p>No Chores found!</p>
+        <div className={`ChoreList__empty ChoreList__empty--${status}`}>
+            <p>{determineMessage(status)}</p>
+          </div>
         )}
     </div>
   );

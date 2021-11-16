@@ -29,4 +29,9 @@
         margin: 15px;
         color: $color-gray-mid;
     }
+    &__message {
+        padding: .5rem;
+        font-weight: bold;
+        color: $color-primary;
+    }
 }

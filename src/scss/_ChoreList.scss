@@ -1,10 +1,10 @@
 .ChoreList {
     margin: auto;
     font-family: $font-1;
-
+    width: 75%;
     &__title {
         margin: auto;
-        width: 75%;
+        
         margin-bottom: 1.5rem;
     }
 
@@ -42,4 +42,26 @@
             border-bottom: 2px solid $color-success;
         }
     }
+
+    &__empty {
+        display: flex;
+        margin: 2.6rem 5rem;
+        border-radius: 5px;
+        padding: .4rem;
+        color: #fff;
+        &--need-to-do {
+            background: $gradient-danger;
+        }
+        &--pending {
+            background: $gradient-primary;
+        }
+        &--approved {
+            background-color: $color-success;
+        }
+    }
+    &__empty p {
+        font-weight: bold;
+        padding-left: .5rem;
+    }
+
 }

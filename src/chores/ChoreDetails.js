@@ -11,10 +11,10 @@ import LoadingSpinner from "../common/LoadingSpinner";
 import UserContext from "../auth/UserContext";
 import ChoreCommentContext from "../comments/ChoreCommentContext";
 import SubmitChoreForm from "./SubmitChoreForm";
+import ClaimChoreForm from "./ClaimChoreForm";
 import defaultChoreJpeg from "../assets/images/defaultChore.jpg";
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 
-//import ReviewChoreForm from "./ReviewChoreForm";
 
 function ChoreDetails() {
     const { id } = useParams();
@@ -54,6 +54,57 @@ function ChoreDetails() {
         };
     };
 
+    async function claimChore(claimChoreData) {
+        const updateChoreData = {
+            assignee: claimChoreData.user,
+            assigner: claimChoreData.user
+        }
+        try {
+            let updatedChore = await ChoresApi.updateChore(id, updateChoreData);
+            return { success: true, updatedChore };
+        } catch (errors) {
+            console.error("Failed to claim chore", errors)
+            return { success: false, errors };
+        };
+    };
+
+    const determineActionButtons = (assignee, status) => {
+        if (!assignee) {
+            return (
+                <ClaimChoreForm
+                    choreId={id}
+                    claimChore={claimChore}
+                />
+            );
+        }
+        if (currentUser._id !== assignee._id
+            && (status === "open" || status === "rejected")) {
+            return (
+                <div className="Chore__approved-section">
+                    <p>Waiting for submission.</p>
+                </div>
+            );
+        }
+        if (status === "approved") {
+            return (
+                <div className="Chore__approved-section">
+                    <p>Approved</p>
+                    <CheckCircleOutlineIcon sx={{ fontSize: '30px', marginLeft: '5px' }} />
+                </div>
+            );
+        } else {
+            return (
+                <SubmitChoreForm
+                    status={chore.status}
+                    statusButton={newChoreStatus}
+                    submitChore={submitChore}
+                    isAssigner={currentUser._id === assigner._id}
+                    isAssignee={currentUser._id === assignee._id}
+                />
+            );
+        };
+    };
+
     useEffect(() => {
         getChore();
         getChoreComments();
@@ -61,17 +112,18 @@ function ChoreDetails() {
 
     if (!chore) return <LoadingSpinner />;
 
-    const assignee = findUserInTeam(chore.assigner, currentTeamUsers);
     const assigner = findUserInTeam(chore.assigner, currentTeamUsers);
-    const newChoreStatus = setChoreStatusButton(chore.status)
+    const assignee = findUserInTeam(chore.assignee, currentTeamUsers);
+    
+    const newChoreStatus = setChoreStatusButton(chore.status);
     const defaultChoreImage = (chore.imageCover === "defaultChore.jpg") ? defaultChoreJpeg : chore.imageCover;
 
     const determineStatusStyle = (status) => {
         if (status === "approved") return "approved"
         if (status === "open" || status === "rejected") return "rejected";
         if (status === "pending") return "pending";
-    }
-
+    };
+    
     return (
         <div className="Chore">
             <h3 className="Chore__page-title">Chore Details</h3>
@@ -95,8 +147,6 @@ function ChoreDetails() {
                                 <p className="Chore__due-date--label">Due Date</p>
                                 <p className="Chore__due-date">{formatShortDate(chore.dueDate)}</p>
                             </div>
-
-
                         </div>
                     </div>
                 </div>
@@ -108,23 +158,7 @@ function ChoreDetails() {
             <div className="Chore__status">
                 <h3 className="Chore__page-title">Chore Status</h3>
                 <div className="Chore__divider"></div>
-
-                {chore.status === "approved" &&
-                    <div className="Chore__approved-section">
-                        <p>Approved</p>
-                        <CheckCircleOutlineIcon sx={{ fontSize: '30px', marginLeft: '5px' }} />
-                    </div>
-                }
-
-                {chore.status !== "approved" &&
-                    <SubmitChoreForm
-                        status={chore.status}
-                        statusButton={newChoreStatus}
-                        submitChore={submitChore}
-                        isAssigner={currentUser._id === assigner._id}
-                        isAssignee={currentUser._id === assignee._id}
-                    />
-                }
+                {determineActionButtons(assignee, chore.status)}
             </div>
 
             <div className="Chore__activity">
@@ -135,9 +169,10 @@ function ChoreDetails() {
                         key={ca._id}
                         user={ca.user}
                         event={ca.event}
+                        status={ca.status}
                         date={ca.date}
                     />
-                ))}
+                )).reverse()}
             </div>
 
             <div className="Chore__comments">
@@ -164,7 +199,7 @@ function ChoreDetails() {
                         <p>No Comments.</p>
                     )}
             </div>
-        </div >
+        </div>
     );
 };
 

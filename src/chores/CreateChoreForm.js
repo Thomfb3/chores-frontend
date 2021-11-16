@@ -27,7 +27,7 @@ function CreateChoreForm({ createChore }) {
         "assignee": "unassigned",
         "createdBy": currentUser._id,
         "dueDate": "",
-        "status": "open",
+        "status": "created",
         "imageUrl": "default-chore.jpg",
         "teamId": currentTeam._id,
         "type": "template"

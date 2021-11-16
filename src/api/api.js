@@ -87,9 +87,14 @@ class ChoresApi {
 
     /** Update chore status **/
     static async updateChoreStatus(id, data) {
-        let res = await this.request(`chores/${id}`, { ...data }, "patch");
-        console.log(res)
+        let res = await this.request(`chores/status/${id}`, { ...data }, "patch");
         return res.data;
+    };
+
+    /** Update chore status **/
+    static async updateChore(id, data) {
+            let res = await this.request(`chores/${id}`, { ...data }, "patch");
+            return res.data;
     };
 
     /////CHORE COMMENTS

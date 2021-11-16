@@ -3,6 +3,7 @@ import ChoresApi from "../api/api";
 import ChoreCard from "./ChoreCard";
 import LoadingSpinner from "../common/LoadingSpinner";
 import UserContext from "../auth/UserContext";
+import SentimentVerySatisfiedIcon from '@mui/icons-material/SentimentVerySatisfied';
 
 function MyChoresList({ status }) {
   console.debug("MyChoresList");
@@ -11,7 +12,7 @@ function MyChoresList({ status }) {
 
   async function getChores() {
     let chores = await ChoresApi.getCurrentUserChores(currentUser._id);
-    
+
     let filteredChores;
     if(status === "need-to-do") {
       filteredChores = chores.filter(chore => chore.status === "open" || chore.status === "rejected");
@@ -19,6 +20,12 @@ function MyChoresList({ status }) {
       filteredChores = chores.filter(chore => chore.status === status);
     }
     setChores(filteredChores)
+  }
+
+  const determineMessage = (status) => {
+     if (status === "need-to-do") return "Nothing to do right now.";
+     if (status === "pending") return "Nothing in review.";
+     if (status === "approved") return "You have no recently approved chores.";
   }
 
   const determineListHeader = (status) => {
@@ -44,7 +51,6 @@ function MyChoresList({ status }) {
         </div>)
     }
   }
-
 
   useEffect(() => {
     getChores();
@@ -78,7 +84,10 @@ function MyChoresList({ status }) {
           ))}
         </div>
       ) : (
-          <p>Nothing to do right now!</p>
+          <div className={`ChoreList__empty ChoreList__empty--${status}`}>
+          <SentimentVerySatisfiedIcon />
+            <p>{determineMessage(status)}</p>
+          </div>
         )}
     </div>
   );

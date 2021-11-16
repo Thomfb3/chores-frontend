@@ -1,4 +1,4 @@
-$color-primary: rgb(16, 147, 255);
+$color-primary: #1093ff;
 $color-primary-dark: rgb(0, 114, 207);
 $color-secondary: #F98200;
 $color-tertiary: rgb(24, 194, 224);
@@ -15,3 +15,7 @@ $color-danger: #F91E87;
 $color-white: rgb(248, 248, 248);
 
 $font-1: 'Montserrat', sans-serif;
+
+
+$gradient-primary: linear-gradient(90deg,rgba(16,147,255,1) 0%,  rgba(96,197,255,1) 100%);
+$gradient-danger: linear-gradient(90deg, rgba(249,30,135,1) 0%, rgba(255,129,129,1) 100%);
