@@ -68,8 +68,8 @@ function ChoreDetails() {
         };
     };
 
-    const determineActionButtons = (assignee, status) => {
-        if (!assignee) {
+    const determineActionButtons = (choreAssignee, status) => {
+        if (!choreAssignee) {
             return (
                 <ClaimChoreForm
                     choreId={id}
@@ -77,7 +77,7 @@ function ChoreDetails() {
                 />
             );
         }
-        if (currentUser._id !== assignee._id
+        if (currentUser._id !== choreAssignee
             && (status === "open" || status === "rejected")) {
             return (
                 <div className="Chore__approved-section">
@@ -99,7 +99,7 @@ function ChoreDetails() {
                     statusButton={newChoreStatus}
                     submitChore={submitChore}
                     isAssigner={currentUser._id === assigner._id}
-                    isAssignee={currentUser._id === assignee._id}
+                    isAssignee={currentUser._id === choreAssignee}
                 />
             );
         };
@@ -158,7 +158,7 @@ function ChoreDetails() {
             <div className="Chore__status">
                 <h3 className="Chore__page-title">Chore Status</h3>
                 <div className="Chore__divider"></div>
-                {determineActionButtons(assignee, chore.status)}
+                {determineActionButtons(chore.assignee, chore.status)}
             </div>
 
             <div className="Chore__activity">
