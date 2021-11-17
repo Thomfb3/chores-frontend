@@ -16,7 +16,7 @@ function TeamChoresList({status}) {
 
     let filteredChores;
     if(status === "need-to-do") {
-      filteredChores = assignedChores.filter(chore => chore.status === "open" || chore.status === "rejected");
+      filteredChores = assignedChores.filter(chore => chore.status === "open" || chore.status === "rejected" || chore.status === "created");
     } else {
       filteredChores = assignedChores.filter(chore => chore.status === status);
     }
@@ -84,7 +84,7 @@ function TeamChoresList({status}) {
                 dueDate={c.dueDate}
                 cardType={"TeamChoresList"}
             />
-          ))}
+          )).reverse()}
         </div>
       ) : (
         <div className={`ChoreList__empty ChoreList__empty--${status}`}>

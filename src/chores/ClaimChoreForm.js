@@ -1,6 +1,6 @@
 import React, { useState, useContext } from "react";
 import { useHistory, useParams } from "react-router-dom";
-import Alert from "../common/Alert"
+import AppAlert from "../common/AppAlert"
 import UserContext from "../auth/UserContext";
 import Button from '@mui/material/Button';
 
@@ -31,7 +31,7 @@ function ClaimChoreForm({ claimChore, choreId }) {
     return (
 
         <form onSubmit={handleSubmit}>
-            {formErrors.length ? <Alert type="danger" messages={formErrors} /> : null}
+            {formErrors.length ? <AppAlert severity="error" messages={formErrors} /> : null}
 
             <Button
                 sx={{ marginTop: "5px", backgroundColor: '#1193ff', borderRadius: '5px' }}

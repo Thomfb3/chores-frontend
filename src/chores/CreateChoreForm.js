@@ -1,6 +1,6 @@
 import React, { useState, useContext } from "react";
 import { useHistory } from "react-router-dom";
-import Alert from "../common/Alert"
+import AppAlert from "../common/AppAlert"
 import UserContext from "../auth/UserContext";
 import TextField from '@mui/material/TextField';
 import MenuItem from '@mui/material/MenuItem';
@@ -135,7 +135,7 @@ function CreateChoreForm({ createChore }) {
                 </LocalizationProvider>
 
                 {formErrors.length
-                    ? <Alert type="danger" messages={formErrors} />
+                    ? <AppAlert severity="error" messages={formErrors} />
                     : null}
 
                 <div className="Form-group">

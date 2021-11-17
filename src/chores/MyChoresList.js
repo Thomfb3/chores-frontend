@@ -15,7 +15,7 @@ function MyChoresList({ status }) {
 
     let filteredChores;
     if(status === "need-to-do") {
-      filteredChores = chores.filter(chore => chore.status === "open" || chore.status === "rejected");
+      filteredChores = chores.filter(chore => chore.status === "open" || chore.status === "rejected" || chore.status === "created");
     } else {
       filteredChores = chores.filter(chore => chore.status === status);
     }
@@ -81,7 +81,7 @@ function MyChoresList({ status }) {
               dueDate={c.dueDate}
               cardType={"MyChoreList"}
             />
-          ))}
+          )).reverse()}
         </div>
       ) : (
           <div className={`ChoreList__empty ChoreList__empty--${status}`}>

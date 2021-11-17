@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
-import Alert from "../common/Alert";
+import AppAlert from "../common/AppAlert";
 
 function SignupForm({ signup }) {
     const history = useHistory();
@@ -99,7 +99,7 @@ function SignupForm({ signup }) {
                 </div>
 
                 {formErrors.length
-                    ? <Alert type="danger" messages={formErrors} />
+                    ? <AppAlert severity="error" messages={formErrors} />
                     : null}
 
 

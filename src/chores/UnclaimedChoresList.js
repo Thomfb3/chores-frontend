@@ -44,7 +44,7 @@ function UnclaimedChoresList() {
                 dueDate={c.dueDate}
                 cardType={"UnclaimedChoresList"}
             />
-          ))}
+          )).reverse()}
         </div>
       ) : (
           <p>No Chores found!</p>

@@ -48,6 +48,13 @@ class ChoresApi {
         return res.data;
     };
 
+    /** Update users points. */
+    static async updateUserPoints(id, data) {
+        let res = await this.request(`users/points/${id}`, {...data}, "patch");
+        return res.data;
+    };
+
+
     /** Get rewards fileted by team */
     static async getAllTeamUsers() {
         let res = await this.request(`users/`);
@@ -93,8 +100,8 @@ class ChoresApi {
 
     /** Update chore status **/
     static async updateChore(id, data) {
-            let res = await this.request(`chores/${id}`, { ...data }, "patch");
-            return res.data;
+        let res = await this.request(`chores/${id}`, { ...data }, "patch");
+        return res.data;
     };
 
     /////CHORE COMMENTS
@@ -104,7 +111,7 @@ class ChoresApi {
     }
 
     static async postChoreComment(id, data) {
-        let res = await this.request(`comments/chore/${id}`, {...data}, "post" );
+        let res = await this.request(`comments/chore/${id}`, { ...data }, "post");
         return res.data;
     }
 
@@ -116,7 +123,7 @@ class ChoresApi {
     };
 
     static async createReward(data) {
-        let res = await this.request(`rewards`, {...data}, "post");
+        let res = await this.request(`rewards`, { ...data }, "post");
         return res;
     };
 

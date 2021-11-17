@@ -1,6 +1,6 @@
 import React, { useState, useContext } from "react";
 import { useHistory } from "react-router-dom";
-import Alert from "../common/Alert"
+import AppAlert from "../common/AppAlert"
 import UserContext from "../auth/UserContext";
 
 function JoinTeamForm({ joinTeam }) {
@@ -68,7 +68,7 @@ function JoinTeamForm({ joinTeam }) {
                 </div>
 
                 {formErrors.length
-                    ? <Alert type="danger" messages={formErrors} />
+                    ? <AppAlert severity="error" messages={formErrors} />
                     : null}
 
                 

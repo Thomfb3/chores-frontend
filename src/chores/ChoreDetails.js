@@ -39,7 +39,7 @@ function ChoreDetails() {
             let newChoreComment = await ChoresApi.postChoreComment(id, choreCommentData);
             return { success: true, newChoreComment };
         } catch (errors) {
-            console.error("Failed to create team", errors)
+            console.error("Failed to post chore comment", errors)
             return { success: false, errors };
         };
     };
@@ -49,7 +49,17 @@ function ChoreDetails() {
             let updatedChore = await ChoresApi.updateChoreStatus(id, submitChoreData);
             return { success: true, updatedChore };
         } catch (errors) {
-            console.error("Failed to create team", errors)
+            console.error("Failed to submit chore", errors)
+            return { success: false, errors };
+        };
+    };
+
+    async function addUserPoints(userId, userPointsData) {
+        try {
+            let updatedUser = await ChoresApi.updateUserPoints(userId, userPointsData);
+            return { success: true, updatedUser };
+        } catch (errors) {
+            console.error("Failed to update user points", errors)
             return { success: false, errors };
         };
     };
@@ -95,11 +105,14 @@ function ChoreDetails() {
         } else {
             return (
                 <SubmitChoreForm
+                    points={chore.pointValue}
                     status={chore.status}
                     statusButton={newChoreStatus}
                     submitChore={submitChore}
+                    addUserPoints={addUserPoints}
                     isAssigner={currentUser._id === assigner._id}
                     isAssignee={currentUser._id === choreAssignee}
+                    assigneeId={choreAssignee}
                 />
             );
         };
@@ -120,7 +133,7 @@ function ChoreDetails() {
 
     const determineStatusStyle = (status) => {
         if (status === "approved") return "approved"
-        if (status === "open" || status === "rejected") return "rejected";
+        if (status === "open" || status === "rejected" || status === "created") return "rejected";
         if (status === "pending") return "pending";
     };
     

@@ -1,7 +1,7 @@
 import React, { useState, useContext } from "react";
 import ChoresApi from "../api/api";
 import UserContext from "../auth/UserContext";
-import Alert from "../common/Alert";
+import AppAlert from "../common/AppAlert";
 
 
 
@@ -109,13 +109,13 @@ function ProfileForm() {
                 </div>
 
                 {formErrors.length
-                    ? <Alert type="danger" messages={formErrors} />
+                    ? <AppAlert severity="error" messages={formErrors} />
                     : null}
 
 
                 {saveConfirmed
                     ?
-                    <Alert type="success" messages={["Updated successfully."]} />
+                    <AppAlert severity="success" messages={["Updated successfully."]} />
                     : null}
 
 

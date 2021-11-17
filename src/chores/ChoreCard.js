@@ -35,7 +35,7 @@ function ChoreCard({
         if (!assignee) {
             return "ChoreCard__unclaimed";
         }
-        if (status === "open" || status === "rejected") {
+        if (status === "open" || status === "rejected" || status === "created") {
             return "ChoreCard__need-to-do";
         }
         if (status === "pending") {

@@ -119,7 +119,7 @@ function HeaderProfile({ logout }) {
             <div className="Profile__info">
                 <div className="Profile__points">
                     <p className="Profile__points--label">Your Points</p>
-                    <p className="Profile__points--number">{currentUser.points}pts</p>
+                    <p className="Profile__points--number">{currentUser.currentPoints}<span>pts</span></p>
                 </div>
                 <div className="Profile__names">
                     <p className="Profile__names--user">{currentUser.firstName || currentUser.username}</p>

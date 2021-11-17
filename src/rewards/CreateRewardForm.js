@@ -1,6 +1,6 @@
 import React, { useState, useContext } from "react";
 import { useHistory } from "react-router-dom";
-import Alert from "../common/Alert"
+import AppAlert from "../common/AppAlert"
 import UserContext from "../auth/UserContext";
 import TextField from '@mui/material/TextField';
 import MenuItem from '@mui/material/MenuItem';
@@ -24,7 +24,8 @@ function CreateRewardForm({ createReward }) {
         "activity": [
             {
                 "user": currentUser._id,
-                "event": "Reward created"
+                "event": "Reward created",
+                "status": "created"
             }
         ]
     });
@@ -58,13 +59,14 @@ function CreateRewardForm({ createReward }) {
 
     return (
         <div className="Form">
-            <h3 className="Form__title">Create Reward Form</h3>
+            <h3 className="Form__title">Manage Rewards</h3>
             <div className="Form__divider"></div>
             <div className="Form__form-container">
                 <Paper
                     elevation={3}
-                    sx={{ width: '50%', paddingTop: '30px', margin: 'auto', marginTop: '50px', paddingBottom: '10px'}}>
+                    sx={{ width: '50%', paddingTop: '30px', margin: 'auto', marginTop: '50px', paddingBottom: '10px' }}>
                     <form className="Form" onSubmit={handleSubmit}>
+                    <div>Create New Reward</div>
                         <div className="Form-group">
                             <TextField
                                 id="title"
@@ -75,7 +77,7 @@ function CreateRewardForm({ createReward }) {
                                 name="title"
                                 value={formData.title}
                                 onChange={handleChange}
-                                sx={{ m: 1, width: '95%'}}
+                                sx={{ m: 1, width: '95%' }}
                                 required />
                         </div>
                         <div className="Form-group">
@@ -106,10 +108,10 @@ function CreateRewardForm({ createReward }) {
                         </div>
 
                         {formErrors.length
-                            ? <Alert type="danger" messages={formErrors} />
+                            ? <AppAlert severity="error" messages={formErrors} />
                             : null}
 
-                        <div className="Form-group" style={{textAlign: 'right'}}>
+                        <div className="Form-group" style={{ textAlign: 'right' }}>
 
                             <Button
                                 sx={{ m: 2, backgroundColor: '#1193ff', borderRadius: '5px' }}
@@ -121,7 +123,7 @@ function CreateRewardForm({ createReward }) {
                             </Button>
                         </div>
 
-                    </form> 
+                    </form>
                     <small className='Form__footer'>* Required Fields</small>
                 </Paper>
             </div>

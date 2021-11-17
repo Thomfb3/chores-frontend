@@ -1,18 +1,21 @@
 import React, { useState, useContext } from "react";
 import { useHistory, useParams } from "react-router-dom";
-import Alert from "../common/Alert"
+import AppAlert from "../common/AppAlert"
 import UserContext from "../auth/UserContext";
 import Button from '@mui/material/Button';
+import { assignmentExpression } from "@babel/types";
 
-function SubmitChoreForm({ status, statusButton, submitChore, isAssigner, isAssignee }) {
+function SubmitChoreForm({ points, status, statusButton, submitChore, addUserPoints, isAssigner, isAssignee, assigneeId }) {
     const history = useHistory();
     const { currentUser, currentTeam, currentTeamUsers } = useContext(UserContext);
-    const submitData = { "status": "pending", "userId": currentUser._id };
-    const rejectData = { "status": "rejected", "userId": currentUser._id };
-    const approvedData = { "status": "approved", "userId": currentUser._id };
+    const submitData = { status: "pending", userId: currentUser._id };
+    const rejectData = { status: "rejected", userId: currentUser._id };
+    const approvedData = { status: "approved", userId: currentUser._id };
+    const userPointsData = { operation: "add", points: points }
 
     console.log("isAssignee", isAssignee)
     console.log("isAssigner", isAssigner)
+    console.log("assigneeId", assigneeId)
 
     const [formErrors, setFormErrors] = useState([]);
     console.log(formErrors);
@@ -34,7 +37,6 @@ function SubmitChoreForm({ status, statusButton, submitChore, isAssigner, isAssi
     };
 
     async function handleReject(evt) {
-
         evt.preventDefault();
         let result = await submitChore(rejectData);
         if (result.success) {
@@ -46,12 +48,13 @@ function SubmitChoreForm({ status, statusButton, submitChore, isAssigner, isAssi
 
     async function handleApprove(evt) {
         evt.preventDefault();
-        let result = await submitChore(approvedData);
-
-        if (result.success) {
+        let choreResult = await submitChore(approvedData);
+        let userResult = await addUserPoints(assigneeId, userPointsData);
+        if (choreResult.success && userResult.success) {
             history.go(0);
         } else {
-            setFormErrors(result.errors);
+            let resultErrors = {...choreResult.errors, ...userResult.errors};
+            setFormErrors(resultErrors);
         };
     };
 
@@ -60,7 +63,7 @@ function SubmitChoreForm({ status, statusButton, submitChore, isAssigner, isAssi
         return (
             <div className="Form-container">
                 <form className="Form" onSubmit={handleSubmit}>
-                    {formErrors.length ? <Alert type="danger" messages={formErrors} /> : null}
+                    {formErrors.length ? <AppAlert type="danger" messages={formErrors} /> : null}
                     <div className="Form-group">
                         <Button
                             sx={{ m: 1, backgroundColor: '#1193ff', borderRadius: '5px' }}
@@ -103,7 +106,7 @@ function SubmitChoreForm({ status, statusButton, submitChore, isAssigner, isAssi
                         Reject
                         </Button>
                 </div>
-                {formErrors.length ? <Alert type="danger" messages={formErrors} /> : null}
+                {formErrors.length ? <AppAlert severity="error" messages={formErrors} /> : null}
             </div>
         );
     } else if (!isAssigner && (status === "pending")) {
