@@ -107,7 +107,7 @@ function HeaderProfile({ logout }) {
                         <NavLink to="/" onClick={logout} style={{ textDecoration: 'none' }}>
                             <MenuItem sx={menuStyles} >
                                 <ListItemIcon>
-                                    <Logout sx={menuStyles}  />
+                                    <Logout sx={menuStyles} />
                                 </ListItemIcon>
                                 Logout
                             </MenuItem>
@@ -115,7 +115,7 @@ function HeaderProfile({ logout }) {
                     </Menu>
                 </React.Fragment>
             </div>
-
+            {currentTeam &&
             <div className="Profile__info">
                 <div className="Profile__points">
                     <p className="Profile__points--label">Your Points</p>
@@ -126,7 +126,12 @@ function HeaderProfile({ logout }) {
                     <p className="Profile__names--team">Team: {currentTeam.name}</p>
                 </div>
             </div>
-
+            }
+            {!currentTeam &&
+                <div className="">
+                    <p className="Profile__names--team">You need to be on a team.</p>
+                </div>
+            }
         </div>
     );
 }

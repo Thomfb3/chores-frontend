@@ -21,8 +21,11 @@ function UnclaimedChoresList() {
   if (!chores) return <LoadingSpinner />;
  
   return (
-    <div>
-
+    <div className="ChoresUnclaimed">
+      <div className="ChoresUnclaimed__title">
+        <h3 className="ChoresUnclaimed__list-title">Unclaimed Chores</h3>
+        <div className="ChoresUnclaimed__divider"></div>
+      </div>
       {chores.length ? (
         <div className="ChoreList">
           {chores.map(c => (

@@ -3,7 +3,6 @@ import { useHistory, useParams } from "react-router-dom";
 import AppAlert from "../common/AppAlert"
 import UserContext from "../auth/UserContext";
 import Button from '@mui/material/Button';
-import { assignmentExpression } from "@babel/types";
 
 function SubmitChoreForm({ points, status, statusButton, submitChore, addUserPoints, isAssigner, isAssignee, assigneeId }) {
     const history = useHistory();
@@ -11,11 +10,7 @@ function SubmitChoreForm({ points, status, statusButton, submitChore, addUserPoi
     const submitData = { status: "pending", userId: currentUser._id };
     const rejectData = { status: "rejected", userId: currentUser._id };
     const approvedData = { status: "approved", userId: currentUser._id };
-    const userPointsData = { operation: "add", points: points }
-
-    console.log("isAssignee", isAssignee)
-    console.log("isAssigner", isAssigner)
-    console.log("assigneeId", assigneeId)
+    const userPointsData = { operation: "add", points: points };
 
     const [formErrors, setFormErrors] = useState([]);
     console.log(formErrors);
@@ -115,7 +110,7 @@ function SubmitChoreForm({ points, status, statusButton, submitChore, addUserPoi
                 <div>Pending Manager's Review.</div>
             </div>
         );
-    } else {
+    } else{
         return (
             <div>
                 Nothing rendered...

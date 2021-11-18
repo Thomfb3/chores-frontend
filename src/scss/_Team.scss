@@ -1,6 +1,26 @@
 .TeamUserList {
     margin: auto;
     font-family: $font-1;
+    &__title {
+        margin: auto;
+        margin-bottom: 1.5rem;
+    }
+    &__list-title {
+        color: $color-primary;
+        font-weight: bold;
+        font-size: 1.2rem;
+        background-color: white;
+        padding: 10px 20px 10px 0px;
+        position: relative;
+        display: inline-block;
+        z-index: 3;
+    }
+    &__divider {
+        position: relative;
+        top: -25px;
+        z-index: 1;
+        border-bottom: 2px solid $color-primary;
+    }
 }
 
 @mixin ordinal-style {

@@ -3,18 +3,28 @@
     padding: 0px 30px 25px 30px;
     font-family: $font-1;
     &__title {
+        margin: auto;
+        margin-bottom: 1.5rem;
+    }
+    &__list-title {
         color: $color-primary;
         font-weight: bold;
-        font-size: 1.7rem;
+        font-size: 1.2rem;
         background-color: white;
-        padding: 10px 20px;
+        padding: 10px 20px 10px 0px;
         position: relative;
         display: inline-block;
         z-index: 3;
     }
+    &__box-title {
+        color: $color-primary;
+        padding-bottom: 1rem;
+        text-align: center;
+        font-size: 1.3rem;
+    }
     &__divider {
         position: relative;
-        top: -30px;
+        top: -25px;
         z-index: 1;
         border-bottom: 2px solid $color-primary;
     }

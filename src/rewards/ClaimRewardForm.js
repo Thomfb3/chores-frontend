@@ -4,25 +4,27 @@ import AppAlert from "../common/AppAlert"
 import UserContext from "../auth/UserContext";
 import Button from '@mui/material/Button';
 
-function ClaimChoreForm({ claimChore, choreId }) {
+function ClaimRewardForm({ claimReward, subtractUserPoints, points }) {
     const history = useHistory();
     const { currentUser, currentTeam, currentTeamUsers } = useContext(UserContext);
-    const submitData = { "user": currentUser._id, "chore": choreId };
+    const submitData = { "status": "claimed" };
+    const userPointsData = { operation: "subtract", points: points };
 
     const [formErrors, setFormErrors] = useState([]);
     console.log(formErrors);
     console.debug(
-        "ClaimChoreForm",
-        "claimChore=", typeof claimChore,
+        "ClaimRewardForm",
+        "claimReward=", typeof claimReward,
         "submitData=", submitData,
         "formErrors", formErrors,
     );
 
     async function handleSubmit(evt) {
         evt.preventDefault();
-        let result = await claimChore(submitData);
+        let result = await claimReward(submitData);
+        let userResult = await subtractUserPoints(currentUser._id, userPointsData);
         if (result.success) {
-            history.push("/my-chores");
+            history.go(0);
         } else {
             setFormErrors(result.errors);
         };
@@ -37,10 +39,10 @@ function ClaimChoreForm({ claimChore, choreId }) {
                 type="submit"
                 onSubmit={handleSubmit}
             >
-                Claim Chore
+                Claim Reward
             </Button>
         </form>
     );
 };
 
-export default ClaimChoreForm;
+export default ClaimRewardForm;

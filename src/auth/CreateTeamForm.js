@@ -2,6 +2,16 @@ import React, { useState, useContext } from "react";
 import { useHistory } from "react-router-dom";
 import AppAlert from "../common/AppAlert"
 import UserContext from "../auth/UserContext";
+import Paper from '@mui/material/Paper';
+import Button from '@mui/material/Button';
+import Visibility from '@mui/icons-material/Visibility';
+import VisibilityOff from '@mui/icons-material/VisibilityOff';
+import IconButton from '@mui/material/IconButton';
+import InputAdornment from '@mui/material/InputAdornment';
+import OutlinedInput from '@mui/material/OutlinedInput';
+import InputLabel from '@mui/material/InputLabel';
+import FormControl from '@mui/material/FormControl';
+import TextField from '@mui/material/TextField';
 
 function CreateTeamForm({ createTeam }) {
     const history = useHistory();
@@ -19,6 +29,20 @@ function CreateTeamForm({ createTeam }) {
         "formData=", formData,
         "formErrors", formErrors,
     );
+
+    const [values, setValues] = useState({
+        showPassword: false
+    })
+
+    const handleClickShowPassword = () => {
+        setValues({
+            showPassword: !values.showPassword,
+        });
+    };
+
+    const handleMouseDownPassword = (event) => {
+        event.preventDefault();
+    };
 
     async function handleSubmit(evt) {
         evt.preventDefault();
@@ -39,51 +63,72 @@ function CreateTeamForm({ createTeam }) {
 
     return (
         <div className="Form-container">
-            <h3 className="Form-title">Create Team Form</h3>
-            <form className="Form" onSubmit={handleSubmit}>
-                <div className="Form-group">
-                    
-                    <input 
-                        className="Form-input"
-                        placeholder="  "
-                        name="teamName"
-                        type="text"
-                        value={formData.teamName}
-                        onChange={handleChange}
-                        required
-                    />
-                    <label className="Form-label" htmlFor="teamName">Team Name</label>
-                </div>
+            <Paper
+                elevation={3}
+                sx={{ width: '50%', paddingTop: '30px', margin: 'auto', marginTop: '50px', paddingBottom: '10px' }}>
+                <form className="Form" onSubmit={handleSubmit}>
+                    <div className="Form__box-title">Create Team</div>
+                    <div className="Form-group">
+                        <TextField
+                            id="teamName"
+                            label="Team Name"
+                            className="Form-input"
+                            variant="outlined"
+                            sx={{ m: 1, width: '95%' }}
+                            className="Form-input"
+                            placeholder="  "
+                            name="teamName"
+                            type="text"
+                            value={formData.teamName}
+                            onChange={handleChange}
+                            required
+                        />
+                    </div>
 
-                <div className="Form-group">
-                    
-                    <input
-                        className="Form-input"
-                        placeholder="  "
-                        type="password"
-                        name="teamPassword"
-                        value={formData.teamPassword}
-                        onChange={handleChange}
-                        required
-                    />
-                    <label className="Form-label" htmlFor="teamPassword">Team Password</label>
-                </div>
-                {formErrors.length
-                    ? <AppAlert severity="error" messages={formErrors} />
-                    : null}
+                    <FormControl sx={{ m: 1, width: '95%' }} variant="outlined">
+                    <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
+                        <OutlinedInput
+                            id="password"
+                            label="Password"
+                            variant="outlined"
+                            type={values.showPassword ? 'text' : 'password'}
+                            className="Form-input"
+                            placeholder="  "
+                            name="teamPassword"
+                            required
+                            value={formData.teamPassword}
+                            onChange={handleChange}
+                            endAdornment={
+                                <InputAdornment position="end">
+                                    <IconButton
+                                        aria-label="toggle password visibility"
+                                        onClick={handleClickShowPassword}
+                                        onMouseDown={handleMouseDownPassword}
+                                        edge="end"
+                                    >
+                                        {values.showPassword ? <VisibilityOff /> : <Visibility />}
+                                    </IconButton>
+                                </InputAdornment>
+                            }
+                        />
+                    </FormControl>
+                    {formErrors.length
+                        ? <AppAlert severity="error" messages={formErrors} />
+                        : null}
 
-                
-                <div className="Form-group"> 
-                    <button
-                        className="Button"
-                        type="submit"
-                        onSubmit={handleSubmit}
-                    >
-                        Create Team
-                    </button>
-                </div>
-
-            </form>
+                    <div className="Form-group" style={{ textAlign: 'right' }}>
+                        <Button
+                            sx={{ m: 2, backgroundColor: '#1193ff', borderRadius: '5px' }}
+                            variant="contained"
+                            type="submit"
+                            onSubmit={handleSubmit}
+                        >
+                            Create Team
+                            </Button>
+                    </div>
+                </form>
+                <small className='Form__footer'>* Required Fields</small>
+            </Paper>
         </div>
     );
 };

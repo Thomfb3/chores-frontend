@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import AppAlert from "../common/AppAlert"
-
+import TextField from '@mui/material/TextField';
+import Paper from '@mui/material/Paper';
+import Button from '@mui/material/Button';
 
 function LoginForm({ login }) {
     const history = useHistory();
@@ -37,52 +39,59 @@ function LoginForm({ login }) {
     };
 
     return (
-        <div className="Form-container">
-            <h3 className="Form-title">Login Form</h3>
-            <form className="Form" onSubmit={handleSubmit}>
-                <div className="Form-group">
-                    
-                    <input 
-                        className="Form-input"
-                        placeholder="  "
-                        name="username"
-                        type="text"
-                        value={formData.username}
-                        onChange={handleChange}
-                        required
-                    />
-                    <label className="Form-label" htmlFor="username">Username</label>
-                </div>
+        <div className="Form">
+            <Paper
+                elevation={3}
+                sx={{ width: '50%', paddingTop: '30px', margin: 'auto', marginTop: '50px', paddingBottom: '10px' }}>
+                <form className="Form" onSubmit={handleSubmit}>
+                    <div className="Form__box-title">Login</div>
+                    <div className="Form-group">
+                        <TextField
+                            id="username"
+                            label="Username"
+                            className="Form-input"
+                            variant="outlined"
+                            placeholder="  "
+                            name="username"
+                            type="text"
+                            value={formData.username}
+                            onChange={handleChange}
+                            sx={{ m: 1, width: '95%' }}
+                            required
+                        />
+                    </div>
+                    <div className="Form-group">
+                        <TextField
+                            id="password"
+                            label="Password"
+                            className="Form-input"
+                            placeholder="  "
+                            name="password"
+                            type="password"
+                            value={formData.password}
+                            onChange={handleChange}
+                            sx={{ m: 1, width: '95%' }}
+                            required
+                        />
+                    </div>
 
-                <div className="Form-group">
-                    
-                    <input
-                        className="Form-input"
-                        placeholder="  "
-                        name="password"
-                        value={formData.password}
-                        onChange={handleChange}
-                        required
-                    />
-                    <label className="Form-label" htmlFor="password">Password</label>
-                </div>
+                    {formErrors.length
+                        ? <AppAlert severity="error" messages={formErrors} />
+                        : null}
 
-                {formErrors.length
-                    ? <AppAlert severity="error" messages={formErrors} />
-                    : null}
-
-                
-                <div className="Form-group"> 
-                    <button
-                        className="Button"
-                        type="submit"
-                        onSubmit={handleSubmit}
-                    >
-                        Login
-                    </button>
-                </div>
-
-            </form>
+                    <div className="Form-group" style={{ textAlign: 'right' }}>
+                        <Button
+                            sx={{ m: 2, backgroundColor: '#1193ff', borderRadius: '5px' }}
+                            variant="contained"
+                            type="submit"
+                            onSubmit={handleSubmit}
+                        >
+                            Login
+                        </Button>
+                    </div>
+                </form>
+                <small className='Form__footer'>* Required Fields</small>
+            </Paper>
         </div>
     );
 };

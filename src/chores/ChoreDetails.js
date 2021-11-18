@@ -88,9 +88,9 @@ function ChoreDetails() {
             );
         }
         if (currentUser._id !== choreAssignee
-            && (status === "open" || status === "rejected")) {
+            && (status === "open" || status === "rejected" || status === "created")) {
             return (
-                <div className="Chore__approved-section">
+                <div className="Chore__waiting">
                     <p>Waiting for submission.</p>
                 </div>
             );

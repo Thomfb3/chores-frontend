@@ -132,7 +132,8 @@
         &--left {
         }
         &--right {
-            max-width: 30rem;
+            max-width: 25rem;
+            min-width: 20rem;
             margin-left: 4rem;
         }
     }
@@ -220,6 +221,13 @@
         color: $color-success; 
         margin-left: 2rem;
     }
+    &__waiting {
+        display: flex;
+        font-weight: bold;
+        font-size: 1rem;
+        color: $color-danger; 
+        margin-left: 2rem;
+    }
 }
 
 .ChoreActivity {
@@ -257,5 +265,39 @@
     }
     &__date {
 
+    }
+}
+
+.ChoresUnclaimed {
+    margin: auto;
+    font-family: $font-1;
+    &__title {
+        margin: auto;
+        margin-bottom: 1.5rem;
+    }
+    &__list-title {
+        color: $color-secondary;
+        font-weight: bold;
+        font-size: 1.2rem;
+        background-color: white;
+        padding: 10px 20px 10px 0px;
+        position: relative;
+        display: inline-block;
+        z-index: 3;
+        &--need-to-do {
+            color: $color-danger;
+        }
+        &--pending {
+            color: $color-primary;
+        }
+        &--approved {
+            color: $color-success;
+        }
+    }
+    &__divider {
+        position: relative;
+        top: -25px;
+        z-index: 1;
+        border-bottom: 2px solid $color-secondary;
     }
 }

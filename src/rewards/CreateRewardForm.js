@@ -30,8 +30,6 @@ function CreateRewardForm({ createReward }) {
         ]
     });
 
-    console.log("Create Reward Form", currentTeamUsers)
-
     const [formErrors, setFormErrors] = useState([]);
     console.log(formErrors);
     console.debug(
@@ -59,14 +57,16 @@ function CreateRewardForm({ createReward }) {
 
     return (
         <div className="Form">
-            <h3 className="Form__title">Manage Rewards</h3>
-            <div className="Form__divider"></div>
+            <div className="Form__title">
+                <div className="Form__list-title">Manage Rewards</div>
+                <div className="Form__divider"></div>
+            </div>
             <div className="Form__form-container">
                 <Paper
                     elevation={3}
                     sx={{ width: '50%', paddingTop: '30px', margin: 'auto', marginTop: '50px', paddingBottom: '10px' }}>
                     <form className="Form" onSubmit={handleSubmit}>
-                    <div>Create New Reward</div>
+                        <div className="Form__box-title">Create New Reward</div>
                         <div className="Form-group">
                             <TextField
                                 id="title"
@@ -112,7 +112,6 @@ function CreateRewardForm({ createReward }) {
                             : null}
 
                         <div className="Form-group" style={{ textAlign: 'right' }}>
-
                             <Button
                                 sx={{ m: 2, backgroundColor: '#1193ff', borderRadius: '5px' }}
                                 variant="contained"
@@ -122,7 +121,6 @@ function CreateRewardForm({ createReward }) {
                                 Create Reward
                             </Button>
                         </div>
-
                     </form>
                     <small className='Form__footer'>* Required Fields</small>
                 </Paper>

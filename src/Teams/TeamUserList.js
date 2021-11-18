@@ -5,14 +5,18 @@ import UserContext from "../auth/UserContext";
 
 function TeamUserList() {
   console.debug("TeamUserList");
-  const { currentUser, currentTeamUsers } = useContext(UserContext);
+  const { currentUser, currentTeam, currentTeamUsers } = useContext(UserContext);
 
   if (!currentTeamUsers) return <LoadingSpinner />;
 
   currentTeamUsers.sort((a, b) => (a.points < b.points && 1) || -1)
 
   return (
-    <div>
+    <div className="TeamUserList">
+      <div className="TeamUserList__title">
+        <h3 className="TeamUserList__list-title">Team {currentTeam.name}</h3>
+        <div className="TeamUserList__divider"></div>
+      </div>
       {currentTeamUsers.length ? (
         <div >
           {currentTeamUsers.map((u,idx)=> (
@@ -24,7 +28,8 @@ function TeamUserList() {
                 username={u.username}
                 firstName={u.firstName}
                 isAdmin={u.role === "admin"}
-                points={u.points}
+                currentPoints={u.currentPoints}
+                allTimePoints={u.allTimePoints}
                 position={idx+1}
             />
           ))}

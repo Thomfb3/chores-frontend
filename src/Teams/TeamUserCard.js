@@ -4,7 +4,7 @@ import UserContext from "../auth/UserContext";
 import Avatar from '@mui/material/Avatar';
 import StarIcon from '@mui/icons-material/Star';
 
-function TeamUserCard({ id, isCurrentUser, position, profileImage, username, firstName, isAdmin, points }) {
+function TeamUserCard({ id, isCurrentUser, position, profileImage, username, firstName, isAdmin, currentPoints, allTimePoints }) {
     console.debug("TeamUserCard");
     const { currentUser, currentTeamUsers } = useContext(UserContext);
 
@@ -74,7 +74,8 @@ function TeamUserCard({ id, isCurrentUser, position, profileImage, username, fir
                             {isAdmin ? <p>{`(Team Manager)`}</p> : ""}
                         </div>
                     </div>
-                    <p className={`TeamUserCard__points TeamUserCard__points-${determinePositionStyle(position)}`}>{points} pts</p>
+                    <p className={`TeamUserCard__points TeamUserCard__points-${determinePositionStyle(position)}`}>{currentPoints} pts</p>
+                    <p className={`TeamUserCard__points TeamUserCard__points-${determinePositionStyle(position)}`}>{allTimePoints} pts</p>
                 </div>
             </div>
         </div>

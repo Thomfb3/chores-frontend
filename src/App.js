@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { BrowserRouter } from "react-router-dom";
 import Routes from "./routes/Routes";
-import HeaderProfile from "./common/HeaderProfile";
+import Footer from "./common/Footer";
 import ChoresApi from "./api/api";
 import UserContext from "./auth/UserContext";
 import useLocalStorage from "./hooks/useLocalStorage";
@@ -72,6 +72,7 @@ function App() {
   }, [token]);
 
   function logout() {
+    console.log("logout")
     setCurrentTeamUsers(null)
     setCurrentUser(null);
     setIsAdmin(null);
@@ -148,9 +149,6 @@ function App() {
     };
   };
 
-
-
-
   if (!infoLoaded) return <div>Still Loading...</div>;
 
   return (
@@ -170,7 +168,7 @@ function App() {
       <CssBaseline />
       <Container maxWidth="lg">
 
-        <Navigation />
+        <Navigation logout={logout} />
         <Routes
           login={login}
           signup={signup}
@@ -178,8 +176,8 @@ function App() {
           joinTeam={joinTeam}
           createChore={createChore}
           createReward={createReward}
-          logout={logout}
         />
+        <Footer />
       </Container>
     </React.Fragment>
 
