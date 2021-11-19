@@ -22,6 +22,8 @@ function MyChoresList({ status }) {
     setChores(filteredChores)
   }
 
+  console.log("chores", chores)
+
   const determineMessage = (status) => {
      if (status === "need-to-do") return "Nothing to do right now.";
      if (status === "pending") return "Nothing in review.";

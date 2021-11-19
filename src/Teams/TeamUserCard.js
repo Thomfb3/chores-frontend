@@ -27,7 +27,7 @@ function TeamUserCard({ id, isCurrentUser, position, profileImage, username, fir
         if (position === 3) return "third";
         if (position > 3) {
             return `other-number--${determineOrdinal(position)}`;
-        } 
+        }
     }
 
     return (
@@ -74,8 +74,15 @@ function TeamUserCard({ id, isCurrentUser, position, profileImage, username, fir
                             {isAdmin ? <p>{`(Team Manager)`}</p> : ""}
                         </div>
                     </div>
-                    <p className={`TeamUserCard__points TeamUserCard__points-${determinePositionStyle(position)}`}>{currentPoints} pts</p>
-                    <p className={`TeamUserCard__points TeamUserCard__points-${determinePositionStyle(position)}`}>{allTimePoints} pts</p>
+                    <div className="TeamUserCard__current-points">
+                        <p className={`TeamUserCard__current-points--label TeamUserCard__points-${determinePositionStyle(position)}`}>Current Points</p>
+                        <p className={`TeamUserCard__current-points--points TeamUserCard__points-${determinePositionStyle(position)}`}>{currentPoints} pts</p>
+                    </div>
+                    <div className="TeamUserCard__all-points">
+                        <p className={`TeamUserCard__all-points--label TeamUserCard__points-${determinePositionStyle(position)}`}>All Time Points</p>
+                        <p className={`TeamUserCard__all-points--points TeamUserCard__points-${determinePositionStyle(position)}`}>{allTimePoints} pts</p>
+                    </div>
+
                 </div>
             </div>
         </div>

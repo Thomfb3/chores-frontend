@@ -18,7 +18,7 @@ function CreateRewardForm({ createReward }) {
         "sponsor": currentUser._id,
         "createdBy": currentUser._id,
         "status": "open",
-        "imageUrl": "default-reward.jpg",
+        "imageCover": "default-reward.jpg",
         "teamId": currentTeam._id,
         "type": "template",
         "activity": [
@@ -105,6 +105,19 @@ function CreateRewardForm({ createReward }) {
                                 onChange={handleChange}
                                 sx={{ m: 1, width: '95%' }}
                             />
+                        </div>
+                        <div className="Form-group">
+                            <TextField
+                                id="imageCover"
+                                label="Chore Image"
+                                variant="outlined"
+                                placeholder="  "
+                                type="text"
+                                name="imageCover"
+                                value={formData.imageCover}
+                                onChange={handleChange}
+                                sx={{ m: 1, width: '95%' }}
+                                />
                         </div>
 
                         {formErrors.length

@@ -169,4 +169,25 @@
     &__points-other-number {
         color: $color-primary;
     }
+    &__current-points {
+        border-right: 1px solid $color-gray-mid-light;
+        padding-right: .7rem;
+        margin-right: .7rem;
+        text-align: right;
+        &--label {
+            font-size: .8rem;
+        }
+        &--points {
+            font-size: 1.2rem;
+        }
+    }
+    &__all-points {
+        &--label {
+            font-size: .8rem;
+        }
+        &--points {
+            font-weight: bold;
+            font-size: 1.5rem;
+        }
+    }
 }
