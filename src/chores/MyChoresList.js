@@ -19,10 +19,10 @@ function MyChoresList() {
     setNeedToDoChores(chores.filter(chore =>
       chore.status === "open" ||
       chore.status === "rejected" ||
-      chore.status === "created"))
+      chore.status === "created"));
     setPendingChores(chores.filter(chore => chore.status === "pending"));
     setApprovedChores(chores.filter(chore => chore.status === "approved"));
-    setIsLoaded(true)
+    setIsLoaded(true);
   }
 
   useEffect(() => {

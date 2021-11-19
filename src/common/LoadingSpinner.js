@@ -13,6 +13,6 @@ function LoadingSpinner() {
       <div className="LoadingSpinner__background"></div>
     </div>
   );
-}
+};
 
 export default LoadingSpinner;

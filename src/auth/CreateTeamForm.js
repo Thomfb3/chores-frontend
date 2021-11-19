@@ -32,7 +32,7 @@ function CreateTeamForm({ createTeam }) {
 
     const [values, setValues] = useState({
         showPassword: false
-    })
+    });
 
     const handleClickShowPassword = () => {
         setValues({

@@ -63,11 +63,11 @@ function ProfileForm() {
         } catch (errors) {
             setFormErrors(errors);
             return;
-        }
+        };
         setFormData(f => ({ ...f, password: "" }));
         setFormErrors([]);
         setCurrentUser(updatedUser);
-    }
+    };
 
     function handleChange(evt) {
         const { name, value } = evt.target;

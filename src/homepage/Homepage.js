@@ -24,6 +24,6 @@ function Homepage() {
             <h1 className="">Welcome Back, {currentUser.firstName || currentUser.username} !</h1>
         </div>
     );
-}
+};
 
 export default Homepage;

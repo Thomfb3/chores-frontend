@@ -24,7 +24,7 @@ function TeamChoresList() {
     setPendingChores(assignedChores.filter(chore => chore.status === "pending"));
     setApprovedChores(assignedChores.filter(chore => chore.status === "approved"));
     setIsLoaded(true)
-  }
+  };
 
   useEffect(() => {
     getChores();

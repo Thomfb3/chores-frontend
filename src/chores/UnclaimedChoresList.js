@@ -7,12 +7,12 @@ import UserContext from "../auth/UserContext";
 function UnclaimedChoresList() {
   console.debug("UnclaimedChoresList");
   const [chores, setChores] = useState(null);
-  const { currentUser, currentTeamUsers } = useContext(UserContext);
+  const { currentUser } = useContext(UserContext);
 
   async function getChores() {
     let chores = await ChoresApi.getCurrentUnclaimedChores();
     setChores(chores);
-  }
+  };
 
   useEffect(() => {
     getChores();

@@ -24,7 +24,7 @@ function SignupForm({ signup }) {
 
     const [values, setValues] = useState({
         showPassword: false
-    })
+    });
 
     const handleClickShowPassword = () => {
         setValues({
@@ -169,7 +169,6 @@ function SignupForm({ signup }) {
                             Sign Up
                         </Button>
                     </div>
-
                 </form>
                 <small className='Form__footer'>* Required Fields</small>
             </Paper>

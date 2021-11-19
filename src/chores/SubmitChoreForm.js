@@ -6,7 +6,7 @@ import Button from '@mui/material/Button';
 
 function SubmitChoreForm({ points, status, statusButton, submitChore, addUserPoints, isAssigner, isAssignee, assigneeId }) {
     const history = useHistory();
-    const { currentUser, currentTeam, currentTeamUsers } = useContext(UserContext);
+    const { currentUser } = useContext(UserContext);
     const submitData = { status: "pending", userId: currentUser._id };
     const rejectData = { status: "rejected", userId: currentUser._id };
     const approvedData = { status: "approved", userId: currentUser._id };
@@ -116,7 +116,7 @@ function SubmitChoreForm({ points, status, statusButton, submitChore, addUserPoi
                 Nothing rendered...
             </div>
         )
-    }
+    };
 };
 
 export default SubmitChoreForm;

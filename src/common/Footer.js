@@ -8,6 +8,6 @@ function Footer() {
             <p className="Footer__copyright">&copy; Copyright 2021 </p>
         </div>
     );
-}
+};
 
 export default Footer;

@@ -6,7 +6,7 @@ import ChoreComment from "../comments/ChoreComment";
 import ChoreCommentForm from "../comments/ChoreCommentForm";
 import findUserInTeam from "../helpers/findUserInTeam";
 import setChoreStatusButton from "../helpers/setChoreStatus"
-import { formatDate, formatShortDate, formatDay } from "../helpers/formatDate";
+import { formatDate, formatShortDate } from "../helpers/formatDate";
 import LoadingSpinner from "../common/LoadingSpinner";
 import UserContext from "../auth/UserContext";
 import ChoreCommentContext from "../comments/ChoreCommentContext";
@@ -14,7 +14,6 @@ import SubmitChoreForm from "./SubmitChoreForm";
 import ClaimChoreForm from "./ClaimChoreForm";
 import defaultChoreJpeg from "../assets/images/defaultChore.jpg";
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
-
 
 function ChoreDetails() {
     const { id } = useParams();
@@ -86,7 +85,7 @@ function ChoreDetails() {
                     claimChore={claimChore}
                 />
             );
-        }
+        };
         if (currentUser._id !== choreAssignee
             && (status === "open" || status === "rejected" || status === "created")) {
             return (
@@ -94,7 +93,7 @@ function ChoreDetails() {
                     <p>Waiting for submission.</p>
                 </div>
             );
-        }
+        };
         if (status === "approved") {
             return (
                 <div className="Chore__approved-section">

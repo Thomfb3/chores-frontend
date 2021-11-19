@@ -2,7 +2,7 @@ import React, { useEffect, useState, useContext } from "react";
 import { useParams } from "react-router-dom";
 import ChoresApi from "../api/api";
 import findUserInTeam from "../helpers/findUserInTeam";
-import { formatDate, formatShortDate, formatDay } from "../helpers/formatDate";
+import { formatDate } from "../helpers/formatDate";
 import LoadingSpinner from "../common/LoadingSpinner";
 import UserContext from "../auth/UserContext";
 import defaultRewardImage from "../assets/images/defaultChore.jpg";
@@ -13,7 +13,7 @@ function RewardDetails() {
     const { id } = useParams();
     console.debug("Reward Details", "id=", id);
     const [reward, setReward] = useState(null);
-    const { currentUser, currentTeamUsers } = useContext(UserContext);
+    const { currentTeamUsers } = useContext(UserContext);
 
     async function getReward() {
         let reward = await ChoresApi.getReward(id);
@@ -77,13 +77,11 @@ function RewardDetails() {
                 <div className="Reward__main--right">
                     <img className="Reward__image" src={defaultRewardImage} alt={defaultRewardImage} />
                 </div>
-
             </div>
             <div className="Reward__status">
                 <h3 className="Chore__page-title">Chore Status</h3>
                 <div className="Chore__divider"></div>
                 {reward.status === "open" ? "Available" : reward.status}
-                {/* {determineActionButtons(chore.assignee, chore.status)} */}
                 <ClaimRewardForm
                     rewardId={id}
                     claimReward={claimReward}
@@ -91,7 +89,6 @@ function RewardDetails() {
                     points={reward.pointsNeeded}
                 />
             </div>
-
         </div>
     );
 };

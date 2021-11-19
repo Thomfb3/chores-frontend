@@ -54,7 +54,6 @@ class ChoresApi {
         return res.data;
     };
 
-
     /** Get rewards fileted by team */
     static async getAllTeamUsers() {
         let res = await this.request(`users/`);
@@ -147,7 +146,6 @@ class ChoresApi {
     };
 
     ///////Auth API
-
     /** Get token for login from username and password */
     static async login(data) {
         let res = await this.request("auth/token", data, "post");
@@ -173,14 +171,11 @@ class ChoresApi {
         return res.token;
     };
 
-
     /** Save user profile */
     static async saveProfile(userId, data) {
         let res = await this.request(`users/${userId}`, data, "patch");
         return res.user;
     };
 };
-
-
 
 export default ChoresApi;

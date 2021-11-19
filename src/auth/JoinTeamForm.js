@@ -33,7 +33,7 @@ function JoinTeamForm({ joinTeam }) {
 
     const [values, setValues] = useState({
         showPassword: false
-    })
+    });
 
     const handleClickShowPassword = () => {
         setValues({

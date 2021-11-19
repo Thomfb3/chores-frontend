@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
-import { formatDate, formatShortDate, formatDay } from "../helpers/formatDate";
+import { formatDate } from "../helpers/formatDate";
 import findUserInTeam from "../helpers/findUserInTeam";
 import UserContext from "../auth/UserContext";
 
@@ -10,14 +10,13 @@ function RewardCard({
     description,
     points,
     status,
-    rewardImage,
     sponsor,
     createdBy,
     createdAt
 }) {
 
     console.debug("RewardCard");
-    const { currentUser, currentTeamUsers } = useContext(UserContext);
+    const { currentTeamUsers } = useContext(UserContext);
     const createdByUser = findUserInTeam(createdBy, currentTeamUsers);
     const foundSponsor = findUserInTeam(sponsor, currentTeamUsers);
 
@@ -44,7 +43,6 @@ function RewardCard({
         </Link>
     );
 };
-
 
 export default RewardCard;
 

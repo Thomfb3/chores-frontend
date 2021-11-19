@@ -1,6 +1,6 @@
-import React, { useEffect, useState, useContext } from "react";
+import React, { useContext } from "react";
 import findUserInTeam from "../helpers/findUserInTeam";
-import { formatDate, formatLongDate, formatTime } from "../helpers/formatDate";
+import { formatLongDate, formatTime } from "../helpers/formatDate";
 import UserContext from "../auth/UserContext";
 import Avatar from '@mui/material/Avatar';
 import defaultProfileImage from '../assets/images/default-profile-pic.gif';
@@ -8,17 +8,13 @@ import defaultProfileImage from '../assets/images/default-profile-pic.gif';
 
 function ChoreComment({ user, comment, date }) {
     const { currentUser, currentTeamUsers } = useContext(UserContext);
-    console.log(user)
     const choreCommentUser = findUserInTeam(user, currentTeamUsers);
-
-    console.log(choreCommentUser)
     const defaultProfilePic = (currentUser.profileImage === "defaultProfile.jpg")
         ? defaultProfileImage
         : currentUser.profileImage;
 
     return (
         <div className="ChoreComment">
-
             <div className="ChoreComment__details">
                 <div className="ChoreComment__image">
                     {choreCommentUser.profileImage &&
@@ -29,7 +25,6 @@ function ChoreComment({ user, comment, date }) {
                             sx={{ width: 45, height: 45 }}
                         >{choreCommentUser.username.charAt(0)}</Avatar>
                     }
-
                 </div>
                 <div className="ChoreComment__info">
                     <p className="ChoreComment__name">{choreCommentUser.username}</p>
@@ -39,7 +34,6 @@ function ChoreComment({ user, comment, date }) {
                     </div>
                 </div>
             </div>
-
         </div>
     );
 };

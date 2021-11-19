@@ -1,13 +1,10 @@
 import React, { useState, useContext } from "react";
-import { useHistory } from "react-router-dom";
 import AppAlert from "../common/AppAlert"
 import UserContext from "../auth/UserContext";
 import ChoreCommentContext from "./ChoreCommentContext";
 
 function ChoreCommentForm({ postChoreComment }) {
-    const history = useHistory();
     const { currentChoreComments, setCurrentChoreComments } = useContext(ChoreCommentContext);
-    
     const { currentUser } = useContext(UserContext);
     const [formData, setFormData] = useState({
         user: currentUser._id,
@@ -26,7 +23,6 @@ function ChoreCommentForm({ postChoreComment }) {
     async function handleSubmit(evt) {
         evt.preventDefault();
         let result = await postChoreComment(formData);
-
         if (result.success) {
             console.log("RESULT DATA", result)
             console.log("currentChoreComments", currentChoreComments)
@@ -44,7 +40,6 @@ function ChoreCommentForm({ postChoreComment }) {
 
     return (
         <div className="Form-container">
-            
             <form className="Form" onSubmit={handleSubmit}>
                 <div className="Form-group">
                     <textarea 
@@ -58,7 +53,6 @@ function ChoreCommentForm({ postChoreComment }) {
                         rows={6}
                         required
                     ></textarea>
-                  
                 </div>
 
                 {formErrors.length
@@ -74,7 +68,6 @@ function ChoreCommentForm({ postChoreComment }) {
                         Post Comment
                     </button>
                 </div>
-
             </form>
         </div>
     );

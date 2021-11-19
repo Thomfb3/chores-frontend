@@ -20,7 +20,7 @@ import AdminRoute from "./AdminRoute";
 import ChoreCommentContext from "../comments/ChoreCommentContext";
 
 function Routes({ login, signup, createTeam, joinTeam, createChore, createReward }) {
-    let [currentChoreComments, setCurrentChoreComments] = useState([])
+    let [currentChoreComments, setCurrentChoreComments] = useState([]);
 
     return (
         <div>

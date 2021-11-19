@@ -3,14 +3,12 @@ import { useHistory } from "react-router-dom";
 import AppAlert from "../common/AppAlert"
 import UserContext from "../auth/UserContext";
 import TextField from '@mui/material/TextField';
-import MenuItem from '@mui/material/MenuItem';
-import FormControl from '@mui/material/FormControl';
 import Paper from '@mui/material/Paper';
 import Button from '@mui/material/Button';
 
 function CreateRewardForm({ createReward }) {
     const history = useHistory();
-    const { currentUser, currentTeam, currentTeamUsers } = useContext(UserContext);
+    const { currentUser, currentTeam } = useContext(UserContext);
     const [formData, setFormData] = useState({
         "title": "",
         "description": "",
@@ -41,7 +39,6 @@ function CreateRewardForm({ createReward }) {
 
     async function handleSubmit(evt) {
         evt.preventDefault();
-
         let result = await createReward(formData);
         if (result.success) {
             history.push("/rewards");

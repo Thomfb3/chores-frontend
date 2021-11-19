@@ -6,8 +6,6 @@ import UserContext from "../auth/UserContext";
 import Avatar from '@mui/material/Avatar';
 import StarIcon from '@mui/icons-material/Star';
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
-
-import ChoresApi from "../api/api";
 import defaultProfileImage from '../assets/images/default-profile-pic.gif';
 
 function ChoreCard({
@@ -18,7 +16,6 @@ function ChoreCard({
     status,
     assigneeName,
     assigneeImage,
-    choreImage,
     assignerId,
     assignee,
     createdBy,
@@ -34,16 +31,16 @@ function ChoreCard({
     const determineStatusColorClass = (status, assignee) => {
         if (!assignee) {
             return "ChoreCard__unclaimed";
-        }
+        };
         if (status === "open" || status === "rejected" || status === "created") {
             return "ChoreCard__need-to-do";
-        }
+        };
         if (status === "pending") {
             return "ChoreCard__needs-review";
-        }
+        };
         if (status === "approved") {
             return "ChoreCard__approved";
-        }
+        };
     };
 
     const defaultProfilePic = (currentUser.profileImage === "defaultProfile.jpg")
@@ -86,7 +83,6 @@ function ChoreCard({
                 </div>
             </Link>
         );
-
     } else if (cardType === "TeamChoresList") {
         const userAssignee = findUserInTeam(assignee._id, currentTeamUsers);
         return (
@@ -151,7 +147,6 @@ function ChoreCard({
             </Link>
         );
     } else if (cardType === "UnclaimedChoresList") {
-        const createdByUser = findUserInTeam(createdBy, currentTeamUsers);
         let userAssignee = false;
         return (
             <Link to={`/chores/${id}`} className="ChoreCard">
@@ -174,9 +169,8 @@ function ChoreCard({
                 </div>
             </Link>
         );
-    }
+    };
 };
-
 
 export default ChoreCard;
 

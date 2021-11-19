@@ -1,15 +1,14 @@
 import React, { useState, useContext } from "react";
-import { useHistory, useParams } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import AppAlert from "../common/AppAlert"
 import UserContext from "../auth/UserContext";
 import Button from '@mui/material/Button';
 
 function ClaimRewardForm({ claimReward, subtractUserPoints, points }) {
     const history = useHistory();
-    const { currentUser, currentTeam, currentTeamUsers } = useContext(UserContext);
+    const { currentUser } = useContext(UserContext);
     const submitData = { "status": "claimed" };
     const userPointsData = { operation: "subtract", points: points };
-
     const [formErrors, setFormErrors] = useState([]);
     console.log(formErrors);
     console.debug(
