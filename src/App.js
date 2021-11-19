@@ -10,6 +10,7 @@ import Navigation from "./routes/Navigation";
 import CssBaseline from '@mui/material/CssBaseline';
 import Container from '@mui/material/Container';
 import './scss/App.scss';
+import LoadingSpinner from "./common/LoadingSpinner";
 
 export const TOKEN_STORAGE_ID = "chores_token";
 
@@ -20,7 +21,6 @@ function App() {
   const [currentTeam, setCurrentTeam] = useState(null);
   const [token, setToken] = useLocalStorage(TOKEN_STORAGE_ID);
   const [infoLoaded, setInfoLoaded] = useState(false);
-
 
   useEffect(function loadUserInfo() {
     console.debug("App useEffect loadUserInfo", "token=", token);
@@ -149,7 +149,7 @@ function App() {
     };
   };
 
-  if (!infoLoaded) return <div>Still Loading...</div>;
+  if (!infoLoaded) return <LoadingSpinner />;
 
   return (
     <BrowserRouter>

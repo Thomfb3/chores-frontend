@@ -2,6 +2,7 @@
     margin: auto;
     font-family: $font-1;
     width: 75%;
+    transition: all .2s ease-in;
     &__title {
         margin: auto;
         margin-bottom: 1.5rem;

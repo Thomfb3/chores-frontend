@@ -1,12 +1,17 @@
-import React from "react";
+import React from 'react';
+import CircularProgress from '@mui/material/CircularProgress';
+import Box from '@mui/material/Box';
 
-/** Loading  */
 function LoadingSpinner() {
   return (
-      <div>
-        <div className="LoadingSpinner"></div>
-        <p className="LoadingSpinner-message">Loading...</p>
+    <div className="LoadingSpinner">
+      <div className="LoadingSpinner__spinner">
+        <Box sx={{ display: 'flex' }}>
+          <CircularProgress sx={{ margin: 'auto' }} />
+        </Box>
       </div>
+      <div className="LoadingSpinner__background"></div>
+    </div>
   );
 }
 

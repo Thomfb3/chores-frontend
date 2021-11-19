@@ -46,17 +46,11 @@ function Routes({ login, signup, createTeam, joinTeam, createChore, createReward
                 </Route>
 
                 <PrivateRoute exact path="/all-chores">
-                    <TeamChoresList status="need-to-do"/>
-                    <TeamChoresList status="pending"/>
-                    <TeamChoresList status="approved"/>
-
+                    <TeamChoresList />
                 </PrivateRoute>
 
                 <PrivateRoute exact path="/my-chores">
-                    <MyChoresList status="need-to-do"/>
-                    <MyChoresList status="pending"/>
-                    <MyChoresList status="approved"/>
-
+                    <MyChoresList />
                 </PrivateRoute>
 
                 <PrivateRoute exact path="/unclaimed-chores">

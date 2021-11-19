@@ -4,93 +4,131 @@ import ChoreCard from "./ChoreCard";
 import LoadingSpinner from "../common/LoadingSpinner";
 import UserContext from "../auth/UserContext";
 import SentimentVerySatisfiedIcon from '@mui/icons-material/SentimentVerySatisfied';
+import { determineMessage, determineListHeader } from "../helpers/choreHelpers";
 
-function MyChoresList({ status }) {
+function MyChoresList() {
   console.debug("MyChoresList");
-  const [chores, setChores] = useState(null);
+  const [needToDoChores, setNeedToDoChores] = useState(null);
+  const [pendingChores, setPendingChores] = useState(null);
+  const [approvedChores, setApprovedChores] = useState(null);
+  const [isLoaded, setIsLoaded] = useState(false);
   const { currentUser } = useContext(UserContext);
 
   async function getChores() {
     let chores = await ChoresApi.getCurrentUserChores(currentUser._id);
-
-    let filteredChores;
-    if(status === "need-to-do") {
-      filteredChores = chores.filter(chore => chore.status === "open" || chore.status === "rejected" || chore.status === "created");
-    } else {
-      filteredChores = chores.filter(chore => chore.status === status);
-    }
-    setChores(filteredChores)
-  }
-
-  console.log("chores", chores)
-
-  const determineMessage = (status) => {
-     if (status === "need-to-do") return "Nothing to do right now.";
-     if (status === "pending") return "Nothing in review.";
-     if (status === "approved") return "You have no recently approved chores.";
-  }
-
-  const determineListHeader = (status) => {
-    if (status === "need-to-do") {
-      return (
-        <div className="ChoreList__title">
-          <h3 className="ChoreList__list-title ChoreList__list-title--need-to-do">Need to do</h3>
-          <div className="ChoreList__divider ChoreList__divider--need-to-do"></div>
-        </div>)
-    }
-    if (status === "pending") {
-      return (
-        <div className="ChoreList__title">
-          <h3 className="ChoreList__list-title ChoreList__list-title--pending">Pending Review</h3>
-          <div className="ChoreList__divider ChoreList__divider--pending"></div>
-        </div>)
-    }
-    if (status === "approved") {
-      return (
-        <div className="ChoreList__title">
-          <h3 className="ChoreList__list-title ChoreList__list-title--approved">Approved Recently</h3>
-          <div className="ChoreList__divider ChoreList__divider--approved"></div>
-        </div>)
-    }
+    setNeedToDoChores(chores.filter(chore =>
+      chore.status === "open" ||
+      chore.status === "rejected" ||
+      chore.status === "created"))
+    setPendingChores(chores.filter(chore => chore.status === "pending"));
+    setApprovedChores(chores.filter(chore => chore.status === "approved"));
+    setIsLoaded(true)
   }
 
   useEffect(() => {
     getChores();
   }, []);
 
-  if (!chores) return <LoadingSpinner />;
+  if (!isLoaded) return <LoadingSpinner />;
 
   return (
-    <div className="ChoreList">
-     {determineListHeader(status)}
-      {chores.length ? (
-        <div className="">
-          {chores.map(c => (
-            <ChoreCard
-              id={c._id}
-              key={c._id}
-              title={c.title}
-              description={c.description}
-              points={c.pointValue}
-              status={c.status}
-              assigneeImage={c.assignee.profileImage}
-              choreImage={c.choreImage}
-              assignerId={c.assigner}
-              assignee={c.assignee}
-              createdAt={c.createdAt}
-              createdBy={c.createdBy}
-              currentUser={c.username === currentUser.username}
-              dueDate={c.dueDate}
-              cardType={"MyChoreList"}
-            />
-          )).reverse()}
-        </div>
-      ) : (
-          <div className={`ChoreList__empty ChoreList__empty--${status}`}>
-          <SentimentVerySatisfiedIcon />
-            <p>{determineMessage(status)}</p>
+    <div>
+      <div className="ChoreList">
+        {determineListHeader("need-to-do")}
+        {needToDoChores.length ? (
+          <div className="">
+            {needToDoChores.map(c => (
+              <ChoreCard
+                id={c._id}
+                key={c._id}
+                title={c.title}
+                description={c.description}
+                points={c.pointValue}
+                status={c.status}
+                assigneeImage={c.assignee.profileImage}
+                choreImage={c.choreImage}
+                assignerId={c.assigner}
+                assignee={c.assignee}
+                createdAt={c.createdAt}
+                createdBy={c.createdBy}
+                currentUser={c.username === currentUser.username}
+                dueDate={c.dueDate}
+                cardType={"MyChoreList"}
+              />
+            )).reverse()}
           </div>
-        )}
+        ) : (
+            <div className={`ChoreList__empty ChoreList__empty--need-to-do`}>
+              <SentimentVerySatisfiedIcon />
+              <p>{determineMessage("need-to-do")}</p>
+            </div>
+          )}
+      </div>
+
+      <div className="ChoreList">
+        {determineListHeader("pending")}
+        {pendingChores.length ? (
+          <div className="">
+            {pendingChores.map(c => (
+              <ChoreCard
+                id={c._id}
+                key={c._id}
+                title={c.title}
+                description={c.description}
+                points={c.pointValue}
+                status={c.status}
+                assigneeImage={c.assignee.profileImage}
+                choreImage={c.choreImage}
+                assignerId={c.assigner}
+                assignee={c.assignee}
+                createdAt={c.createdAt}
+                createdBy={c.createdBy}
+                currentUser={c.username === currentUser.username}
+                dueDate={c.dueDate}
+                cardType={"MyChoreList"}
+              />
+            )).reverse()}
+          </div>
+        ) : (
+            <div className={`ChoreList__empty ChoreList__empty--pending`}>
+              <SentimentVerySatisfiedIcon />
+              <p>{determineMessage("pending")}</p>
+            </div>
+          )}
+      </div>
+
+      <div className="ChoreList">
+        {determineListHeader("approved")}
+        {approvedChores.length ? (
+          <div className="">
+            {approvedChores.map(c => (
+              <ChoreCard
+                id={c._id}
+                key={c._id}
+                title={c.title}
+                description={c.description}
+                points={c.pointValue}
+                status={c.status}
+                assigneeImage={c.assignee.profileImage}
+                choreImage={c.choreImage}
+                assignerId={c.assigner}
+                assignee={c.assignee}
+                createdAt={c.createdAt}
+                createdBy={c.createdBy}
+                currentUser={c.username === currentUser.username}
+                dueDate={c.dueDate}
+                cardType={"MyChoreList"}
+              />
+            )).reverse()}
+          </div>
+        ) : (
+            <div className={`ChoreList__empty ChoreList__empty--approved`}>
+              <SentimentVerySatisfiedIcon />
+              <p>{determineMessage("approved")}</p>
+            </div>
+          )}
+      </div>
+
     </div>
   );
 };
