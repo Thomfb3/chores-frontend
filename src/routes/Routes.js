@@ -7,7 +7,7 @@ import UnclaimedChoresList from "../chores/UnclaimedChoresList";
 import ChoreDetails from "../chores/ChoreDetails";
 import CreateChoreForm from "../chores/CreateChoreForm";
 import RewardsList from "../rewards/RewardsList";
-import TeamUserList from "../teams/TeamUserList";
+import TeamUserList from "../Teams/TeamUserList";
 import RewardDetails from "../rewards/RewardDetails";
 import CreateRewardForm from "../rewards/CreateRewardForm";
 import LoginForm from "../auth/LoginForm";
