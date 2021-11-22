@@ -1,8 +1,8 @@
-import React, { useContext } from "react";
+import React, { useContext } from "./node_modules/react";
 import defaultProfileImage from '../assets/images/default-profile-pic.gif';
 import UserContext from "../auth/UserContext";
-import Avatar from '@mui/material/Avatar';
-import StarIcon from '@mui/icons-material/Star';
+import Avatar from './node_modules/@mui/material/Avatar';
+import StarIcon from './node_modules/@mui/icons-material/Star';
 
 function TeamUserCard({ id, isCurrentUser, position, profileImage, username, firstName, isAdmin, currentPoints, allTimePoints }) {
     console.debug("TeamUserCard");
