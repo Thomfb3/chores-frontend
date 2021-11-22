@@ -3,6 +3,7 @@ import TeamUserCard from "./TeamUserCard"
 import LoadingSpinner from "../common/LoadingSpinner";
 import UserContext from "../auth/UserContext";
 
+
 function TeamUserList() {
   console.debug("TeamUserList");
   const { currentUser, currentTeam, currentTeamUsers } = useContext(UserContext);
