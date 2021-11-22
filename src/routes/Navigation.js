@@ -125,7 +125,6 @@ function Navigation({ logout }) {
                 {determineNavigation()}
             </div>
             <div>
-
             </div>
         </nav>
     );
