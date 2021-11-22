@@ -81,9 +81,9 @@ function SignupForm({ signup }) {
                             required
                         />
                     </div>
-        
+
                     <FormControl sx={{ m: 1, width: '95%' }} variant="outlined">
-                    <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
+                        <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
                         <OutlinedInput
                             id="password"
                             label="Password"
@@ -107,10 +107,10 @@ function SignupForm({ signup }) {
                                     </IconButton>
                                 </InputAdornment>
                             }
-                           
+
                         />
                     </FormControl>
-         
+
                     <div className="Form-group">
                         <TextField
                             id="firstName"
