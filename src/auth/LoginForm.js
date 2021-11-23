@@ -4,6 +4,7 @@ import AppAlert from "../common/AppAlert"
 import TextField from '@mui/material/TextField';
 import Paper from '@mui/material/Paper';
 import Button from '@mui/material/Button';
+import { Link } from "react-router-dom";
 
 function LoginForm({ login }) {
     const history = useHistory();
@@ -42,7 +43,12 @@ function LoginForm({ login }) {
         <div className="Form">
             <Paper
                 elevation={3}
-                sx={{ width: '50%', paddingTop: '30px', margin: 'auto', marginTop: '50px', paddingBottom: '10px' }}>
+                sx={{
+                        width: '50%', paddingTop: '30px', margin: 'auto', marginTop: '50px', paddingBottom: '10px',
+                        '@media (max-width:900px)': {
+                            width: '90%'
+                        }
+                    }}>
                 <form className="Form" onSubmit={handleSubmit}>
                     <div className="Form__box-title">Login</div>
                     <div className="Form-group">
@@ -92,6 +98,20 @@ function LoginForm({ login }) {
                 </form>
                 <small className='Form__footer'>* Required Fields</small>
             </Paper>
+            <div className='Form__after'>
+                <p>Don't have an account?</p>
+                <Link to="/signup" style={{textDecoration:"none"}}>
+                    <Button
+                        sx={{ m: 2, backgroundColor: '#F98200', borderRadius: '5px', textDecoration: "none",
+                            '&:hover': {
+                                backgroundColor: '#f95c00'
+                            },}}
+                        variant="contained"
+                    >
+                        Signup
+                    </Button>
+                </Link>
+            </div>
         </div>
     );
 };

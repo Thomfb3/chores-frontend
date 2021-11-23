@@ -11,6 +11,7 @@ import InputAdornment from '@mui/material/InputAdornment';
 import OutlinedInput from '@mui/material/OutlinedInput';
 import InputLabel from '@mui/material/InputLabel';
 import FormControl from '@mui/material/FormControl';
+import { Link } from "react-router-dom";
 
 function SignupForm({ signup }) {
     const history = useHistory();
@@ -63,7 +64,12 @@ function SignupForm({ signup }) {
         <div className="Form">
             <Paper
                 elevation={3}
-                sx={{ width: '50%', paddingTop: '30px', margin: 'auto', marginTop: '50px', paddingBottom: '10px' }}>
+                sx={{
+                        width: '50%', paddingTop: '30px', margin: 'auto', marginTop: '50px', paddingBottom: '10px',
+                        '@media (max-width:900px)': {
+                            width: '90%'
+                        }
+                    }}>
                 <form className="Form" onSubmit={handleSubmit}>
                     <div className="Form__box-title">Sign Up</div>
                     <div className="Form-group">
@@ -172,6 +178,20 @@ function SignupForm({ signup }) {
                 </form>
                 <small className='Form__footer'>* Required Fields</small>
             </Paper>
+            <div className='Form__after'>
+                <p>Already have an account?</p>
+                <Link to="/login" style={{textDecoration:"none"}}>
+                    <Button
+                        sx={{ m: 2, backgroundColor: '#F98200', borderRadius: '5px', textDecoration: "none",
+                            '&:hover': {
+                                backgroundColor: '#f95c00'
+                            },}}
+                        variant="contained"
+                    >
+                        Login
+                    </Button>
+                </Link>
+            </div>
         </div>
     );
 };

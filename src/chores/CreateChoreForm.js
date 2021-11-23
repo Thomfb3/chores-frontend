@@ -68,8 +68,12 @@ function CreateChoreForm({ createChore }) {
             <div className="Form__form-container">
                 <Paper
                     elevation={3}
-                    sx={{ width: '50%', paddingTop: '30px', marginTop: '50px', paddingBottom: '10px' }}>
-
+                    sx={{
+                        width: '50%', paddingTop: '30px', margin: 'auto', marginTop: '50px', paddingBottom: '10px',
+                        '@media (max-width:900px)': {
+                            width: '90%'
+                        }
+                    }}>
                     <form className="Form" onSubmit={handleSubmit}>
                         <div className="Form__box-title">Create New Chore</div>
                         <div className="Form-group">

@@ -1,4 +1,4 @@
-import React, { useContext } from "./node_modules/react";
+import React, { useContext } from "react";
 import TeamUserCard from "./TeamUserCard"
 import LoadingSpinner from "../common/LoadingSpinner";
 import UserContext from "../auth/UserContext";

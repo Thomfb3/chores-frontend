@@ -23,7 +23,8 @@
 
 body {
   box-sizing: border-box;
-  padding: 1rem;
+  padding: .5rem;
+
 
   @include respond(tab-land) {
     padding: 0;
@@ -33,4 +34,19 @@ body {
     background-color: $color-primary;
     color: $color-white;
   }
+}
+
+.Body{
+  &__top {
+    margin: auto;
+    max-width: 1200px;
+  }
+  &__main {
+    margin: 0px 30px;
+  }
+  &__no-team-message {
+    color: $color-gray-mid;
+    text-align: center;
+  }
+
 }

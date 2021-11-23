@@ -1,5 +1,5 @@
 import React, { useState, useContext } from "react";
-import { useHistory } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 import AppAlert from "../common/AppAlert"
 import UserContext from "../auth/UserContext";
 import Paper from '@mui/material/Paper';
@@ -65,7 +65,12 @@ function CreateTeamForm({ createTeam }) {
         <div className="Form-container">
             <Paper
                 elevation={3}
-                sx={{ width: '50%', paddingTop: '30px', margin: 'auto', marginTop: '50px', paddingBottom: '10px' }}>
+                sx={{
+                        width: '50%', paddingTop: '30px', margin: 'auto', marginTop: '50px', paddingBottom: '10px',
+                        '@media (max-width:900px)': {
+                            width: '90%'
+                        }
+                    }}>
                 <form className="Form" onSubmit={handleSubmit}>
                     <div className="Form__box-title">Create Team</div>
                     <div className="Form-group">
@@ -129,6 +134,20 @@ function CreateTeamForm({ createTeam }) {
                 </form>
                 <small className='Form__footer'>* Required Fields</small>
             </Paper>
+            <div className='Form__after'>
+                <p>Already have a team?</p>
+                <Link to="/join-team" style={{textDecoration:"none"}}>
+                    <Button
+                        sx={{ m: 2, backgroundColor: '#F98200', borderRadius: '5px', textDecoration: "none",
+                            '&:hover': {
+                                backgroundColor: '#f95c00'
+                            },}}
+                        variant="contained"
+                    >
+                        Join Team
+                    </Button>
+                </Link>
+            </div>
         </div>
     );
 };

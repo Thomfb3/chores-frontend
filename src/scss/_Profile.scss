@@ -1,11 +1,9 @@
 .Profile {
     font-family: $font-1;
     display: flex;
-    margin-top: .3rem;
+    margin-bottom: 2rem;
     flex-direction: row-reverse;
-    float: right;
-    padding: 10px;
-    padding-right: 0px;
+    
     &__avatar {
         padding-left: 0px;
         margin-left: 0px;
@@ -18,6 +16,9 @@
         text-align: right;
         padding-right: 1rem; 
         border-right: 2px solid $color-gray-mid-light;
+        @include respond(tab-port) {
+            display: none;
+        }
         &--label {
             color: $color-gray-mid;
             margin: 0;
@@ -25,6 +26,7 @@
             padding: 0px;
             margin-top: .9rem;
             line-height: .8rem;
+
         }
         &--number {
             color: $color-success;
@@ -58,6 +60,9 @@
             font-size: .9rem;
             margin-top: .7rem;
             line-height: .7rem;
+            @include respond(tab-port) {
+                font-size: .8rem;
+            }
         }
     }
 }

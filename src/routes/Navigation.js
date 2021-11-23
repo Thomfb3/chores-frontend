@@ -3,13 +3,14 @@ import { Link, NavLink } from "react-router-dom";
 import HeaderProfile from "../common/HeaderProfile";
 import UserContext from "../auth/UserContext";
 import choreBoardLogo from "../assets/images/chore-board-logo.svg";
+import MobileNavigation from "./MobileNavigation"
 
 function Navigation({ logout }) {
     const { currentUser, currentTeam, isAdmin } = useContext(UserContext);
 
     function loggedInNav() {
         return (
-            <ul>
+            <ul className="Navigation__list">
                 <li>
                     <NavLink to="/my-chores"
                         className="Navigation__link"
@@ -71,25 +72,37 @@ function Navigation({ logout }) {
     function loggedOutNav() {
         return (
             <ul>
-                <li>
-                    <NavLink to="/login">
-                        Login
+                {/* <li>
+                    <NavLink to="/login" style={{textDecoration:"none"}}>
+                        <Button
+                            sx={{ m: 2, backgroundColor: '#1193ff', borderRadius: '5px', textDecoration: "none" }}
+                                variant="contained"
+                        >
+                            Login
+                        </Button>
                     </NavLink>
                 </li>
                 <li>
-                    <NavLink to="/signup">
-                        Signup
+                    <NavLink to="/signup" style={{textDecoration:"none"}}>
+                        <Button
+                            sx={{ m: 2, backgroundColor: '#1193ff', borderRadius: '5px', textDecoration: "none" }}
+                                variant="contained"
+                        >
+                            Signup
+                        </Button>
                     </NavLink>
-                </li>
+                </li> */}
             </ul>
         );
     };
+
 
     function loggedInNoTeamNav() {
         return (
 
             <ul>
-                <li>
+                <p className="Body__no-team-message">You'll need to be on team to play. If you don't have a team you can make one. Remember your team's password so others can join. You only need to login to a team once.</p>
+                {/* <li>
                     <NavLink to="/create-team">
                         Create Team
                     </NavLink>
@@ -98,7 +111,7 @@ function Navigation({ logout }) {
                     <NavLink to="/join-team">
                         Join Team
                     </NavLink>
-                </li>
+                </li> */}
             </ul>
         );
     };
@@ -115,17 +128,22 @@ function Navigation({ logout }) {
 
     return (
         <nav className="Navigation">
-            {currentUser ? <HeaderProfile logout={logout} /> : " "}
-            <div className="Navigation__logo-box">
-                <Link to="/">
-                    <img className="Navigation__logo" src={choreBoardLogo} alt={"Chore Board Logo"}></img>
-                </Link>
-            </div>
             <div className="Navigation__nav">
-                {determineNavigation()}
+            {(currentUser && currentTeam) ?
+               <MobileNavigation />
+                :
+                (null) 
+            }
+                <div className="Navigation__logo-box">
+                    <Link to="/">
+                        <img className="Navigation__logo" src={choreBoardLogo} alt={"Chore Board Logo"}></img>
+                    </Link>
+                </div>
+                <div className="Navigation__profile">
+                {currentUser ? <HeaderProfile logout={logout} /> : " "}
+                </div>
             </div>
-            <div>
-            </div>
+            {determineNavigation()}
         </nav>
     );
 };

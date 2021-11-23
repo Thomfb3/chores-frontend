@@ -130,7 +130,7 @@ function App() {
   async function createChore(createChoreData) {
     try {
       let newChore = await ChoresApi.createChore(createChoreData);
-      
+
       return { success: true, newChore };
     } catch (errors) {
       console.error("Failed to create chore", errors)
@@ -154,32 +154,35 @@ function App() {
   return (
     <BrowserRouter>
       <UserContext.Provider
-        value={{ 
-          currentUser, 
-          setCurrentUser, 
-          currentTeam, 
-          setCurrentTeam, 
-          isAdmin, 
-          setIsAdmin, 
+        value={{
+          currentUser,
+          setCurrentUser,
+          currentTeam,
+          setCurrentTeam,
+          isAdmin,
+          setIsAdmin,
           currentTeamUsers
         }}>
 
-    <React.Fragment>
-      <CssBaseline />
-      <Container maxWidth="lg">
+        <React.Fragment>
+          <CssBaseline />
 
-        <Navigation logout={logout} />
-        <Routes
-          login={login}
-          signup={signup}
-          createTeam={createTeam}
-          joinTeam={joinTeam}
-          createChore={createChore}
-          createReward={createReward}
-        />
-        <Footer />
-      </Container>
-    </React.Fragment>
+          <div className="Body__top">
+            <Navigation logout={logout} />
+          </div>
+          <div className="Body__main">
+            <Routes
+              login={login}
+              signup={signup}
+              createTeam={createTeam}
+              joinTeam={joinTeam}
+              createChore={createChore}
+              createReward={createReward}
+            />
+          </div>
+
+          <Footer />
+        </React.Fragment>
 
       </UserContext.Provider>
     </BrowserRouter>

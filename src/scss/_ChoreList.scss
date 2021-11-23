@@ -3,9 +3,14 @@
     font-family: $font-1;
     width: 75%;
     transition: all .2s ease-in;
+
+    @include respond(tab-port) {
+        width: 95%;
+    }
     &__title {
         margin: auto;
         margin-bottom: 1.5rem;
+        
     }
     &__list-title {
         color: $color-gray-dark;
@@ -47,6 +52,11 @@
         border-radius: 5px;
         padding: .4rem;
         color: #fff;
+        
+        @include respond(tab-port) {
+            margin: 2.6rem 1rem;
+         }
+
         &--need-to-do {
             background: $gradient-danger;
         }

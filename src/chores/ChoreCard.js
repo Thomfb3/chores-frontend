@@ -56,9 +56,9 @@ function ChoreCard({
                     <div className="ChoreCard__inner-container">
                         <div>
                             <p className="ChoreCard__title">{title}</p>
-                            <p className="ChoreCard__name">{description}</p>
+                            <p className="ChoreCard__description">{description}</p>
                         </div>
-                        <div>
+                        <div className="ChoreCard__points-section">
                             <p className="ChoreCard__points">{points} pts</p>
                         </div>
                         <div className="ChoreCard__due-date">
@@ -154,7 +154,7 @@ function ChoreCard({
                     <div className="ChoreCard__inner-container">
                         <div>
                             <p className="ChoreCard__title">{title}</p>
-                            <p className="ChoreCard__name">{description}</p>
+                            <p className="ChoreCard__description">{description}</p>
                         </div>
                         <div>
                             <p className="ChoreCard__points">{points} pts</p>
