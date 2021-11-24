@@ -1,0 +1,30 @@
+.Homepage {
+    height: 100%;
+    &__background {
+        height: 500px;
+        width: 100vw;
+        position: relative;
+        left: calc(-50vw + 50%);
+        clip-path: polygon(0 25%, 100% 0%, 100% 75%, 0% 100%);
+        background-image: url("../assets/images/chores-app-background-1.jpg");
+        background-size: cover;
+        background-position: center;
+        opacity: .65;
+        &::before {
+            content: "";
+            position: absolute;
+            top: 0px;
+            right: 0px;
+            bottom: 0px;
+            left: 0px;
+            background-color: rgba(155, 215, 255, 0.5);
+     }
+    }
+    &__hello {
+        font-family: $font-1;
+        color: $color-gray-dark;
+        text-align: center;
+        z-index: 3;
+        @include absCenter;
+    }
+} 

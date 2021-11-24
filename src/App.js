@@ -8,7 +8,7 @@ import useLocalStorage from "./hooks/useLocalStorage";
 import jwt from "jsonwebtoken";
 import Navigation from "./routes/Navigation";
 import CssBaseline from '@mui/material/CssBaseline';
-import Container from '@mui/material/Container';
+import BackgroundArt from "./common/BackgroundArt";
 import './scss/App.scss';
 import LoadingSpinner from "./common/LoadingSpinner";
 

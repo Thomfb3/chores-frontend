@@ -25,7 +25,6 @@ body {
   box-sizing: border-box;
   padding: .5rem;
 
-
   @include respond(tab-land) {
     padding: 0;
   }
@@ -45,8 +44,10 @@ body {
     margin: 0px 30px;
   }
   &__no-team-message {
-    color: $color-gray-mid;
+    color: $color-primary;
     text-align: center;
+    margin: auto;
+    width: 500px;
   }
 
 }

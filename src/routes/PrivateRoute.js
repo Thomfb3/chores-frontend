@@ -15,6 +15,10 @@ function PrivateRoute({ exact, path, children }) {
     if (!currentUser) {
         return <Redirect to="/homepage" />
     };
+
+    if (!currentTeam) {
+        return <Redirect to="/homepage" />
+    };
     return (
         <Route exact={exact} path={path}>
             {children}

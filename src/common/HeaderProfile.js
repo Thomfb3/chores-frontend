@@ -14,7 +14,6 @@ import Edit from '@mui/icons-material/Edit';
 import Logout from '@mui/icons-material/Logout';
 import Box from '@mui/material/Box';
 
-
 function HeaderProfile({ logout }) {
     const { currentUser, currentTeam } = useContext(UserContext);
     const defaultProfilePic = (currentUser.profileImage === "defaultProfile.jpg")
@@ -39,9 +38,9 @@ function HeaderProfile({ logout }) {
         <div className="Profile">
             <div className="Profile__avatar">
                 <React.Fragment>
-                    <Box sx={{ display: 'flex', alignItems: 'center', textAlign: 'center'}}>
+                    <Box sx={{ display: 'flex', alignItems: 'center', textAlign: 'center' }}>
                         <Tooltip title={<p>My Profile</p>} >
-                            <IconButton onClick={handleClick} size="small" sx={{ ml:1 }}>
+                            <IconButton onClick={handleClick} size="small" sx={{ ml: 1 }}>
                                 <Avatar
                                     className="Profile__avatar--component"
                                     alt={currentUser.username}
@@ -85,23 +84,27 @@ function HeaderProfile({ logout }) {
                         }}
                         transformOrigin={{ horizontal: 'right', vertical: 'top' }}
                         anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
-                    >   
-                        <MenuItem sx={menuStyles}>
-                            <ListItemIcon >
-                                <AccountCircleOutlinedIcon sx={menuStyles} />
-                            </ListItemIcon>
-                            My Profile
-                        </MenuItem>
-                        <NavLink to="/profile" style={{ textDecoration: 'none' }}>
-                            <MenuItem sx={menuStyles} >
-                                <ListItemIcon>
-                                    <Edit sx={menuStyles}  />
-                                </ListItemIcon>
-                                Edit Profile
-                            </MenuItem>
-                        </NavLink>
-                    
-                        <Divider />
+                    >
+                        {currentTeam &&
+                            <div>
+                                <MenuItem sx={menuStyles}>
+                                    <ListItemIcon >
+                                        <AccountCircleOutlinedIcon sx={menuStyles} />
+                                    </ListItemIcon>
+                                    My Profile
+                                </MenuItem>
+                                <NavLink to="/profile" style={{ textDecoration: 'none' }}>
+                                    <MenuItem sx={menuStyles} >
+                                        <ListItemIcon>
+                                            <Edit sx={menuStyles} />
+                                        </ListItemIcon>
+                                        Edit Profile
+                                    </MenuItem>
+                                </NavLink>
+                                <Divider />
+                            </div>
+                        }
+
                         <NavLink to="/" onClick={logout} style={{ textDecoration: 'none' }}>
                             <MenuItem sx={menuStyles} >
                                 <ListItemIcon>
@@ -114,16 +117,16 @@ function HeaderProfile({ logout }) {
                 </React.Fragment>
             </div>
             {currentTeam &&
-            <div className="Profile__info">
-                <div className="Profile__points">
-                    <p className="Profile__points--label">Your Points</p>
-                    <p className="Profile__points--number">{currentUser.currentPoints}<span>pts</span></p>
+                <div className="Profile__info">
+                    <div className="Profile__points">
+                        <p className="Profile__points--label">Your Points</p>
+                        <p className="Profile__points--number">{currentUser.currentPoints}<span>pts</span></p>
+                    </div>
+                    <div className="Profile__names">
+                        <p className="Profile__names--user">{currentUser.firstName || currentUser.username}</p>
+                        <p className="Profile__names--team">Team: {currentTeam.name}</p>
+                    </div>
                 </div>
-                <div className="Profile__names">
-                    <p className="Profile__names--user">{currentUser.firstName || currentUser.username}</p>
-                    <p className="Profile__names--team">Team: {currentTeam.name}</p>
-                </div>
-            </div>
             }
             {!currentTeam &&
                 <div className="">

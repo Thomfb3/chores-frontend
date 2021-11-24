@@ -4,6 +4,7 @@ import HeaderProfile from "../common/HeaderProfile";
 import UserContext from "../auth/UserContext";
 import choreBoardLogo from "../assets/images/chore-board-logo.svg";
 import MobileNavigation from "./MobileNavigation"
+import AppAlert from "../common/AppAlert";
 
 function Navigation({ logout }) {
     const { currentUser, currentTeam, isAdmin } = useContext(UserContext);
@@ -101,7 +102,14 @@ function Navigation({ logout }) {
         return (
 
             <ul>
-                <p className="Body__no-team-message">You'll need to be on team to play. If you don't have a team you can make one. Remember your team's password so others can join. You only need to login to a team once.</p>
+                <div style={{maxWidth: "900px", margin: "auto"}}>
+                    <AppAlert
+                        severity="info"
+                        messages={["You'll need to be on team to play. If you don't have a team you can make one. Remember your team's password so others can join. You only need to login to a team once."]}
+                    />
+                </div>
+
+
                 {/* <li>
                     <NavLink to="/create-team">
                         Create Team

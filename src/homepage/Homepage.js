@@ -3,14 +3,19 @@ import { Link, Redirect } from "react-router-dom";
 import UserContext from "../auth/UserContext";
 
 function Homepage() {
-    const { currentUser } = useContext(UserContext);
+    const { currentUser, currentTeam } = useContext(UserContext);
 
     if (!currentUser) {
         return <Redirect to="/login"/>
     };
+    if (!currentTeam) {
+        return <Redirect to="/join-team"/>
+    };
     return (
-        <div className="">
-            <h1 className="">Welcome Back, {currentUser.firstName || currentUser.username} !</h1>
+        <div className="Homepage">
+            <h1 className="Homepage__hello">Hi {currentUser.firstName || currentUser.username}!<br></br>Let's get things done.</h1>
+            <div className="Homepage__background">
+            </div>
         </div>
     );
 };

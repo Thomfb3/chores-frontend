@@ -190,16 +190,26 @@
     max-width: 900px;
     margin:auto;
     color: $color-gray-dark;
+
     &__main {
         display: flex;
         margin-top: 2rem;
         margin-bottom: 2rem;
+
+        @include respond(tab-port) {
+            flex-direction: column;
+        }
         &--left {
         }
         &--right {
             max-width: 25rem;
             min-width: 20rem;
             margin-left: 4rem;
+
+            @include respond(tab-port) {
+                margin: auto;
+                margin-top: 1rem;
+            }
         }
     }
     &__image {
@@ -298,6 +308,14 @@
 .ChoreActivity {
     display: flex;
     margin: 15px 0px;
+    
+    @include respond(tab-port) {
+        flex-direction: column;
+        border-bottom: 1px solid $color-gray-mid-light;
+        padding-bottom: 10px;
+        margin-left: 1rem;
+     }
+
     &__status-marker {
         font-size: .9rem;
         font-weight: bold;
@@ -306,8 +324,10 @@
         border-radius: 8px;
         padding: 3px 25px;
         margin-right: 1.3rem;
+        margin-bottom: 10px;
         text-align: center;
         width: 150px;
+
         &--open {
             border: 3px solid $color-danger;
             color: $color-danger;
