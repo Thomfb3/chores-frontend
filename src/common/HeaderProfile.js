@@ -87,12 +87,12 @@ function HeaderProfile({ logout }) {
                     >
                         {currentTeam &&
                             <div>
-                                <MenuItem sx={menuStyles}>
+                                {/* <MenuItem sx={menuStyles}>
                                     <ListItemIcon >
                                         <AccountCircleOutlinedIcon sx={menuStyles} />
                                     </ListItemIcon>
                                     My Profile
-                                </MenuItem>
+                                </MenuItem> */}
                                 <NavLink to="/profile" style={{ textDecoration: 'none' }}>
                                     <MenuItem sx={menuStyles} >
                                         <ListItemIcon>

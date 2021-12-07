@@ -50,6 +50,7 @@ class ChoresApi {
 
     /** Update users points. */
     static async updateUserPoints(id, data) {
+        console.log("updateUserPoints API, data: ", data)
         let res = await this.request(`users/points/${id}`, { ...data }, "patch");
         return res.data;
     };
@@ -174,7 +175,7 @@ class ChoresApi {
     /** Save user profile */
     static async saveProfile(userId, data) {
         let res = await this.request(`users/${userId}`, data, "patch");
-        return res.user;
+        return res.data;
     };
 };
 

@@ -19,7 +19,7 @@ import PrivateRoute from "./PrivateRoute";
 import AdminRoute from "./AdminRoute";
 import ChoreCommentContext from "../comments/ChoreCommentContext";
 
-function Routes({ login, signup, createTeam, joinTeam, createChore, createReward }) {
+function Routes({ login, signup, createTeam, joinTeam, createChore, createReward, updateCurrentUser }) {
     let [currentChoreComments, setCurrentChoreComments] = useState([]);
 
     return (
@@ -76,7 +76,7 @@ function Routes({ login, signup, createTeam, joinTeam, createChore, createReward
                 </PrivateRoute>
 
                 <PrivateRoute exact path="/profile">
-                    <ProfileForm />
+                    <ProfileForm updateCurrentUser={updateCurrentUser} />
                 </PrivateRoute>
 
                 <AdminRoute exact path="/manage-chores">

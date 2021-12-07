@@ -80,6 +80,10 @@ function App() {
     setToken(null);
   };
 
+  function updateCurrentUser(userData) {
+    setCurrentUser(userData);
+  };
+
   async function signup(signupData) {
     try {
       let token = await ChoresApi.signup(signupData);
@@ -178,6 +182,7 @@ function App() {
               joinTeam={joinTeam}
               createChore={createChore}
               createReward={createReward}
+              updateCurrentUser={updateCurrentUser}
             />
           </div>
 

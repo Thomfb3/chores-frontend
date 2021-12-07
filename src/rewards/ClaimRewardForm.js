@@ -20,13 +20,20 @@ function ClaimRewardForm({ claimReward, subtractUserPoints, points }) {
 
     async function handleSubmit(evt) {
         evt.preventDefault();
-        let result = await claimReward(submitData);
-        let userResult = await subtractUserPoints(currentUser._id, userPointsData);
-        if (result.success) {
-            history.go(0);
-        } else {
-            setFormErrors(result.errors);
-        };
+        try {
+            if(currentUser.currentPoints < points) {
+                setFormErrors(["You don't have enough points. Keep working!"])
+            } else {
+                let result = await claimReward(submitData);
+                let userResult = await subtractUserPoints(currentUser._id, userPointsData);
+                history.go(0)
+            }
+
+        } catch (errors) {
+            console.error("Failed to update user points", errors)
+            setFormErrors(errors);
+            return { success: false, errors };
+        }
     };
 
     return (

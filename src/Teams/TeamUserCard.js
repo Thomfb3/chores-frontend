@@ -13,11 +13,12 @@ function TeamUserCard({ id, isCurrentUser, position, profileImage, username, fir
         : currentUser.profileImage;
 
     const determineOrdinal = (position) => {
-        if (position > 3) return "top-three";
+        if (+position <= 3) return "top-three";
         let str = position.toString();
         if (str.charAt(str.length - 1) === "1") return "st";
         if (str.charAt(str.length - 1) === "2") return "nd";
-        if (str.charAt(str.length - 1) === "2") return "rd";
+        if (str.charAt(str.length - 1) === "3") return "rd";
+        return "th";
     };
 
     const determinePositionStyle = (position) => {
@@ -31,10 +32,10 @@ function TeamUserCard({ id, isCurrentUser, position, profileImage, username, fir
 
     return (
         <div className="TeamUserCard">
-            <div className="TeamUserCard__box-shadow">
+            {/* <div className="TeamUserCard__box-shadow">
                 <div className="TeamUserCard__other"></div>
                 <div className={`TeamUserCard__clipped TeamUserCard__clipped--${determinePositionStyle(position)}`}></div>
-            </div>
+            </div> */}
             <div className="TeamUserCard__container">
                 <div className="TeamUserCard__inner-container TeamUserCard__inner-container--align-center">
                     <div className="TeamUserCard__position-container">
@@ -69,10 +70,10 @@ function TeamUserCard({ id, isCurrentUser, position, profileImage, username, fir
                             {isAdmin ? <p>{`(Team Manager)`}</p> : ""}
                         </div>
                     </div>
-                    <div className="TeamUserCard__current-points">
+                    {/* <div className="TeamUserCard__current-points">
                         <p className={`TeamUserCard__current-points--label TeamUserCard__points-${determinePositionStyle(position)}`}>Current Points</p>
                         <p className={`TeamUserCard__current-points--points TeamUserCard__points-${determinePositionStyle(position)}`}>{currentPoints} pts</p>
-                    </div>
+                    </div> */}
                     <div className="TeamUserCard__all-points">
                         <p className={`TeamUserCard__all-points--label TeamUserCard__points-${determinePositionStyle(position)}`}>All Time Points</p>
                         <p className={`TeamUserCard__all-points--points TeamUserCard__points-${determinePositionStyle(position)}`}>{allTimePoints} pts</p>

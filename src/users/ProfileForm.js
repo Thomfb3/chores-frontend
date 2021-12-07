@@ -1,4 +1,5 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useEffect, useContext } from "react";
+import { useHistory } from "react-router-dom";
 import ChoresApi from "../api/api";
 import UserContext from "../auth/UserContext";
 import AppAlert from "../common/AppAlert";
@@ -13,8 +14,10 @@ import OutlinedInput from '@mui/material/OutlinedInput';
 import InputLabel from '@mui/material/InputLabel';
 import FormControl from '@mui/material/FormControl';
 
-function ProfileForm() {
+function ProfileForm( {updateCurrentUser} ) {
     const { currentUser, setCurrentUser } = useContext(UserContext);
+
+    const history = useHistory();
     const [formData, setFormData] = useState({
         firstName: currentUser.firstName,
         lastName: currentUser.lastName,
@@ -56,17 +59,17 @@ function ProfileForm() {
             profileImage: formData.profileImage,
             password: formData.password
         };
-        let updatedUser;
+    
         try {
-            updatedUser = await ChoresApi.saveProfile(currentUser._id, profileData);
+            let result = await ChoresApi.saveProfile(currentUser._id, profileData);
+            setFormData(f => ({ ...f, password: "" }));
+            setFormErrors([]);
             setSaveConfirmed(true);
+            updateCurrentUser(result);
         } catch (errors) {
             setFormErrors(errors);
             return;
         };
-        setFormData(f => ({ ...f, password: "" }));
-        setFormErrors([]);
-        setCurrentUser(updatedUser);
     };
 
     function handleChange(evt) {
@@ -75,11 +78,18 @@ function ProfileForm() {
         setFormErrors([]);
     };
 
+    function resetSaveConfirmed() {
+        setSaveConfirmed(false);
+    }
+
     return (
         <div className="Form">
             <div className="Form__title">
                 <div className="Form__list-title">Update Profile</div>
                 <div className="Form__divider"></div>
+                {saveConfirmed && 
+                    <AppAlert severity="success" messages={["Profile Updated"]} saveNeeded={true} resetSaveConfirmed={resetSaveConfirmed} />
+                }
             </div>
             <div className="Form__form-container">
                 <Paper
@@ -165,10 +175,6 @@ function ProfileForm() {
 
                         {formErrors.length
                             ? <AppAlert severity="error" messages={formErrors} />
-                            : null}
-                        {saveConfirmed
-                            ?
-                            <AppAlert severity="success" messages={["Updated successfully."]} />
                             : null}
                         <div className="Form-group" style={{ textAlign: 'right' }}>
                             <Button

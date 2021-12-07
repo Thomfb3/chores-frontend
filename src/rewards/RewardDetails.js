@@ -33,6 +33,7 @@ function RewardDetails() {
     async function subtractUserPoints(userId, userPointsData) {
         try {
             let updatedUser = await ChoresApi.updateUserPoints(userId, userPointsData);
+            console.log("updatedUser---", updatedUser);
             return { success: true, updatedUser };
         } catch (errors) {
             console.error("Failed to update user points", errors)

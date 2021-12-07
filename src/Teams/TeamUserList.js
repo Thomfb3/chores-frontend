@@ -9,7 +9,7 @@ function TeamUserList() {
   const { currentUser, currentTeam, currentTeamUsers } = useContext(UserContext);
 
   if (!currentTeamUsers) return <LoadingSpinner />;
-  currentTeamUsers.sort((a, b) => (a.points < b.points && 1) || -1);
+  currentTeamUsers.sort((a, b) => (a.currentPoints < b.currentPoints && 1) || -1);
 
   return (
     <div className="TeamUserList">
