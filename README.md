@@ -1,12 +1,10 @@
-# Getting Started with Create React App
+# ChoreBoard FrontEnd
 
+## Objective
+This is the Frontend of an application called ChoreBoard. In this application, users can create teams with household chores can be created and assigned to members of their team. Completed chores assigned in the app allows users to score points. Points in the app can be used to redeem rewards created and sponsored by the team manager. The concept is to "gamify" household chores.
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
-
-In the project directory, you can run:
-
-### `yarn start`
+### `npm start`
 
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
@@ -14,57 +12,35 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 The page will reload if you make edits.\
 You will also see any lint errors in the console.
 
-### `yarn test`
+### `npm test`
 
+Testing is down with Jest and React Testing library.
 Launches the test runner in the interactive watch mode.\
 See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `yarn build`
+## Users
+The demographic for our users will can be anyone that shares household responsibilities with people whom they share a home or office.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## API / Data
+The Backend of the application is an api built with Node.js with the Express.js framework and Mongoose object data modeling library which connects to the Mongo DB database.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Database Schema
+The NoSQL database has collections for users, teams, chores, rewards, and comments. The team manager can create chores and rewards. Users can update chore status and claim rewards.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Security
+The app protects User data. Password and sensitive user info are encrypted on the database. The backend has measures to sanitize data, validate data, and encrypt user data. JSON Web Tokens are used to validate user sessions.
 
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## Functionality Checklist
+The app has the following functionality:  
+- User Login 
+- User Sign Up
+- Create a team
+- Join a team
+- Create a chore
+- Comment on a chore
+- Claim unassigned chore
+- Update a chore status
+- Delete a chore
+- Delete a chore comment
+- Claim a reward
+- Update a user profile
