@@ -67,21 +67,73 @@
         padding: 10px 20px 10px 20px;
         transition: all .2s cubic-bezier(0.19, 1, 0.22, 1);
         z-index: 5;
+        box-shadow: 0px 2px 10px rgba(0,0, 0, 0.3);
+
+        @include respond(tab-port) {
+            width: 95%;;
+        }
+
+        &--first {
+            border-left: 10px solid $color-success;
+        }
+        &--second {
+            border-left: 10px solid $color-secondary;
+        }
+        &--third {
+            border-left: 10px solid $color-tertiary;
+        }
+        &--other-number {
+            &--st, &--nd, &--rd, &--th {
+                border-left: 10px solid $color-primary;
+            }
+        }
     }
+
+    &__star {
+        position: absolute;
+        color: #1093ff;
+        padding: 0px;
+        margin: 0px;
+        float: left;
+        z-index: 3;
+        left: 109px;
+        top: 29px;
+
+        @include respond(tab-port) {
+            position: static;
+            margin-right: -15px;
+        }
+    }
+
     &__inner-container {
         display: flex;
         justify-content: space-between;
-        padding-bottom: 10px;
-        margin: 5px 75px 0px 0px;
+        padding: 20px;
+        margin: auto;
+
+        @include respond(tab-port) {
+            width: 100%;
+            flex-direction: column;
+            padding: 20px 0px;
+            padding-bottom: 10px;
+        }
         &--align-center {
             align-items: center;
         }
     }
+    &__left {
+        display: flex;
+    }
     &__position {
+        width: 75px;
         color: $color-primary;
         font-size: 2.8rem;
         font-weight: bold;
         padding-right: 2rem;
+        position: relative;
+        @include respond(tab-port) {
+            margin-bottom: 30px;
+        }
     }
     &__points {
         color: $color-primary;
@@ -91,7 +143,7 @@
     &__image {
         margin-top: .3rem;
     }
-    &__name-grow {
+    &__name {
         flex-grow: 1;
         display: flex;
         padding-left: 15px;
@@ -109,6 +161,14 @@
         margin-top: .3rem;
         display: flex;
         color: $color-primary;
+
+        @include respond(tab-port) {
+            font-size: .8rem;
+            position: absolute;
+            top: 80px;
+            margin-left: -7px;
+            flex-direction: column;
+        }
     }
     &__titles p {
         padding-left: 5px;
@@ -187,12 +247,22 @@
         }
     }
     &__all-points {
+        text-align: right;
+        @include respond(tab-port) {
+            text-align: center;
+        }
         &--label {
+            color: $color-gray-mid;
             font-size: .8rem;
         }
         &--points {
             font-weight: bold;
-            font-size: 1.5rem;
+            font-size: 2rem;
+            @include respond(tab-port) {
+                margin: 0px;
+                line-height: 2rem;
+                padding-top: 3px;
+            }
         }
     }
 }

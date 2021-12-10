@@ -30,27 +30,24 @@ function TeamUserCard({ id, isCurrentUser, position, profileImage, username, fir
         };
     };
 
+
     return (
         <div className="TeamUserCard">
             {/* <div className="TeamUserCard__box-shadow">
                 <div className="TeamUserCard__other"></div>
                 <div className={`TeamUserCard__clipped TeamUserCard__clipped--${determinePositionStyle(position)}`}></div>
             </div> */}
-            <div className="TeamUserCard__container">
+            <div className={`TeamUserCard__container TeamUserCard__container--${determinePositionStyle(position)}`}>
                 <div className="TeamUserCard__inner-container TeamUserCard__inner-container--align-center">
+                    <div className="TeamUserCard__left">
                     <div className="TeamUserCard__position-container">
                         <div className={`TeamUserCard__position TeamUserCard__${determinePositionStyle(position)}`}>{position}</div>
                     </div>
                     {(isAdmin) &&
                         <StarIcon
+                            className="TeamUserCard__star"
                             sx={{
-                                position: 'absolute',
-                                color: '#1093ff',
-                                padding: '0px',
-                                margin: '0px',
-                                float: 'left',
-                                zIndex: '3',
-                                transform: 'translate(70px, -22px)',
+           
                             }}
                         />
                     }
@@ -60,22 +57,19 @@ function TeamUserCard({ id, isCurrentUser, position, profileImage, username, fir
                         src={defaultProfilePic}
                         sx={{ width: 65, height: 65 }}
                     >{firstName.charAt(0)}</Avatar>
-                    <div className="TeamUserCard__name-grow">
-                        <div>
-                            <p className="TeamUserCard__firstname">{firstName}</p>
-                            <p className="TeamUserCard__username">{username}</p>
-                        </div>
-                        <div className="TeamUserCard__titles">
-                            {isCurrentUser ? <p>{`(Me)`}</p> : ""}
-                            {isAdmin ? <p>{`(Team Manager)`}</p> : ""}
+                        <div className="TeamUserCard__name">
+                            <div>
+                                <p className="TeamUserCard__firstname">{firstName}</p>
+                                <p className="TeamUserCard__username">{username}</p>
+                            </div>
+                            <div className="TeamUserCard__titles">
+                                {isCurrentUser ? <p>{`(Me)`}</p> : ""}
+                                {isAdmin ? <p>{`(Team Manager)`}</p> : ""}
+                            </div>
                         </div>
                     </div>
-                    {/* <div className="TeamUserCard__current-points">
-                        <p className={`TeamUserCard__current-points--label TeamUserCard__points-${determinePositionStyle(position)}`}>Current Points</p>
-                        <p className={`TeamUserCard__current-points--points TeamUserCard__points-${determinePositionStyle(position)}`}>{currentPoints} pts</p>
-                    </div> */}
                     <div className="TeamUserCard__all-points">
-                        <p className={`TeamUserCard__all-points--label TeamUserCard__points-${determinePositionStyle(position)}`}>All Time Points</p>
+                        <p className={`TeamUserCard__all-points--label`}>All Time Points</p>
                         <p className={`TeamUserCard__all-points--points TeamUserCard__points-${determinePositionStyle(position)}`}>{allTimePoints} pts</p>
                     </div>
                 </div>
