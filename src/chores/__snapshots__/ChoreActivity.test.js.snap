@@ -1,0 +1,30 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matches snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="ChoreActivity"
+  >
+    <div
+      class="ChoreActivity__status-marker ChoreActivity__status-marker--Created"
+    >
+      Created
+    </div>
+    <p
+      class="ChoreActivity__event"
+    >
+      Chore created - 
+    </p>
+    <p
+      class="ChoreActivity__event"
+    >
+      by undefined - 
+    </p>
+    <p
+      class="ChoreActivity__date"
+    >
+      on 11/11/2021 @ 2:35 PM
+    </p>
+  </div>
+</DocumentFragment>
+`;

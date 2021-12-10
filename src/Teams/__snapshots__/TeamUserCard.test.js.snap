@@ -1,0 +1,87 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matches snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="TeamUserCard"
+  >
+    <div
+      class="TeamUserCard__container"
+    >
+      <div
+        class="TeamUserCard__inner-container TeamUserCard__inner-container--align-center"
+      >
+        <div
+          class="TeamUserCard__position-container"
+        >
+          <div
+            class="TeamUserCard__position TeamUserCard__first"
+          >
+            1
+          </div>
+        </div>
+        <svg
+          aria-hidden="true"
+          class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-52v5ae-MuiSvgIcon-root"
+          data-testid="StarIcon"
+          focusable="false"
+          viewBox="0 0 24 24"
+        >
+          <path
+            d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"
+          />
+        </svg>
+        <div
+          class="MuiAvatar-root MuiAvatar-circular Profile__avatar--component css-6w89ng-MuiAvatar-root"
+        >
+          <img
+            alt="default-profile-pic.gif"
+            class="MuiAvatar-img css-1pqm26d-MuiAvatar-img"
+            src="default-profile-pic.gif"
+          />
+        </div>
+        <div
+          class="TeamUserCard__name-grow"
+        >
+          <div>
+            <p
+              class="TeamUserCard__firstname"
+            >
+              tester
+            </p>
+            <p
+              class="TeamUserCard__username"
+            >
+              userid1
+            </p>
+          </div>
+          <div
+            class="TeamUserCard__titles"
+          >
+            <p>
+              (Me)
+            </p>
+            <p>
+              (Team Manager)
+            </p>
+          </div>
+        </div>
+        <div
+          class="TeamUserCard__all-points"
+        >
+          <p
+            class="TeamUserCard__all-points--label TeamUserCard__points-first"
+          >
+            All Time Points
+          </p>
+          <p
+            class="TeamUserCard__all-points--points TeamUserCard__points-first"
+          >
+            1500 pts
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;

@@ -4,6 +4,7 @@ import AppAlert from "../common/AppAlert";
 import TextField from '@mui/material/TextField';
 import Paper from '@mui/material/Paper';
 import Button from '@mui/material/Button';
+import LoadingButton from '@mui/lab/LoadingButton';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import IconButton from '@mui/material/IconButton';
@@ -27,6 +28,8 @@ function SignupForm({ signup }) {
         showPassword: false
     });
 
+    const [loading, setLoading] = useState(false);
+
     const handleClickShowPassword = () => {
         setValues({
             showPassword: !values.showPassword,
@@ -47,6 +50,7 @@ function SignupForm({ signup }) {
 
     async function handleSubmit(evt) {
         evt.preventDefault();
+        setLoading(true);
         let result = await signup(formData);
         if (result.success) {
             history.push("/");
@@ -59,6 +63,10 @@ function SignupForm({ signup }) {
         const { name, value } = evt.target;
         setFormData(data => ({ ...data, [name]: value }));
     };
+
+    function reset() {
+        setFormErrors([]);
+     };
 
     return (
         <div className="Form">
@@ -162,18 +170,19 @@ function SignupForm({ signup }) {
                     </div>
 
                     {formErrors.length
-                        ? <AppAlert severity="error" messages={formErrors} />
+                        ? <AppAlert severity="error" messages={formErrors} reset={reset} resetNeeded={true} />
                         : null}
 
                     <div className="Form-group" style={{ textAlign: 'right' }}>
-                        <Button
+                        <LoadingButton
                             sx={{ m: 2, backgroundColor: '#1193ff', borderRadius: '5px' }}
                             variant="contained"
                             type="submit"
+                            loading={loading}
                             onSubmit={handleSubmit}
                         >
                             Sign Up
-                        </Button>
+                        </LoadingButton>
                     </div>
                 </form>
                 <small className='Form__footer'>* Required Fields</small>

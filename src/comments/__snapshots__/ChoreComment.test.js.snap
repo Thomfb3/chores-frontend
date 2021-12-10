@@ -1,0 +1,48 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matches snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="ChoreComment"
+  >
+    <div
+      class="ChoreComment__details"
+    >
+      <div
+        class="ChoreComment__image"
+      >
+        <div
+          class="MuiAvatar-root MuiAvatar-circular Profile__avatar--component css-tjtxwb-MuiAvatar-root"
+        >
+          <img
+            alt="default-profile-pic.gif"
+            class="MuiAvatar-img css-1pqm26d-MuiAvatar-img"
+            src="default-profile-pic.gif"
+          />
+        </div>
+      </div>
+      <div
+        class="ChoreComment__info"
+      >
+        <p
+          class="ChoreComment__name"
+        >
+          testuser1
+        </p>
+        <p
+          class="ChoreComment__date"
+        >
+          November 4, 2021 @ 10:24 PM
+        </p>
+        <div
+          class="ChoreComment__comment"
+        >
+          <p>
+            I'm commenting on the chore
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;

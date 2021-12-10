@@ -1,0 +1,202 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matches snapshot 1`] = `
+<DocumentFragment>
+  <nav
+    class="Navigation"
+  >
+    <div
+      class="Navigation__nav"
+    >
+      <div
+        class="Navigation__mobile-button-box"
+      >
+        <button
+          class="MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButtonBase-root  css-1e6y48t-MuiButtonBase-root-MuiButton-root"
+          id="Navigation__mobile-button"
+          tabindex="0"
+          type="button"
+        >
+          <svg
+            aria-hidden="true"
+            class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
+            data-testid="MenuIcon"
+            focusable="false"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"
+            />
+          </svg>
+          <span
+            class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+          />
+        </button>
+        <div
+          class="PrivateSwipeArea-root css-n2n0ek"
+          style="width: 20px;"
+        />
+      </div>
+      <div
+        class="Navigation__logo-box"
+      >
+        <a
+          href="/"
+        >
+          <img
+            alt="Chore Board Logo"
+            class="Navigation__logo"
+            src="chore-board-logo.svg"
+          />
+        </a>
+      </div>
+      <div
+        class="Navigation__profile"
+      >
+        <div
+          class="Profile"
+        >
+          <div
+            class="Profile__avatar"
+          >
+            <div
+              class="MuiBox-root css-5nwj3y"
+            >
+              <button
+                class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeSmall css-r59t5-MuiButtonBase-root-MuiIconButton-root"
+                data-mui-internal-clone-element="true"
+                tabindex="0"
+                type="button"
+              >
+                <div
+                  class="MuiAvatar-root MuiAvatar-circular Profile__avatar--component css-6w89ng-MuiAvatar-root"
+                >
+                  <img
+                    alt="testuser1"
+                    class="MuiAvatar-img css-1pqm26d-MuiAvatar-img"
+                    src="default-profile-pic.gif"
+                  />
+                </div>
+                <span
+                  class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+                />
+              </button>
+            </div>
+          </div>
+          <div
+            class="Profile__info"
+          >
+            <div
+              class="Profile__points"
+            >
+              <p
+                class="Profile__points--label"
+              >
+                Your Points
+              </p>
+              <p
+                class="Profile__points--number"
+              >
+                200
+                <span>
+                  pts
+                </span>
+              </p>
+            </div>
+            <div
+              class="Profile__names"
+            >
+              <p
+                class="Profile__names--user"
+              >
+                testfirst1
+              </p>
+              <p
+                class="Profile__names--team"
+              >
+                Team: testTeam
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <ul
+      class="Navigation__list"
+    >
+      <li>
+        <a
+          class="Navigation__link"
+          href="/my-chores"
+        >
+          My Chores
+        </a>
+      </li>
+      <li>
+        <a
+          class="Navigation__link"
+          href="/all-chores"
+        >
+          Everyone's Chores
+        </a>
+      </li>
+      <li>
+        <a
+          class="Navigation__link"
+          href="/unclaimed-chores"
+        >
+          Unclaimed Chores
+        </a>
+      </li>
+      <li>
+        <a
+          class="Navigation__link"
+          href="/team"
+        >
+          The Team
+        </a>
+      </li>
+      <li>
+        <a
+          class="Navigation__link"
+          href="/rewards"
+        >
+          Rewards
+        </a>
+      </li>
+    </ul>
+  </nav>
+</DocumentFragment>
+`;
+
+exports[`matches snapshot when logged out 1`] = `
+<DocumentFragment>
+  <nav
+    class="Navigation"
+  >
+    <div
+      class="Navigation__nav"
+    >
+      <div
+        class="Navigation__logo-box"
+      >
+        <a
+          href="/"
+        >
+          <img
+            alt="Chore Board Logo"
+            class="Navigation__logo"
+            src="chore-board-logo.svg"
+          />
+        </a>
+      </div>
+      <div
+        class="Navigation__profile"
+      >
+         
+      </div>
+    </div>
+    <ul />
+  </nav>
+</DocumentFragment>
+`;

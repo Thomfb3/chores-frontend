@@ -4,6 +4,7 @@ import AppAlert from "../common/AppAlert"
 import UserContext from "../auth/UserContext";
 import Paper from '@mui/material/Paper';
 import Button from '@mui/material/Button';
+import LoadingButton from '@mui/lab/LoadingButton';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import IconButton from '@mui/material/IconButton';
@@ -34,6 +35,8 @@ function CreateTeamForm({ createTeam }) {
         showPassword: false
     });
 
+    const [loading, setLoading] = useState(false);
+
     const handleClickShowPassword = () => {
         setValues({
             showPassword: !values.showPassword,
@@ -46,6 +49,7 @@ function CreateTeamForm({ createTeam }) {
 
     async function handleSubmit(evt) {
         evt.preventDefault();
+        setLoading(true);
         formData.username = currentUser.username;
         let result = await createTeam(formData);
 
@@ -53,6 +57,7 @@ function CreateTeamForm({ createTeam }) {
             history.push("/");
         } else {
             setFormErrors(result.errors);
+            setLoading(false);
         };
     };
 
@@ -60,6 +65,10 @@ function CreateTeamForm({ createTeam }) {
         const { name, value } = evt.target;
         setFormData(data => ({ ...data, [name]: value }));
     };
+
+    function reset() {
+        setFormErrors([]);
+     };
 
     return (
         <div className="Form-container">
@@ -118,18 +127,19 @@ function CreateTeamForm({ createTeam }) {
                         />
                     </FormControl>
                     {formErrors.length
-                        ? <AppAlert severity="error" messages={formErrors} />
+                        ? <AppAlert severity="error" messages={formErrors} reset={reset} resetNeeded={true} />
                         : null}
 
                     <div className="Form-group" style={{ textAlign: 'right' }}>
-                        <Button
+                        <LoadingButton
                             sx={{ m: 2, backgroundColor: '#1193ff', borderRadius: '5px' }}
                             variant="contained"
                             type="submit"
+                            loading={loading}
                             onSubmit={handleSubmit}
                         >
                             Create Team
-                            </Button>
+                        </LoadingButton>
                     </div>
                 </form>
                 <small className='Form__footer'>* Required Fields</small>

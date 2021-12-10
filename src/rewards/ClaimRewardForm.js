@@ -10,6 +10,7 @@ function ClaimRewardForm({ claimReward, subtractUserPoints, points }) {
     const submitData = { "status": "claimed" };
     const userPointsData = { operation: "subtract", points: points };
     const [formErrors, setFormErrors] = useState([]);
+
     console.log(formErrors);
     console.debug(
         "ClaimRewardForm",
@@ -36,9 +37,14 @@ function ClaimRewardForm({ claimReward, subtractUserPoints, points }) {
         }
     };
 
+    function reset() {
+        setFormErrors([]);
+    };
+
+
     return (
         <form onSubmit={handleSubmit}>
-            {formErrors.length ? <AppAlert severity="error" messages={formErrors} /> : null}
+            {formErrors.length ? <AppAlert severity="error" messages={formErrors} resetNeeded={true} reset={reset} /> : null}
             <Button
                 sx={{ marginTop: "5px", backgroundColor: '#1193ff', borderRadius: '5px' }}
                 variant="contained"

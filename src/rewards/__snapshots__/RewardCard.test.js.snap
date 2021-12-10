@@ -1,0 +1,67 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matches snapshot 1`] = `
+<DocumentFragment>
+  <a
+    class="RewardCard"
+    href="/rewards/rewardid1"
+  >
+    <div
+      class="RewardCard__container"
+    >
+      <div
+        class="RewardCard__inner-container RewardCard__inner-container--align-center"
+      >
+        <div
+          class="RewardCard__title-grow"
+        >
+          <p
+            class="RewardCard__title"
+          >
+            Fried Chicken
+          </p>
+          <p
+            class="RewardCard__description"
+          >
+            bucket of fried chicken
+          </p>
+        </div>
+        <div
+          class="RewardCard__points-section"
+        >
+          <p>
+            Points Required
+          </p>
+          <p
+            class="RewardCard__points"
+          >
+            1000 pts
+          </p>
+        </div>
+        <div
+          class="RewardCard__sponsor-section"
+        >
+          <p
+            class="RewardCard__status"
+          >
+            Currently Unavailable
+          </p>
+          <p
+            class="RewardCard__sponsor-label"
+          >
+            Sponsored by:
+          </p>
+          <p
+            class="RewardCard__sponsor"
+          />
+        </div>
+      </div>
+      <p
+        class="RewardCard__footer"
+      >
+        Reward was created at Thursday, November 4, 2021 - 11:47 PM, by testuser1
+      </p>
+    </div>
+  </a>
+</DocumentFragment>
+`;

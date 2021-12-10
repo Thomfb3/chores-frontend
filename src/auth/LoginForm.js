@@ -4,6 +4,7 @@ import AppAlert from "../common/AppAlert"
 import TextField from '@mui/material/TextField';
 import Paper from '@mui/material/Paper';
 import Button from '@mui/material/Button';
+import LoadingButton from '@mui/lab/LoadingButton';
 import { Link } from "react-router-dom";
 
 function LoginForm({ login }) {
@@ -13,6 +14,8 @@ function LoginForm({ login }) {
         username: "",
         password: ""
     });
+
+    const [loading, setLoading] = useState(false);
 
     const [formErrors, setFormErrors] = useState([]);
     console.log(formErrors);
@@ -25,18 +28,23 @@ function LoginForm({ login }) {
 
     async function handleSubmit(evt) {
         evt.preventDefault();
+        setLoading(true);
         let result = await login(formData);
-
         if (result.success) {
             history.push("/");
         } else {
             setFormErrors(result.errors);
+            setLoading(false);
         };
     };
 
     function handleChange(evt) {
         const { name, value } = evt.target;
         setFormData(data => ({ ...data, [name]: value }));
+    };
+
+    function reset() {
+       setFormErrors([]);
     };
 
     return (
@@ -82,18 +90,19 @@ function LoginForm({ login }) {
                     </div>
 
                     {formErrors.length
-                        ? <AppAlert severity="error" messages={formErrors} />
+                        ? <AppAlert severity="error" messages={formErrors} reset={reset} resetNeeded={true} />
                         : null}
 
                     <div className="Form-group" style={{ textAlign: 'right' }}>
-                        <Button
+                        <LoadingButton
                             sx={{ m: 2, backgroundColor: '#1193ff', borderRadius: '5px' }}
                             variant="contained"
                             type="submit"
+                            loading={loading}
                             onSubmit={handleSubmit}
                         >
                             Login
-                        </Button>
+                        </LoadingButton>
                     </div>
                 </form>
                 <small className='Form__footer'>* Required Fields</small>

@@ -6,7 +6,7 @@ import IconButton from '@mui/material/IconButton';
 import Collapse from '@mui/material/Collapse';
 import capitalizeFirstLetter from "../helpers/capitalizeFirstLetter"
 
-function AppAlert({ severity = "error", messages = [], resetSaveConfirmed, saveNeeded=false}) {
+function AppAlert({ severity = "error", messages = [], reset, resetNeeded=false}) {
 
   const [open, setOpen] = useState(true);
 
@@ -19,7 +19,7 @@ function AppAlert({ severity = "error", messages = [], resetSaveConfirmed, saveN
         size="small"
         onClick={() => {
           setOpen(false);
-          if(saveNeeded) resetSaveConfirmed();
+          if(resetNeeded) reset();
         }}
 
       >

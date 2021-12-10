@@ -11,6 +11,7 @@ import AdapterDateFns from '@mui/lab/AdapterDateFns';
 import LocalizationProvider from '@mui/lab/LocalizationProvider';
 import DateTimePicker from '@mui/lab/DateTimePicker';
 import Button from '@mui/material/Button';
+import LoadingButton from '@mui/lab/LoadingButton';
 import Paper from '@mui/material/Paper';
 
 
@@ -18,6 +19,7 @@ function CreateChoreForm({ createChore }) {
     const history = useHistory();
     const { currentUser, currentTeam, currentTeamUsers } = useContext(UserContext);
     const [dueDateValue, setDueDateValue] = useState(new Date());
+    const [loading, setLoading] = useState(false);
     const [formData, setFormData] = useState({
         "title": "",
         "description": "",
@@ -31,7 +33,6 @@ function CreateChoreForm({ createChore }) {
         "teamId": currentTeam._id,
         "type": "template"
     });
-
     const [formErrors, setFormErrors] = useState([]);
     console.log(formErrors);
     console.debug(
@@ -43,13 +44,15 @@ function CreateChoreForm({ createChore }) {
 
     async function handleSubmit(evt) {
         evt.preventDefault();
-        formData.imageCover = (formData.imageCover=== "") ? "default-chore.jpg" : formData.imageUrl;
+        setLoading(true);
+        formData.imageCover = (formData.imageCover === "") ? "default-chore.jpg" : formData.imageUrl;
         formData.assignee = formData.assignee === "unassigned" ? null : formData.assignee;
         let result = await createChore(formData);
         if (result.success) {
-            history.push("/chores");
+            history.push("/all-chores");
         } else {
             setFormErrors(result.errors);
+            setLoading(false);
         };
     };
 
@@ -57,6 +60,10 @@ function CreateChoreForm({ createChore }) {
         formData.dueDate = dueDateValue;
         const { name, value } = evt.target;
         setFormData(data => ({ ...data, [name]: value }));
+    };
+
+    function reset() {
+        setFormErrors([]);
     };
 
     return (
@@ -126,7 +133,7 @@ function CreateChoreForm({ createChore }) {
                                 value={formData.imageCover}
                                 onChange={handleChange}
                                 sx={{ m: 1, width: '95%' }}
-                                />
+                            />
                         </div>
 
                         <FormControl sx={{ m: 1, width: '95%' }}>
@@ -160,18 +167,19 @@ function CreateChoreForm({ createChore }) {
                         </LocalizationProvider>
 
                         {formErrors.length
-                            ? <AppAlert severity="error" messages={formErrors} />
+                            ? <AppAlert severity="error" messages={formErrors} reset={reset} resetNeeded={true} />
                             : null}
 
-                        <div className="Form-group">
-                            <Button
-                                sx={{ m: 1, backgroundColor: '#1193ff', borderRadius: '5px' }}
+                        <div className="Form-group" style={{ textAlign: 'right' }}>
+                            <LoadingButton
+                                sx={{ m: 2, backgroundColor: '#1193ff', borderRadius: '5px' }}
                                 variant="contained"
                                 type="submit"
+                                loading={loading}
                                 onSubmit={handleSubmit}
                             >
                                 Create Chore
-                            </Button>
+                        </LoadingButton>
                         </div>
                     </form>
                 </Paper>

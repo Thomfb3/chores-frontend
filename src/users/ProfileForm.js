@@ -5,6 +5,7 @@ import UserContext from "../auth/UserContext";
 import AppAlert from "../common/AppAlert";
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
+import LoadingButton from '@mui/lab/LoadingButton';
 import Paper from '@mui/material/Paper';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
@@ -14,9 +15,11 @@ import OutlinedInput from '@mui/material/OutlinedInput';
 import InputLabel from '@mui/material/InputLabel';
 import FormControl from '@mui/material/FormControl';
 
-function ProfileForm( {updateCurrentUser} ) {
+function ProfileForm({ updateCurrentUser }) {
     const { currentUser, setCurrentUser } = useContext(UserContext);
-
+    const [formErrors, setFormErrors] = useState([]);
+    const [saveConfirmed, setSaveConfirmed] = useState(false);
+    const [loading, setLoading] = useState(false);
     const history = useHistory();
     const [formData, setFormData] = useState({
         firstName: currentUser.firstName,
@@ -24,9 +27,6 @@ function ProfileForm( {updateCurrentUser} ) {
         profileImage: currentUser.profileImage,
         password: ""
     });
-
-    const [formErrors, setFormErrors] = useState([]);
-    const [saveConfirmed, setSaveConfirmed] = useState(false);
 
     console.debug(
         "ProfileForm",
@@ -52,6 +52,7 @@ function ProfileForm( {updateCurrentUser} ) {
 
     async function handleSubmit(evt) {
         evt.preventDefault();
+        setLoading(true);
         const profileData = {
             username: currentUser.username,
             firstName: formData.firstName,
@@ -59,15 +60,17 @@ function ProfileForm( {updateCurrentUser} ) {
             profileImage: formData.profileImage,
             password: formData.password
         };
-    
+
         try {
             let result = await ChoresApi.saveProfile(currentUser._id, profileData);
             setFormData(f => ({ ...f, password: "" }));
             setFormErrors([]);
             setSaveConfirmed(true);
+            setLoading(false);
             updateCurrentUser(result);
         } catch (errors) {
             setFormErrors(errors);
+            setLoading(false);
             return;
         };
     };
@@ -78,17 +81,18 @@ function ProfileForm( {updateCurrentUser} ) {
         setFormErrors([]);
     };
 
-    function resetSaveConfirmed() {
+    function reset() {
+        setFormErrors([]);
         setSaveConfirmed(false);
-    }
+    };
 
     return (
         <div className="Form">
             <div className="Form__title">
                 <div className="Form__list-title">Update Profile</div>
                 <div className="Form__divider"></div>
-                {saveConfirmed && 
-                    <AppAlert severity="success" messages={["Profile Updated"]} saveNeeded={true} resetSaveConfirmed={resetSaveConfirmed} />
+                {saveConfirmed &&
+                    <AppAlert severity="success" messages={["Profile Updated"]} resetNeeded={true} reset={reset} />
                 }
             </div>
             <div className="Form__form-container">
@@ -172,19 +176,20 @@ function ProfileForm( {updateCurrentUser} ) {
                                 }
                             />
                         </FormControl>
-
                         {formErrors.length
-                            ? <AppAlert severity="error" messages={formErrors} />
+                            ? <AppAlert severity="error" messages={formErrors} reset={reset} resetNeeded={true} />
                             : null}
+
                         <div className="Form-group" style={{ textAlign: 'right' }}>
-                            <Button
-                                sx={{ m: 1, backgroundColor: '#1193ff', borderRadius: '5px' }}
+                            <LoadingButton
+                                sx={{ m: 2, backgroundColor: '#1193ff', borderRadius: '5px' }}
                                 variant="contained"
                                 type="submit"
+                                loading={loading}
                                 onSubmit={handleSubmit}
                             >
                                 Update Profile
-                             </Button>
+                        </LoadingButton>
                         </div>
                     </form>
                     <small className='Form__footer'>* Required Fields</small>

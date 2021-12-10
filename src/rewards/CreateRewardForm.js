@@ -5,9 +5,11 @@ import UserContext from "../auth/UserContext";
 import TextField from '@mui/material/TextField';
 import Paper from '@mui/material/Paper';
 import Button from '@mui/material/Button';
+import LoadingButton from '@mui/lab/LoadingButton';
 
 function CreateRewardForm({ createReward }) {
     const history = useHistory();
+    const [loading, setLoading] = useState(false);
     const { currentUser, currentTeam } = useContext(UserContext);
     const [formData, setFormData] = useState({
         "title": "",
@@ -39,11 +41,13 @@ function CreateRewardForm({ createReward }) {
 
     async function handleSubmit(evt) {
         evt.preventDefault();
+        setLoading(true);
         let result = await createReward(formData);
         if (result.success) {
             history.push("/rewards");
         } else {
             setFormErrors(result.errors);
+            setLoading(false);
         };
     };
 
@@ -51,6 +55,12 @@ function CreateRewardForm({ createReward }) {
         const { name, value } = evt.target;
         setFormData(data => ({ ...data, [name]: value }));
     };
+
+
+    function reset() {
+        setFormErrors([]);
+    };
+
 
     return (
         <div className="Form">
@@ -124,18 +134,19 @@ function CreateRewardForm({ createReward }) {
                         </div>
 
                         {formErrors.length
-                            ? <AppAlert severity="error" messages={formErrors} />
+                            ? <AppAlert severity="error" messages={formErrors} reset={reset} resetNeeded={true} />
                             : null}
 
                         <div className="Form-group" style={{ textAlign: 'right' }}>
-                            <Button
+                            <LoadingButton
                                 sx={{ m: 2, backgroundColor: '#1193ff', borderRadius: '5px' }}
                                 variant="contained"
                                 type="submit"
+                                loading={loading}
                                 onSubmit={handleSubmit}
                             >
                                 Create Reward
-                            </Button>
+                        </LoadingButton>
                         </div>
                     </form>
                     <small className='Form__footer'>* Required Fields</small>

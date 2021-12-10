@@ -1,0 +1,69 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matches snapshot 1`] = `
+<DocumentFragment>
+  <a
+    class="ChoreCard"
+    href="/chores/userid1"
+  >
+    <div
+      class="ChoreCard__container ChoreCard__approved "
+    >
+      <div
+        class="ChoreCard__inner-container"
+      >
+        <div>
+          <p
+            class="ChoreCard__title"
+          >
+            Clean Bathroom
+          </p>
+          <p
+            class="ChoreCard__description"
+          >
+            clean the bathroom
+          </p>
+        </div>
+        <div
+          class="ChoreCard__points-section"
+        >
+          <p
+            class="ChoreCard__points"
+          >
+            200 pts
+          </p>
+        </div>
+        <div
+          class="ChoreCard__due-date"
+        >
+          <div
+            class="ChoreCard__approved-section ChoreCard__approved-section--my-chores"
+          >
+            <p>
+              Approved
+            </p>
+            <svg
+              aria-hidden="true"
+              class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1gjr16u-MuiSvgIcon-root"
+              data-testid="CheckCircleOutlineIcon"
+              focusable="false"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M16.59 7.58 10 14.17l-3.59-3.58L5 12l5 5 8-8zM12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z"
+              />
+            </svg>
+          </div>
+        </div>
+      </div>
+      <div>
+        <p
+          class="ChoreCard__footer"
+        >
+          Chore was created and assigned to  by undefined at Thursday, November 4, 2021 - 11:47 PM. Submit chore by due date.
+        </p>
+      </div>
+    </div>
+  </a>
+</DocumentFragment>
+`;
