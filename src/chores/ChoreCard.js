@@ -2,11 +2,11 @@ import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { formatDate, formatShortDate, formatDay } from "../helpers/formatDate";
 import findUserInTeam from "../helpers/findUserInTeam";
+import { determineProfilePic } from "../helpers/determineProfilePic";
 import UserContext from "../auth/UserContext";
 import Avatar from '@mui/material/Avatar';
 import StarIcon from '@mui/icons-material/Star';
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
-import defaultProfileImage from '../assets/images/default-profile-pic.gif';
 
 function ChoreCard({
     id,
@@ -42,10 +42,6 @@ function ChoreCard({
             return "ChoreCard__approved";
         };
     };
-
-    const defaultProfilePic = (currentUser.profileImage === "defaultProfile.jpg")
-    ? defaultProfileImage
-    : currentUser.profileImage;
 
     if (cardType === "MyChoreList") {
         const userAssignee = findUserInTeam(assignee._id, currentTeamUsers);
@@ -106,8 +102,8 @@ function ChoreCard({
                             {assigneeImage &&
                                 <Avatar
                                     className="Profile__avatar--component"
-                                    alt={assigneeImage}
-                                    src={defaultProfilePic}
+                                    alt={determineProfilePic(userAssignee)}
+                                    src={determineProfilePic(userAssignee)}
                                     sx={{ width: 45, height: 45 }}
                                 >{assigneeName.charAt(0)}</Avatar>
                             }

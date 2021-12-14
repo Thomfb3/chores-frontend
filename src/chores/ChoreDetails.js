@@ -65,8 +65,7 @@ function ChoreDetails() {
 
     async function claimChore(claimChoreData) {
         const updateChoreData = {
-            assignee: claimChoreData.user,
-            assigner: claimChoreData.user
+            assignee: claimChoreData.user
         }
         try {
             let updatedChore = await ChoresApi.updateChore(id, updateChoreData);

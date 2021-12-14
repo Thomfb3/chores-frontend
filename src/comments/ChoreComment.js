@@ -1,17 +1,14 @@
 import React, { useContext } from "react";
 import findUserInTeam from "../helpers/findUserInTeam";
+import { determineProfilePic } from "../helpers/determineProfilePic";
 import { formatLongDate, formatTime } from "../helpers/formatDate";
 import UserContext from "../auth/UserContext";
 import Avatar from '@mui/material/Avatar';
-import defaultProfileImage from '../assets/images/default-profile-pic.gif';
 
 
 function ChoreComment({ user, comment, date }) {
     const { currentUser, currentTeamUsers } = useContext(UserContext);
     const choreCommentUser = findUserInTeam(user, currentTeamUsers);
-    const defaultProfilePic = (currentUser.profileImage === "defaultProfile.jpg")
-        ? defaultProfileImage
-        : currentUser.profileImage;
 
     return (
         <div className="ChoreComment">
@@ -20,8 +17,8 @@ function ChoreComment({ user, comment, date }) {
                     {choreCommentUser.profileImage &&
                         <Avatar
                             className="Profile__avatar--component"
-                            alt={defaultProfilePic}
-                            src={defaultProfilePic}
+                            alt={determineProfilePic(choreCommentUser)}
+                            src={determineProfilePic(choreCommentUser)}
                             sx={{ width: 45, height: 45 }}
                         >{choreCommentUser.username.charAt(0)}</Avatar>
                     }

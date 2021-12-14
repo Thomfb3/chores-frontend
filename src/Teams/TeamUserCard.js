@@ -1,16 +1,14 @@
 import React, { useContext } from "react";
-import defaultProfileImage from '../assets/images/default-profile-pic.gif';
+import findUserInTeam from "../helpers/findUserInTeam";
+import { determineProfilePic } from "../helpers/determineProfilePic";
 import UserContext from "../auth/UserContext";
 import Avatar from '@mui/material/Avatar';
 import StarIcon from '@mui/icons-material/Star';
 
 function TeamUserCard({ id, isCurrentUser, position, profileImage, username, firstName, isAdmin, currentPoints, allTimePoints }) {
     console.debug("TeamUserCard");
-    const { currentUser } = useContext(UserContext);
-
-    const defaultProfilePic = (currentUser.profileImage === "defaultProfile.jpg")
-        ? defaultProfileImage
-        : currentUser.profileImage;
+    const { currentTeamUsers } = useContext(UserContext);
+    const teamUser = findUserInTeam(id, currentTeamUsers);
 
     const determineOrdinal = (position) => {
         if (+position <= 3) return "top-three";
@@ -30,13 +28,8 @@ function TeamUserCard({ id, isCurrentUser, position, profileImage, username, fir
         };
     };
 
-
     return (
         <div className="TeamUserCard">
-            {/* <div className="TeamUserCard__box-shadow">
-                <div className="TeamUserCard__other"></div>
-                <div className={`TeamUserCard__clipped TeamUserCard__clipped--${determinePositionStyle(position)}`}></div>
-            </div> */}
             <div className={`TeamUserCard__container TeamUserCard__container--${determinePositionStyle(position)}`}>
                 <div className="TeamUserCard__inner-container TeamUserCard__inner-container--align-center">
                     <div className="TeamUserCard__left">
@@ -53,8 +46,8 @@ function TeamUserCard({ id, isCurrentUser, position, profileImage, username, fir
                     }
                     <Avatar
                         className="Profile__avatar--component"
-                        alt={defaultProfilePic}
-                        src={defaultProfilePic}
+                        alt={determineProfilePic(teamUser)}
+                        src={determineProfilePic(teamUser)}
                         sx={{ width: 65, height: 65 }}
                     >{firstName.charAt(0)}</Avatar>
                         <div className="TeamUserCard__name">
