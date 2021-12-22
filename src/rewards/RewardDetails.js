@@ -2,6 +2,7 @@ import React, { useEffect, useState, useContext } from "react";
 import { useParams } from "react-router-dom";
 import ChoresApi from "../api/api";
 import findUserInTeam from "../helpers/findUserInTeam";
+import capitalizeFirstLetter from "../helpers/capitalizeFirstLetter";
 import { formatDate } from "../helpers/formatDate";
 import LoadingSpinner from "../common/LoadingSpinner";
 import UserContext from "../auth/UserContext";
@@ -82,13 +83,15 @@ function RewardDetails() {
             <div className="Reward__status">
                 <h3 className="Chore__page-title">Chore Status</h3>
                 <div className="Chore__divider"></div>
-                {reward.status === "open" ? "Available" : reward.status}
-                <ClaimRewardForm
-                    rewardId={id}
-                    claimReward={claimReward}
-                    subtractUserPoints={subtractUserPoints}
-                    points={reward.pointsNeeded}
-                />
+                {reward.status === "open" ? "Available" : capitalizeFirstLetter(reward.status)}
+                {reward.status !== "claimed" && 
+                    <ClaimRewardForm
+                        rewardId={id}
+                        claimReward={claimReward}
+                        subtractUserPoints={subtractUserPoints}
+                        points={reward.pointsNeeded}
+                    />
+                }
             </div>
         </div>
     );
